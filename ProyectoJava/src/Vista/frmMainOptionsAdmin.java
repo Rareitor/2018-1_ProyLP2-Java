@@ -17,6 +17,7 @@ public class frmMainOptionsAdmin extends javax.swing.JDialog {
     public frmMainOptionsAdmin(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setTitle("GESCOM TDP");
     }
 
     /**
@@ -30,28 +31,105 @@ public class frmMainOptionsAdmin extends javax.swing.JDialog {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         menuAdministracion = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         menuCalculo = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         menuVisualizacion = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
         menuOtros = new javax.swing.JMenu();
+        menuEnvRec = new javax.swing.JMenuItem();
+        menuActMap = new javax.swing.JMenuItem();
+        jMenuItem14 = new javax.swing.JMenuItem();
+        jMenuItem15 = new javax.swing.JMenuItem();
+        jMenuItem16 = new javax.swing.JMenuItem();
+        jMenuItem17 = new javax.swing.JMenuItem();
         menuCuenta = new javax.swing.JMenu();
+        menModDatos = new javax.swing.JMenuItem();
         menuCerrar = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(500, 400));
 
         menuAdministracion.setText("Administración");
+
+        jMenuItem1.setText("jMenuItem1");
+        menuAdministracion.add(jMenuItem1);
+
+        jMenuItem2.setText("jMenuItem2");
+        menuAdministracion.add(jMenuItem2);
+
+        jMenuItem3.setText("jMenuItem3");
+        menuAdministracion.add(jMenuItem3);
+
         jMenuBar1.add(menuAdministracion);
 
         menuCalculo.setText("Cálculo");
+
+        jMenuItem4.setText("jMenuItem4");
+        menuCalculo.add(jMenuItem4);
+
+        jMenuItem5.setText("jMenuItem5");
+        menuCalculo.add(jMenuItem5);
+
         jMenuBar1.add(menuCalculo);
 
         menuVisualizacion.setText("Visualización");
+
+        jMenuItem6.setText("jMenuItem6");
+        menuVisualizacion.add(jMenuItem6);
+
+        jMenuItem7.setText("jMenuItem7");
+        menuVisualizacion.add(jMenuItem7);
+
+        jMenuItem8.setText("jMenuItem8");
+        menuVisualizacion.add(jMenuItem8);
+
+        jMenuItem9.setText("jMenuItem9");
+        menuVisualizacion.add(jMenuItem9);
+
+        jMenuItem10.setText("jMenuItem9");
+        menuVisualizacion.add(jMenuItem10);
+
+        jMenuItem11.setText("jMenuItem9");
+        menuVisualizacion.add(jMenuItem11);
+
         jMenuBar1.add(menuVisualizacion);
 
         menuOtros.setText("Otros");
+
+        menuEnvRec.setText("Enviar recomendaciones");
+        menuOtros.add(menuEnvRec);
+
+        menuActMap.setText("Actualizar Mapa");
+        menuOtros.add(menuActMap);
+
+        jMenuItem14.setText("jMenuItem9");
+        menuOtros.add(jMenuItem14);
+
+        jMenuItem15.setText("jMenuItem9");
+        menuOtros.add(jMenuItem15);
+
+        jMenuItem16.setText("jMenuItem9");
+        menuOtros.add(jMenuItem16);
+
+        jMenuItem17.setText("jMenuItem9");
+        menuOtros.add(jMenuItem17);
+
         jMenuBar1.add(menuOtros);
 
         menuCuenta.setText("Mi Cuenta");
+
+        menModDatos.setText("Modificar datos");
+        menuCuenta.add(menModDatos);
+
         jMenuBar1.add(menuCuenta);
 
         menuCerrar.setText("Cerrar Sesión");
@@ -128,10 +206,28 @@ public class frmMainOptionsAdmin extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem15;
+    private javax.swing.JMenuItem jMenuItem16;
+    private javax.swing.JMenuItem jMenuItem17;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenuItem menModDatos;
+    private javax.swing.JMenuItem menuActMap;
     private javax.swing.JMenu menuAdministracion;
     private javax.swing.JMenu menuCalculo;
     private javax.swing.JMenu menuCerrar;
     private javax.swing.JMenu menuCuenta;
+    private javax.swing.JMenuItem menuEnvRec;
     private javax.swing.JMenu menuOtros;
     private javax.swing.JMenu menuVisualizacion;
     // End of variables declaration//GEN-END:variables
