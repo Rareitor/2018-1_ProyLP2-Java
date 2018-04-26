@@ -1,4 +1,4 @@
-package ClasesProyecto;
+package Modelo;
 public abstract class Retribucion {
 //atributos
     private String idRetribucion;

@@ -1,11 +1,10 @@
-package ClasesProyecto;
+package Modelo;
 
 
 public class Administrador extends Trabajador{
-//atributos
+    //atributos
 
-
-//métodos
+    //métodos
     //constructores
     public Administrador(){
     }

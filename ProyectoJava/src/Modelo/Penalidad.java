@@ -1,4 +1,4 @@
-package ClasesProyecto;
+package Modelo;
 
 import java.util.Date;
 public class Penalidad extends Retribucion {

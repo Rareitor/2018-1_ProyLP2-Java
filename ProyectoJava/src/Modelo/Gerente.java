@@ -1,23 +1,23 @@
-package ClasesProyecto;
+package Modelo;
 
 import java.util.*;
 
 public class Gerente extends Trabajador{
 //atributos
-    private List<Jefe> listaJefes;
+    private ArrayList<Jefe> listaJefes;
     private TipoLocacion sede;
 //métodos
     //constructor
     public Gerente(){
-        listaJefes = new ArrayList<>();
+        //listaJefes = new ArrayList<>();
     }
     
     //setters y getters
-    public List<Jefe> getListaJefes() {
+    public ArrayList<Jefe> getListaJefes() {
         return listaJefes;
     }
 
-    public void setListaJefes(List<Jefe> listaJefes) {
+    public void setListaJefes(ArrayList<Jefe> listaJefes) {
         this.listaJefes = listaJefes;
     }
 

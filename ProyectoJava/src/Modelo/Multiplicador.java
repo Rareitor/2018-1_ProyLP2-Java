@@ -1,4 +1,4 @@
-package ClasesProyecto;
+package Modelo;
 
 public class Multiplicador extends Parametrica{
 //atributos
@@ -30,7 +30,4 @@ public class Multiplicador extends Parametrica{
     public void mostrarReporte() {
     }
 
-    
-   
-    
 }

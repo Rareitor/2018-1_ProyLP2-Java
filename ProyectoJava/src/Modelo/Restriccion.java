@@ -1,4 +1,4 @@
-package ClasesProyecto;
+package Modelo;
 
 public class Restriccion extends Parametrica{
 //atributos
@@ -14,7 +14,7 @@ public class Restriccion extends Parametrica{
         return this.descripcion;
     }
 
-    public void setDescripcionOperacion(String descripcion) {
+    public void setDescripcion(String descripcion) {
         this.descripcion= descripcion;
     }
 
@@ -30,7 +30,7 @@ public class Restriccion extends Parametrica{
    
     @Override
     public void mostrarReporte() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }        
     
 }

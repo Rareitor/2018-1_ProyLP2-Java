@@ -1,17 +1,18 @@
-package ClasesProyecto;
+package Modelo;
 
 import java.util.Date;
-
-public class Bono extends Retribucion {
-//Atributos
+public class Comision extends Retribucion {
+//atributos
     private float monto;
+    private Date fechaVenta;
     private Date fechaEmision;
-//Metodos
-    //Constructor
-    public Bono(){
+//metodos
+    //Constructores
+    public Comision(){
+
     };
 	
-    //Setters y getters
+    //setters y getters
 
     public float getMonto() {
         return monto;
@@ -21,6 +22,14 @@ public class Bono extends Retribucion {
         this.monto = monto;
     }
 
+    public Date getFechaVenta() {
+        return fechaVenta;
+    }
+
+    public void setFechaVenta(Date fechaVenta) {
+        this.fechaVenta = fechaVenta;
+    }
+
     public Date getFechaEmision() {
         return fechaEmision;
     }
@@ -28,5 +37,5 @@ public class Bono extends Retribucion {
     public void setFechaEmision(Date fechaEmision) {
         this.fechaEmision = fechaEmision;
     }
-    //métodos adicionales
+    //métodos adicionoales
 }

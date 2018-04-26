@@ -1,4 +1,4 @@
-package ClasesProyecto;
+package Modelo;
 
 public class Producto extends Entidad {
 //atributos

@@ -1,24 +1,24 @@
-package ClasesProyecto;
+package Modelo;
 
 import java.util.*;
 
 public class Jefe extends Payee{
 //atributos
-    private List<Comisionista> listaComisionistas;
+    private ArrayList<Comisionista> listaComisionistas;
     private TipoLocacion sede;
 //métodos
     //constructor
     public Jefe(){
-        listaComisionistas = new ArrayList<>();
+        listaComisionistas = new ArrayList<Comisionista>();
     }
     
     //setters y getters
 
-    public List<Comisionista> getListaComisionistas() {
+    public ArrayList<Comisionista> getListaComisionistas() {
         return listaComisionistas;
     }
 
-    public void setListaComisionistas(List<Comisionista> listaComisionistas) {
+    public void setListaComisionistas(ArrayList<Comisionista> listaComisionistas) {
         this.listaComisionistas = listaComisionistas;
     }
 
