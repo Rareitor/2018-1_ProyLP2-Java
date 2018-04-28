@@ -4,6 +4,7 @@ import java.util.ArrayList;
 public class Combo extends Entidad{
 //Atributos
     private ArrayList<Producto> productos;
+    private TipoPrdCmb tipo;
 //Métododos
     //Contructor
     public Combo() {
@@ -25,6 +26,15 @@ public class Combo extends Entidad{
     public void EliminarProducto(String producto){
     };
     
+    public TipoPrdCmb getTipo() {
+        return tipo;
+    }
+    
+    public void setTipo(TipoPrdCmb tipo) {
+        this.tipo = tipo;
+    }
+
+    //metodos adicionales
     public void MostrarProductos(){
     };
     

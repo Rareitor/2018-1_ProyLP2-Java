@@ -1,11 +1,12 @@
 package Modelo;
 
 public class Producto extends Entidad {
-//atributos
+
+    //atributos
     private int stock;
-    private float precioEstandar;
     private String nombre;
     private String marca;
+    private TipoPrdCmb tipo;
 //m�todos
     //Constructor
     public Producto(){  
@@ -21,13 +22,6 @@ public class Producto extends Entidad {
         this.stock = stock;
     }
 
-    public float getPrecioEstandar() {
-        return precioEstandar;
-    }
-
-    public void setPrecioEstandar(float precioEstandar) {
-        this.precioEstandar = precioEstandar;
-    }
 
     public String getNombre() {
         return nombre;
@@ -43,6 +37,14 @@ public class Producto extends Entidad {
 
     public void setMarca(String marca) {
         this.marca = marca;
+    }
+    
+    public TipoPrdCmb getTipo() {
+        return tipo;
+    }
+    
+    public void setTipo(TipoPrdCmb tipo) {
+        this.tipo = tipo;
     }
     
      //métodos adicionales
