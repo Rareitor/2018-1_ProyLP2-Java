@@ -3,6 +3,7 @@ package Modelo;
 import java.util.Date;
 
 public class Orden {
+
 //atributos
         private String id;
         private Date fechaVenta;
@@ -10,6 +11,7 @@ public class Orden {
         private Canal canal;
         private Payee payee;
         private Retribucion retribucion;
+        private double montoPago;
 //metodos
 	//constructores
         public Orden()
@@ -79,6 +81,20 @@ public class Orden {
 //    public void setRetribucion(Retribucion retribucion) {
 //        this.retribucion = retribucion;
 //    }
+    
+    /**
+     * @return the montoPago
+     */
+    public double getMontoPago() {
+        return montoPago;
+    }
+
+    /**
+     * @param montoPago the montoPago to set
+     */
+    public void setMontoPago(double montoPago) {
+        this.montoPago = montoPago;
+    }
     
 //metodos adicionales
     public void CalcularComision(){
