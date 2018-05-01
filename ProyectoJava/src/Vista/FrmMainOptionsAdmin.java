@@ -4,24 +4,32 @@
  * and open the template in the editor.
  */
 package Vista;
-import java.awt.Frame;
-import java.awt.Window;
-import javax.swing.SwingUtilities;
+import java.awt.*;
+import javax.swing.*;
 /**
  *
  * @author Emilio
  */
 public class FrmMainOptionsAdmin extends javax.swing.JDialog {
 
-    private FrmAdministrarCuenta adminCuenta = null;
-    private FrmAnadirNoticia addNoticia = null;
+    private FrmAdministrarCuenta administrarCuenta;
+    private FrmAnadirNoticia addNoticia;
+    private FrmReportarInfraccion reportarInfraccion;
+    private FrmRealizarBackup backup;
+    private FrmPapeleraReciclaje papelera;
+    private FrmVerMapa mapa;
     /**
      * Creates new form NewJDialog
      */
-    public FrmMainOptionsAdmin(java.awt.Frame parent, boolean modal) {
+    public FrmMainOptionsAdmin(java.awt.Frame parent, boolean modal, String user) {
         super(parent, modal);
         initComponents();
-        this.setTitle("GESCOM TDP");
+        this.setTitle("GESCOM TDP - " + user);
+        
+        administrarCuenta = null;
+        addNoticia = null;
+        reportarInfraccion = null;
+        backup = null;
     }
 
     /**
@@ -61,11 +69,11 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         menuiInfracciones = new javax.swing.JMenuItem();
         menuiNoticias = new javax.swing.JMenuItem();
         menuOtros = new javax.swing.JMenu();
-        menuiEnvRec = new javax.swing.JMenuItem();
+        menuiRecomendaciones = new javax.swing.JMenuItem();
         menuiActMap = new javax.swing.JMenuItem();
         menuiPapelera = new javax.swing.JMenuItem();
         menuiBackup = new javax.swing.JMenuItem();
-        menuiReportInfr = new javax.swing.JMenuItem();
+        menuiReportInfraccion = new javax.swing.JMenuItem();
         menuiAnadirNoticias = new javax.swing.JMenuItem();
         menuiVerMapa = new javax.swing.JMenuItem();
         menuCuenta = new javax.swing.JMenu();
@@ -82,7 +90,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Comisionista", "Jafe Directo"
+                "Comisionista", "Jefe Directo"
             }
         ));
         jTable1.getTableHeader().setReorderingAllowed(false);
@@ -221,20 +229,45 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
 
         menuOtros.setText("Otros");
 
-        menuiEnvRec.setText("Enviar recomendaciones");
-        menuOtros.add(menuiEnvRec);
+        menuiRecomendaciones.setText("Enviar Recomendaciones");
+        menuiRecomendaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuiRecomendacionesActionPerformed(evt);
+            }
+        });
+        menuOtros.add(menuiRecomendaciones);
 
         menuiActMap.setText("Actualizar Mapa");
+        menuiActMap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuiActMapActionPerformed(evt);
+            }
+        });
         menuOtros.add(menuiActMap);
 
         menuiPapelera.setText("Papelera de Reciclaje");
+        menuiPapelera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuiPapeleraActionPerformed(evt);
+            }
+        });
         menuOtros.add(menuiPapelera);
 
         menuiBackup.setText("Backup");
+        menuiBackup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuiBackupActionPerformed(evt);
+            }
+        });
         menuOtros.add(menuiBackup);
 
-        menuiReportInfr.setText("Reportar Infracción");
-        menuOtros.add(menuiReportInfr);
+        menuiReportInfraccion.setText("Reportar Infracción");
+        menuiReportInfraccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuiReportInfraccionActionPerformed(evt);
+            }
+        });
+        menuOtros.add(menuiReportInfraccion);
 
         menuiAnadirNoticias.setText("Añadir Noticias");
         menuiAnadirNoticias.addActionListener(new java.awt.event.ActionListener() {
@@ -309,19 +342,19 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
 
     private void menuiCambDatPerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiCambDatPerActionPerformed
         // TODO add your handling code here:
-        if(adminCuenta != null){
+        if(administrarCuenta != null){
             try{
-                adminCuenta.setClosed(true);
+                administrarCuenta.setClosed(true);
             }catch(Exception e){
                 System.out.println(e.getMessage());
             }
-            adminCuenta.dispose();
+            administrarCuenta.dispose();
         }
-        adminCuenta = new FrmAdministrarCuenta();
-        adminCuenta.setClosable(true);
-        dskPnPrincipal.add(adminCuenta);
+        administrarCuenta = new FrmAdministrarCuenta();
+        administrarCuenta.setClosable(true);
+        dskPnPrincipal.add(administrarCuenta);
         //System.out.println(dskPnPrincipal.getAllFrames().length);
-        adminCuenta.setVisible(true);
+        administrarCuenta.setVisible(true);
     }//GEN-LAST:event_menuiCambDatPerActionPerformed
 
     private void menuiAnadirNoticiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiAnadirNoticiasActionPerformed
@@ -336,9 +369,83 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         }
         addNoticia = new FrmAnadirNoticia();
         addNoticia.setClosable(true);
+        addNoticia.pack();
         dskPnPrincipal.add(addNoticia);
         addNoticia.setVisible(true);
     }//GEN-LAST:event_menuiAnadirNoticiasActionPerformed
+
+    private void menuiReportInfraccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiReportInfraccionActionPerformed
+        // TODO add your handling code here:
+        if(reportarInfraccion != null){
+            try{
+                reportarInfraccion.setClosed(true);
+            }catch(Exception ex){
+                System.out.println(ex.getMessage());
+            }
+            reportarInfraccion.dispose();
+        }
+        reportarInfraccion = new FrmReportarInfraccion();
+        reportarInfraccion.setClosable(true);
+        reportarInfraccion.pack();
+        dskPnPrincipal.add(reportarInfraccion);
+        reportarInfraccion.setVisible(true);
+    }//GEN-LAST:event_menuiReportInfraccionActionPerformed
+
+    private void menuiBackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiBackupActionPerformed
+        // TODO add your handling code here:
+        if(backup != null){
+            try{
+                backup.setClosed(true);
+            }catch(Exception ex){
+                System.out.println(ex.getMessage());
+            }
+            backup.dispose();
+        }
+        backup = new FrmRealizarBackup();
+        backup.setClosable(true);
+        backup.pack();
+        dskPnPrincipal.add(backup);
+        backup.setVisible(true);
+    }//GEN-LAST:event_menuiBackupActionPerformed
+
+    private void menuiPapeleraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiPapeleraActionPerformed
+        // TODO add your handling code here:
+        if(papelera != null){
+            try{
+                papelera.setClosed(true);
+            }catch(Exception ex){
+                System.out.println(ex.getMessage());
+            }
+            papelera.dispose();
+        }
+        papelera = new FrmPapeleraReciclaje();
+        papelera.setClosable(true);
+        papelera.pack();
+        dskPnPrincipal.add(papelera);
+        papelera.setVisible(true);
+    }//GEN-LAST:event_menuiPapeleraActionPerformed
+
+    private void menuiActMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiActMapActionPerformed
+        // TODO add your handling code here:
+        if(mapa != null){
+            try{
+                mapa.setClosed(true);
+            }catch(Exception ex){
+                System.out.println(ex.getMessage());
+            }
+            mapa.dispose();
+        }
+        mapa = new FrmVerMapa();
+        mapa.setClosable(true);
+        mapa.pack();
+        dskPnPrincipal.add(mapa);
+        mapa.setVisible(true);
+    }//GEN-LAST:event_menuiActMapActionPerformed
+
+    private void menuiRecomendacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiRecomendacionesActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_menuiRecomendacionesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -373,7 +480,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FrmMainOptionsAdmin dialog = new FrmMainOptionsAdmin(new javax.swing.JFrame(), true);
+                FrmMainOptionsAdmin dialog = new FrmMainOptionsAdmin(new javax.swing.JFrame(), true, "");
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -410,7 +517,6 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
     private javax.swing.JMenuItem menuiCanalesVenta;
     private javax.swing.JMenuItem menuiComisiones;
     private javax.swing.JMenuItem menuiComisionistas;
-    private javax.swing.JMenuItem menuiEnvRec;
     private javax.swing.JMenuItem menuiFijarPeriodo;
     private javax.swing.JMenuItem menuiGerentes;
     private javax.swing.JMenuItem menuiGestOrden;
@@ -421,7 +527,8 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
     private javax.swing.JMenuItem menuiNoticias;
     private javax.swing.JMenuItem menuiPapelera;
     private javax.swing.JMenuItem menuiProductos;
-    private javax.swing.JMenuItem menuiReportInfr;
+    private javax.swing.JMenuItem menuiRecomendaciones;
+    private javax.swing.JMenuItem menuiReportInfraccion;
     private javax.swing.JMenuItem menuiVerMapa;
     private javax.swing.JPanel pnlComisionistas;
     private javax.swing.JPanel pnlNoticia;

@@ -150,19 +150,21 @@ public class FrmLogin extends javax.swing.JFrame {
                 puesto = "Gerente";
             }
             
-            if (puesto.compareTo("Gerente") !=0)
+            if (puesto.equals(""))
             {
                 JOptionPane.showMessageDialog(this, "Por favor, ingrese un usuario válido.",  "Ingresar usuario",JOptionPane.WARNING_MESSAGE);
+                return;
             }
-            else if (contra == "")
+            else if (contra.equals(""))
             {
                 JOptionPane.showMessageDialog(this, "Por favor, ingrese una contraseña válida.", "Ingrese contraseña", JOptionPane.WARNING_MESSAGE);
+                return;
             }
 
             if (contra.equals("pucp"))
             {
                 //frmMainOptions frmAdmin = new frmMainOptions(puesto);
-                JDialog frmMainOpt = new FrmMainOptionsAdmin(this, true);
+                JDialog frmMainOpt = new FrmMainOptionsAdmin(this, true, puesto);
                 //frmMainOpt.add(new FrmMainOptionsAdmin());
                 frmMainOpt.pack();
                 this.setVisible(false);
