@@ -18,6 +18,8 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
     private FrmRealizarBackup backup;
     private FrmPapeleraReciclaje papelera;
     private FrmVerMapa mapa;
+    private FrmVerRecomendaciones verRecom;
+    private FrmNoticias verNoticia;
     /**
      * Creates new form NewJDialog
      */
@@ -30,6 +32,10 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         addNoticia = null;
         reportarInfraccion = null;
         backup = null;
+        papelera = null;
+        mapa = null;
+        verRecom = null;
+        verNoticia = null;
     }
 
     /**
@@ -223,6 +229,11 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         menuVisualizacion.add(menuiInfracciones);
 
         menuiNoticias.setText("Noticias");
+        menuiNoticias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuiNoticiasActionPerformed(evt);
+            }
+        });
         menuVisualizacion.add(menuiNoticias);
 
         jMenuBar1.add(menuVisualizacion);
@@ -444,8 +455,37 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
 
     private void menuiRecomendacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiRecomendacionesActionPerformed
         // TODO add your handling code here:
-        
+        if(verRecom != null){
+            try{
+                verRecom.setClosed(true);
+            }catch(Exception ex){
+                System.out.println(ex.getMessage());
+            }
+            verRecom.dispose();
+        }
+        verRecom = new FrmVerRecomendaciones();
+        verRecom.setClosable(true);
+        verRecom.pack();
+        dskPnPrincipal.add(verRecom);
+        verRecom.setVisible(true);
     }//GEN-LAST:event_menuiRecomendacionesActionPerformed
+
+    private void menuiNoticiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiNoticiasActionPerformed
+        // TODO add your handling code here:
+        if(verNoticia != null){
+            try{
+                verNoticia.setClosed(true);
+            }catch(Exception ex){
+                System.out.println(ex.getMessage());
+            }
+            verNoticia.dispose();
+        }
+        verNoticia = new FrmNoticias();
+        verNoticia.setClosable(true);
+        verNoticia.pack();
+        dskPnPrincipal.add(verNoticia);
+        verNoticia.setVisible(true);
+    }//GEN-LAST:event_menuiNoticiasActionPerformed
 
     /**
      * @param args the command line arguments

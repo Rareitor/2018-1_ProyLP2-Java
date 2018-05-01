@@ -63,9 +63,9 @@ public class FrmReportarInfraccion extends javax.swing.JInternalFrame {
         });
 
         btnCancelar.setText("Cancelar");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
+        btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCancelarMouseClicked(evt);
             }
         });
 
@@ -112,15 +112,6 @@ public class FrmReportarInfraccion extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
-        try{
-            this.setClosed(true);
-        }catch(Exception ex){
-            System.out.println(ex.getMessage());
-        }
-    }//GEN-LAST:event_btnCancelarActionPerformed
-
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
         // TODO add your handling code here:
         FileWriter archivo;
@@ -139,6 +130,15 @@ public class FrmReportarInfraccion extends javax.swing.JInternalFrame {
             System.out.println(ex.getMessage());
         }
     }//GEN-LAST:event_btnEnviarActionPerformed
+
+    private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
+        // TODO add your handling code here:
+        try{
+            this.setClosed(true);
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+    }//GEN-LAST:event_btnCancelarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
