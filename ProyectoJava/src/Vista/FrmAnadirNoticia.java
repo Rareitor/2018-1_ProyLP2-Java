@@ -61,6 +61,7 @@ public class FrmAnadirNoticia extends javax.swing.JInternalFrame {
         btnCancelar = new javax.swing.JButton();
 
         txtANoticias.setColumns(20);
+        txtANoticias.setLineWrap(true);
         txtANoticias.setRows(5);
         jScrollPane1.setViewportView(txtANoticias);
 
