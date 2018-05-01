@@ -20,6 +20,8 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
     private FrmVerMapa mapa;
     private FrmVerRecomendaciones verRecom;
     private FrmNoticias verNoticia;
+    private FrmVisualizarInfraccion visualizarInfracciones;
+    private FrmVisualizarUsuario usuario;
     /**
      * Creates new form NewJDialog
      */
@@ -36,6 +38,22 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         mapa = null;
         verRecom = null;
         verNoticia = null;
+        visualizarInfracciones = null;
+        usuario = null;
+    }
+    
+    private void getUserForm(String str){
+        if(usuario != null){
+            try{
+                usuario.setClosed(true);
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+            usuario.dispose();
+        }
+        usuario = new FrmVisualizarUsuario(str);
+        usuario.setClosable(true);
+        dskPnPrincipal.add(usuario);usuario.setVisible(true);
     }
 
     /**
@@ -215,17 +233,37 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         menuPersonalCargo.setText("Personal a Cargo");
 
         menuiJefes.setText("Jefes");
+        menuiJefes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuiJefesActionPerformed(evt);
+            }
+        });
         menuPersonalCargo.add(menuiJefes);
 
         menuiComisionistas.setText("Comisionistas");
+        menuiComisionistas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuiComisionistasActionPerformed(evt);
+            }
+        });
         menuPersonalCargo.add(menuiComisionistas);
 
         menuiGerentes.setText("Gerentes");
+        menuiGerentes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuiGerentesActionPerformed(evt);
+            }
+        });
         menuPersonalCargo.add(menuiGerentes);
 
         menuVisualizacion.add(menuPersonalCargo);
 
         menuiInfracciones.setText("Infracciones");
+        menuiInfracciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuiInfraccionesActionPerformed(evt);
+            }
+        });
         menuVisualizacion.add(menuiInfracciones);
 
         menuiNoticias.setText("Noticias");
@@ -486,6 +524,38 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         dskPnPrincipal.add(verNoticia);
         verNoticia.setVisible(true);
     }//GEN-LAST:event_menuiNoticiasActionPerformed
+
+    private void menuiInfraccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiInfraccionesActionPerformed
+        // TODO add your handling code here:
+        if(visualizarInfracciones != null){
+            try{
+                visualizarInfracciones.setClosed(true);
+            }catch(Exception ex){
+                System.out.println(ex.getMessage());
+            }
+            visualizarInfracciones.dispose();
+        }
+        visualizarInfracciones = new FrmVisualizarInfraccion();
+        visualizarInfracciones.setClosable(true);
+        visualizarInfracciones.pack();
+        dskPnPrincipal.add(visualizarInfracciones);
+        visualizarInfracciones.setVisible(true);
+    }//GEN-LAST:event_menuiInfraccionesActionPerformed
+
+    private void menuiGerentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiGerentesActionPerformed
+        // TODO add your handling code here:
+        getUserForm("Gerente");
+    }//GEN-LAST:event_menuiGerentesActionPerformed
+
+    private void menuiComisionistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiComisionistasActionPerformed
+        // TODO add your handling code here:
+        getUserForm("Comisionista");
+    }//GEN-LAST:event_menuiComisionistasActionPerformed
+
+    private void menuiJefesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiJefesActionPerformed
+        // TODO add your handling code here:
+        getUserForm("Jefe");
+    }//GEN-LAST:event_menuiJefesActionPerformed
 
     /**
      * @param args the command line arguments
