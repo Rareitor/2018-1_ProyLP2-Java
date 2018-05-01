@@ -6,6 +6,7 @@
 package Vista;
 
 import java.awt.Dimension;
+import java.io.File;
 import javax.swing.JDialog;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
@@ -23,6 +24,7 @@ public class FrmLogin extends javax.swing.JFrame {
         initComponents();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         txtContrasena.setText("******");
+//        System.out.println(new File("./").getAbsolutePath());
     }
 
     /**

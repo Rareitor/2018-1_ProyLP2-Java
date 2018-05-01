@@ -131,6 +131,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="A&#xf1;adir Noticias"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuiAnadirNoticiasActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuiVerMapa">
               <Properties>
@@ -213,9 +216,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="pnlNoticia" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="280" max="32767" attributes="0"/>
-                  <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                  <Component id="pnlComisionistas" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -225,8 +228,8 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace pref="322" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jPanel2" max="32767" attributes="0"/>
-                      <Component id="jPanel1" max="32767" attributes="0"/>
+                      <Component id="pnlComisionistas" max="32767" attributes="0"/>
+                      <Component id="pnlNoticia" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -234,7 +237,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="jPanel2">
+        <Container class="javax.swing.JPanel" name="pnlComisionistas">
 
           <Layout>
             <DimensionLayout dim="0">
@@ -307,7 +310,7 @@
             </Container>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel1">
+        <Container class="javax.swing.JPanel" name="pnlNoticia">
 
           <Layout>
             <DimensionLayout dim="0">

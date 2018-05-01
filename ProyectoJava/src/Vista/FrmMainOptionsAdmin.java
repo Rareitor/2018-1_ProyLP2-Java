@@ -14,6 +14,7 @@ import javax.swing.SwingUtilities;
 public class FrmMainOptionsAdmin extends javax.swing.JDialog {
 
     private FrmAdministrarCuenta adminCuenta = null;
+    private FrmAnadirNoticia addNoticia = null;
     /**
      * Creates new form NewJDialog
      */
@@ -33,11 +34,11 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
     private void initComponents() {
 
         dskPnPrincipal = new javax.swing.JDesktopPane();
-        jPanel2 = new javax.swing.JPanel();
+        pnlComisionistas = new javax.swing.JPanel();
         lblComDestac = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jPanel1 = new javax.swing.JPanel();
+        pnlNoticia = new javax.swing.JPanel();
         lblNoticias = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
@@ -87,22 +88,22 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(jTable1);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlComisionistasLayout = new javax.swing.GroupLayout(pnlComisionistas);
+        pnlComisionistas.setLayout(pnlComisionistasLayout);
+        pnlComisionistasLayout.setHorizontalGroup(
+            pnlComisionistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlComisionistasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblComDestac)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlComisionistasLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        pnlComisionistasLayout.setVerticalGroup(
+            pnlComisionistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlComisionistasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblComDestac)
                 .addGap(18, 18, 18)
@@ -116,22 +117,22 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlNoticiaLayout = new javax.swing.GroupLayout(pnlNoticia);
+        pnlNoticia.setLayout(pnlNoticiaLayout);
+        pnlNoticiaLayout.setHorizontalGroup(
+            pnlNoticiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlNoticiaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlNoticiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(pnlNoticiaLayout.createSequentialGroup()
                         .addComponent(lblNoticias)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        pnlNoticiaLayout.setVerticalGroup(
+            pnlNoticiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlNoticiaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblNoticias)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -139,8 +140,8 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        dskPnPrincipal.setLayer(jPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        dskPnPrincipal.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        dskPnPrincipal.setLayer(pnlComisionistas, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        dskPnPrincipal.setLayer(pnlNoticia, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout dskPnPrincipalLayout = new javax.swing.GroupLayout(dskPnPrincipal);
         dskPnPrincipal.setLayout(dskPnPrincipalLayout);
@@ -148,9 +149,9 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
             dskPnPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dskPnPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlNoticia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 280, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlComisionistas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         dskPnPrincipalLayout.setVerticalGroup(
@@ -158,8 +159,8 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dskPnPrincipalLayout.createSequentialGroup()
                 .addContainerGap(322, Short.MAX_VALUE)
                 .addGroup(dskPnPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pnlComisionistas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlNoticia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -236,6 +237,11 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         menuOtros.add(menuiReportInfr);
 
         menuiAnadirNoticias.setText("Añadir Noticias");
+        menuiAnadirNoticias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuiAnadirNoticiasActionPerformed(evt);
+            }
+        });
         menuOtros.add(menuiAnadirNoticias);
 
         menuiVerMapa.setText("Ver Mapa");
@@ -314,8 +320,25 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         adminCuenta = new FrmAdministrarCuenta();
         adminCuenta.setClosable(true);
         dskPnPrincipal.add(adminCuenta);
+        //System.out.println(dskPnPrincipal.getAllFrames().length);
         adminCuenta.setVisible(true);
     }//GEN-LAST:event_menuiCambDatPerActionPerformed
+
+    private void menuiAnadirNoticiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiAnadirNoticiasActionPerformed
+        // TODO add your handling code here:
+        if(addNoticia != null){
+            try{
+                addNoticia.setClosed(true);
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+            addNoticia.dispose();
+        }
+        addNoticia = new FrmAnadirNoticia();
+        addNoticia.setClosable(true);
+        dskPnPrincipal.add(addNoticia);
+        addNoticia.setVisible(true);
+    }//GEN-LAST:event_menuiAnadirNoticiasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -365,8 +388,6 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane dskPnPrincipal;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
@@ -402,5 +423,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
     private javax.swing.JMenuItem menuiProductos;
     private javax.swing.JMenuItem menuiReportInfr;
     private javax.swing.JMenuItem menuiVerMapa;
+    private javax.swing.JPanel pnlComisionistas;
+    private javax.swing.JPanel pnlNoticia;
     // End of variables declaration//GEN-END:variables
 }
