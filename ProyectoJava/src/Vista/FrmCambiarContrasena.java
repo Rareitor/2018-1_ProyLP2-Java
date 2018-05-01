@@ -5,6 +5,8 @@
  */
 package Vista;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Emilio
@@ -34,12 +36,12 @@ public class FrmCambiarContrasena extends javax.swing.JDialog {
         lblActual = new javax.swing.JLabel();
         lblNueva = new javax.swing.JLabel();
         lblConfirmar = new javax.swing.JLabel();
-        lblAceptar = new javax.swing.JButton();
+        btnAceptar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        txtActual = new javax.swing.JTextField();
-        txtConfirm = new javax.swing.JTextField();
-        txtNuevo = new javax.swing.JTextField();
         chkVer = new javax.swing.JCheckBox();
+        txtActual = new javax.swing.JPasswordField();
+        txtNuevo = new javax.swing.JPasswordField();
+        txtConfirm = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -51,17 +53,26 @@ public class FrmCambiarContrasena extends javax.swing.JDialog {
 
         lblConfirmar.setText("Confirmar Contraseña:");
 
-        lblAceptar.setText("Aceptar");
+        btnAceptar.setText("Aceptar");
+        btnAceptar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAceptarMouseClicked(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
-
-        txtConfirm.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtConfirmKeyPressed(evt);
+        btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCancelarMouseClicked(evt);
             }
         });
 
         chkVer.setText("Ver");
+        chkVer.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                chkVerItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -70,18 +81,18 @@ public class FrmCambiarContrasena extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblAceptar)
+                    .addComponent(btnAceptar)
                     .addComponent(lblNueva)
                     .addComponent(lblConfirmar)
                     .addComponent(lblActual))
                 .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtNuevo, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtConfirm, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtConfirm)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 105, Short.MAX_VALUE)
                         .addComponent(btnCancelar))
-                    .addComponent(txtActual))
+                    .addComponent(txtActual, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtNuevo))
                 .addGap(32, 32, 32)
                 .addComponent(chkVer)
                 .addGap(38, 38, 38))
@@ -92,8 +103,8 @@ public class FrmCambiarContrasena extends javax.swing.JDialog {
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblActual)
-                    .addComponent(txtActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(chkVer))
+                    .addComponent(chkVer)
+                    .addComponent(txtActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNueva)
@@ -104,7 +115,7 @@ public class FrmCambiarContrasena extends javax.swing.JDialog {
                     .addComponent(txtConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblAceptar)
+                    .addComponent(btnAceptar)
                     .addComponent(btnCancelar))
                 .addGap(27, 27, 27))
         );
@@ -112,10 +123,46 @@ public class FrmCambiarContrasena extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtConfirmKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtConfirmKeyPressed
+    private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
         // TODO add your handling code here:
+        this.setVisible(false);
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarMouseClicked
+
+    private void chkVerItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_chkVerItemStateChanged
+        // TODO add your handling code here:
+        if(chkVer.isSelected()){
+            txtActual.setEchoChar((char)0);
+            txtNuevo.setEchoChar((char)0);
+            txtConfirm.setEchoChar((char)0);
+        }else{
+            txtActual.setEchoChar('*');
+            txtNuevo.setEchoChar('*');
+            txtConfirm.setEchoChar('*');
+        }
+    }//GEN-LAST:event_chkVerItemStateChanged
+
+    private void btnAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAceptarMouseClicked
+        // TODO add your handling code here:
+        String actual = new String(txtActual.getPassword());
+        String nuevo = new String(txtNuevo.getPassword());
+        String confirm = new String(txtConfirm.getPassword());
         
-    }//GEN-LAST:event_txtConfirmKeyPressed
+        if(nuevo.equals(confirm) && !(nuevo.equals("")))
+            {
+                //MessageBox.Show("Contraseña actualizada");
+                JOptionPane.showMessageDialog(this, "Contraseña actualizada", "Actualizada",JOptionPane.INFORMATION_MESSAGE);
+                //this.setVisible(false);
+            }
+            else if (confirm.equals(""))
+            {
+                JOptionPane.showMessageDialog(this, "Ingrese la contraseña", "Error",JOptionPane.INFORMATION_MESSAGE);
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, "Por favor, verique que las contraseñas coincidan.", "Las contraseñas no coinciden",JOptionPane.ERROR_MESSAGE);
+            }
+    }//GEN-LAST:event_btnAceptarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -160,14 +207,14 @@ public class FrmCambiarContrasena extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JCheckBox chkVer;
-    private javax.swing.JButton lblAceptar;
     private javax.swing.JLabel lblActual;
     private javax.swing.JLabel lblConfirmar;
     private javax.swing.JLabel lblNueva;
-    private javax.swing.JTextField txtActual;
-    private javax.swing.JTextField txtConfirm;
-    private javax.swing.JTextField txtNuevo;
+    private javax.swing.JPasswordField txtActual;
+    private javax.swing.JPasswordField txtConfirm;
+    private javax.swing.JPasswordField txtNuevo;
     // End of variables declaration//GEN-END:variables
 }
