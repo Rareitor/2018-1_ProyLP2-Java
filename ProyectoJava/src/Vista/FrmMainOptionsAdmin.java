@@ -21,7 +21,10 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
     private FrmVerRecomendaciones verRecom;
     private FrmNoticias verNoticia;
     private FrmVisualizarInfraccion visualizarInfracciones;
-    private FrmVisualizarUsuario usuario;
+    private FrmVisualizarUsuario usuarios;
+    private FrmVisualizarCanal canalesVenta;
+    private FrmVisualizarProducto productos;
+    private FrmRecordVendido comisiones;
     /**
      * Creates new form NewJDialog
      */
@@ -39,21 +42,24 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         verRecom = null;
         verNoticia = null;
         visualizarInfracciones = null;
-        usuario = null;
+        usuarios = null;
+        canalesVenta = null;
+        productos = null;
+        comisiones = null;
     }
     
     private void getUserForm(String str){
-        if(usuario != null){
+        if(usuarios != null){
             try{
-                usuario.setClosed(true);
+                usuarios.setClosed(true);
             }catch(Exception e){
                 System.out.println(e.getMessage());
             }
-            usuario.dispose();
+            usuarios.dispose();
         }
-        usuario = new FrmVisualizarUsuario(str);
-        usuario.setClosable(true);
-        dskPnPrincipal.add(usuario);usuario.setVisible(true);
+        usuarios = new FrmVisualizarUsuario(str);
+        usuarios.setClosable(true);
+        dskPnPrincipal.add(usuarios);usuarios.setVisible(true);
     }
 
     /**
@@ -182,7 +188,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dskPnPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pnlNoticia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 280, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 484, Short.MAX_VALUE)
                 .addComponent(pnlComisionistas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -215,6 +221,11 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         menuCalculo.add(menuiFijarPeriodo);
 
         menuiCalcularComisiones.setText("Calcular Comisiones");
+        menuiCalcularComisiones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuiCalcularComisionesActionPerformed(evt);
+            }
+        });
         menuCalculo.add(menuiCalcularComisiones);
 
         jMenuBar1.add(menuCalculo);
@@ -222,12 +233,27 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         menuVisualizacion.setText("Visualización");
 
         menuiComisiones.setText("Comisiones");
+        menuiComisiones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuiComisionesActionPerformed(evt);
+            }
+        });
         menuVisualizacion.add(menuiComisiones);
 
         menuiProductos.setText("Productos");
+        menuiProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuiProductosActionPerformed(evt);
+            }
+        });
         menuVisualizacion.add(menuiProductos);
 
         menuiCanalesVenta.setText("Canales de Venta");
+        menuiCanalesVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuiCanalesVentaActionPerformed(evt);
+            }
+        });
         menuVisualizacion.add(menuiCanalesVenta);
 
         menuPersonalCargo.setText("Personal a Cargo");
@@ -556,6 +582,62 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         // TODO add your handling code here:
         getUserForm("Jefe");
     }//GEN-LAST:event_menuiJefesActionPerformed
+
+    private void menuiCanalesVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiCanalesVentaActionPerformed
+        // TODO add your handling code here:
+        if(canalesVenta != null){
+            try{
+                canalesVenta.setClosed(true);
+            }catch(Exception ex){
+                System.out.println(ex.getMessage());
+            }
+            canalesVenta.dispose();
+        }
+        canalesVenta = new FrmVisualizarCanal();
+        canalesVenta.setClosable(true);
+        canalesVenta.pack();
+        dskPnPrincipal.add(canalesVenta);
+        canalesVenta.setVisible(true);
+    }//GEN-LAST:event_menuiCanalesVentaActionPerformed
+
+    private void menuiProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiProductosActionPerformed
+        // TODO add your handling code here:
+        if(productos != null){
+            try{
+                productos.setClosed(true);
+            }catch(Exception ex){
+                System.out.println(ex.getMessage());
+            }
+            productos.dispose();
+        }
+        productos = new FrmVisualizarProducto();
+        productos.setClosable(true);
+        productos.pack();
+        dskPnPrincipal.add(productos);
+        productos.setVisible(true);
+    }//GEN-LAST:event_menuiProductosActionPerformed
+
+    private void menuiComisionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiComisionesActionPerformed
+        // TODO add your handling code here:
+        if(comisiones != null){
+            try{
+                comisiones.setClosed(true);
+            }catch(Exception ex){
+                System.out.println(ex.getMessage());
+            }
+            comisiones.dispose();
+        }
+        comisiones = new FrmRecordVendido();
+        comisiones.setClosable(true);
+        comisiones.pack();
+        dskPnPrincipal.add(comisiones);
+        comisiones.setVisible(true);
+    }//GEN-LAST:event_menuiComisionesActionPerformed
+
+    private void menuiCalcularComisionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiCalcularComisionesActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "CALCULADA");
+    }//GEN-LAST:event_menuiCalcularComisionesActionPerformed
 
     /**
      * @param args the command line arguments
