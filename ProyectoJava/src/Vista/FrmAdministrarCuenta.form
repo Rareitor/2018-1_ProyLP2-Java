@@ -25,10 +25,8 @@
                   <Component id="btnAceptar" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                       <Component id="lblApellidoMaterno" alignment="1" max="32767" attributes="0"/>
-                      <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="lblNombre" alignment="1" max="32767" attributes="0"/>
-                          <Component id="lblApellidoPaterno" alignment="1" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="lblNombre" alignment="1" max="32767" attributes="0"/>
+                      <Component id="lblApellidoPaterno" alignment="1" max="32767" attributes="0"/>
                       <Component id="lblDNI" alignment="1" max="32767" attributes="0"/>
                       <Component id="lblTelefono" alignment="1" max="32767" attributes="0"/>
                       <Component id="lblCorreo" alignment="1" max="32767" attributes="0"/>

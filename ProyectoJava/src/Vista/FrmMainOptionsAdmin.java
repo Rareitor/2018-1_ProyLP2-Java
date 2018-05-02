@@ -25,6 +25,9 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
     private FrmVisualizarCanal canalesVenta;
     private FrmVisualizarProducto productos;
     private FrmRecordVendido comisiones;
+    private FrmFijarPeriodoCalculo fijarPerCalc;
+    private FrmGestionarObjeto gestObjeto;
+    
     /**
      * Creates new form NewJDialog
      */
@@ -46,6 +49,8 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         canalesVenta = null;
         productos = null;
         comisiones = null;
+        fijarPerCalc = null;
+        gestObjeto = null;
     }
     
     private void getUserForm(String str){
@@ -205,12 +210,27 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         menuAdministracion.setText("Administración");
 
         menuiGestUsuario.setText("Gestionar Usuarios");
+        menuiGestUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuiGestUsuarioActionPerformed(evt);
+            }
+        });
         menuAdministracion.add(menuiGestUsuario);
 
         menuiGestOrden.setText("Gestionar Ordenes");
+        menuiGestOrden.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuiGestOrdenActionPerformed(evt);
+            }
+        });
         menuAdministracion.add(menuiGestOrden);
 
         menuiGestProducto.setText("Gestionar Productos");
+        menuiGestProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuiGestProductoActionPerformed(evt);
+            }
+        });
         menuAdministracion.add(menuiGestProducto);
 
         jMenuBar1.add(menuAdministracion);
@@ -218,6 +238,11 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         menuCalculo.setText("Cálculo");
 
         menuiFijarPeriodo.setText("Fijar periodo de cálculo");
+        menuiFijarPeriodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuiFijarPeriodoActionPerformed(evt);
+            }
+        });
         menuCalculo.add(menuiFijarPeriodo);
 
         menuiCalcularComisiones.setText("Calcular Comisiones");
@@ -638,6 +663,50 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(this, "CALCULADA");
     }//GEN-LAST:event_menuiCalcularComisionesActionPerformed
+
+    private void menuiFijarPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiFijarPeriodoActionPerformed
+        // TODO add your handling code here:
+        if(fijarPerCalc != null){
+            try{
+                fijarPerCalc.setClosed(true);
+            }catch(Exception ex){
+                System.out.println(ex.getMessage());
+            }
+            fijarPerCalc.dispose();
+        }
+        fijarPerCalc = new FrmFijarPeriodoCalculo();
+        fijarPerCalc.setClosable(true);
+        fijarPerCalc.pack();
+        dskPnPrincipal.add(fijarPerCalc);
+        fijarPerCalc.setVisible(true);
+    }//GEN-LAST:event_menuiFijarPeriodoActionPerformed
+
+    private void menuiGestProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiGestProductoActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_menuiGestProductoActionPerformed
+
+    private void menuiGestOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiGestOrdenActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_menuiGestOrdenActionPerformed
+
+    private void menuiGestUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiGestUsuarioActionPerformed
+        // TODO add your handling code here:
+        if(gestObjeto != null){
+            try{
+                gestObjeto.setClosed(true);
+            }catch(Exception ex){
+                System.out.println(ex.getMessage());
+            }
+            gestObjeto.dispose();
+        }
+        gestObjeto = new FrmGestionarObjeto();
+        gestObjeto.setClosable(true);
+        gestObjeto.pack();
+        dskPnPrincipal.add(gestObjeto);
+        gestObjeto.setVisible(true);
+    }//GEN-LAST:event_menuiGestUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
