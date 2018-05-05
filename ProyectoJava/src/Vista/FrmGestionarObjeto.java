@@ -5,6 +5,8 @@
  */
 package Vista;
 import javax.swing.JToolBar;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 /**
  *
  * @author Emilio
@@ -14,10 +16,31 @@ public class FrmGestionarObjeto extends javax.swing.JInternalFrame {
     /**
      * Creates new form FrmGestionarProducto
      */
-    public FrmGestionarObjeto() {
+    public FrmGestionarObjeto(String obj) {
         initComponents();
+        
+        btnAdd.setText(btnAdd.getText() + " " + obj);
+        btnMod.setText(btnMod.getText() + " " + obj);
+        btnDel.setText(btnDel.getText() + " " + obj);
+        switch(obj){
+            case "Orden":
+                setColsTbl((DefaultTableModel) this.tblDatosTrabajador.getModel(), new String[]{"Fecha","Canal","IdComisionista","MontoRetribución"});
+                break;
+            case "Producto":
+                setColsTbl((DefaultTableModel) this.tblDatosTrabajador.getModel(), new String[]{"Nombre","Marca","Precio unitario"});
+                break;
+            case "Usuario":
+                setColsTbl((DefaultTableModel) this.tblDatosTrabajador.getModel(), new String[]{"Usuario","Nombre","Apellido Paterno","Apellido Materno","Correo","Jefe Directo","Tipo Usuario"});
+                break;
+            default : break;
+        }
     }
 
+    private void setColsTbl(DefaultTableModel tbl, String[] cols){
+        for(int i = 0; i < cols.length; i++){
+            tbl.addColumn(cols[i]);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,23 +57,33 @@ public class FrmGestionarObjeto extends javax.swing.JInternalFrame {
         jToolBar1 = new javax.swing.JToolBar();
         btnBuscqAvanz = new javax.swing.JButton();
         btnExport = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblDatosTrabajador = new javax.swing.JTable();
+        lbllCampo = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        pnlDato = new javax.swing.JPanel();
+        lblDato = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        btnListar = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
+        btnRegresar = new javax.swing.JButton();
 
         jToolBar2.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jToolBar2.setRollover(true);
 
-        btnAdd.setText("jButton1");
+        btnAdd.setText("Añadir");
         btnAdd.setFocusable(false);
         btnAdd.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAdd.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar2.add(btnAdd);
 
-        btnMod.setText("jButton2");
+        btnMod.setText("Editar");
         btnMod.setFocusable(false);
         btnMod.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnMod.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar2.add(btnMod);
 
-        btnDel.setText("jButton3");
+        btnDel.setText("Eliminar");
         btnDel.setFocusable(false);
         btnDel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnDel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -62,13 +95,81 @@ public class FrmGestionarObjeto extends javax.swing.JInternalFrame {
         btnBuscqAvanz.setFocusable(false);
         btnBuscqAvanz.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnBuscqAvanz.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnBuscqAvanz.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBuscqAvanzMouseClicked(evt);
+            }
+        });
         jToolBar1.add(btnBuscqAvanz);
 
         btnExport.setText("Exportar");
         btnExport.setFocusable(false);
         btnExport.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnExport.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnExport.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnExportMouseClicked(evt);
+            }
+        });
         jToolBar1.add(btnExport);
+
+        tblDatosTrabajador.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblDatosTrabajador);
+
+        lbllCampo.setText("Ingrese campo a buscar:");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", " " }));
+
+        pnlDato.setBackground(new java.awt.Color(204, 204, 204));
+
+        lblDato.setText("Ingrese dato:");
+
+        javax.swing.GroupLayout pnlDatoLayout = new javax.swing.GroupLayout(pnlDato);
+        pnlDato.setLayout(pnlDatoLayout);
+        pnlDatoLayout.setHorizontalGroup(
+            pnlDatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDatoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlDatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblDato)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnlDatoLayout.setVerticalGroup(
+            pnlDatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDatoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblDato)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+
+        btnListar.setText("Listar Todo");
+
+        btnBuscar.setText("Buscar");
+
+        btnRegresar.setText("Regresar");
+        btnRegresar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRegresarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -76,30 +177,95 @@ public class FrmGestionarObjeto extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lbllCampo)
+                                        .addGap(37, 37, 37)
+                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnListar))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(pnlDato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(56, 56, 56)
+                                        .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnRegresar))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 860, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 180, Short.MAX_VALUE))
+                .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 231, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbllCampo)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnListar)
+                    .addComponent(btnRegresar))
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(pnlDato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnExportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExportMouseClicked
+        // TODO add your handling code here:
+        FrmElegirTipoExportar frm = new FrmElegirTipoExportar(null, true);
+        frm.setVisible(true);
+        //.setVisible(false);
+        frm.dispose();
+    }//GEN-LAST:event_btnExportMouseClicked
+
+    private void btnBuscqAvanzMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscqAvanzMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnBuscqAvanzMouseClicked
+
+    private void btnRegresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegresarMouseClicked
+        // TODO add your handling code here:
+        try{
+            this.setClosed(true);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btnRegresarMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnBuscqAvanz;
     private javax.swing.JButton btnDel;
     private javax.swing.JButton btnExport;
+    private javax.swing.JButton btnListar;
     private javax.swing.JButton btnMod;
+    private javax.swing.JButton btnRegresar;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar2;
+    private javax.swing.JLabel lblDato;
+    private javax.swing.JLabel lbllCampo;
+    private javax.swing.JPanel pnlDato;
+    private javax.swing.JTable tblDatosTrabajador;
     // End of variables declaration//GEN-END:variables
 }

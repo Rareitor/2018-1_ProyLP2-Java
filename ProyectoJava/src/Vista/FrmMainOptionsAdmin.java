@@ -26,7 +26,9 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
     private FrmVisualizarProducto productos;
     private FrmRecordVendido comisiones;
     private FrmFijarPeriodoCalculo fijarPerCalc;
-    private FrmGestionarObjeto gestObjeto;
+    private FrmGestionarObjeto gestOrden;
+    private FrmGestionarObjeto gestProducto;
+    private FrmGestionarObjeto gestUsuario;
     
     /**
      * Creates new form NewJDialog
@@ -50,7 +52,9 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         productos = null;
         comisiones = null;
         fijarPerCalc = null;
-        gestObjeto = null;
+        gestOrden = null;
+        gestProducto = null;
+        gestUsuario = null;
     }
     
     private void getUserForm(String str){
@@ -193,7 +197,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dskPnPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pnlNoticia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 484, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 551, Short.MAX_VALUE)
                 .addComponent(pnlComisionistas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -683,29 +687,53 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
 
     private void menuiGestProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiGestProductoActionPerformed
         // TODO add your handling code here:
-        
+        if(gestProducto != null){
+            try{
+                gestProducto.setClosed(true);
+            }catch(Exception ex){
+                System.out.println(ex.getMessage());
+            }
+            gestProducto.dispose();
+        }
+        gestProducto = new FrmGestionarObjeto("Producto");
+        gestProducto.setClosable(true);
+        gestProducto.pack();
+        dskPnPrincipal.add(gestProducto);
+        gestProducto.setVisible(true);
     }//GEN-LAST:event_menuiGestProductoActionPerformed
 
     private void menuiGestOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiGestOrdenActionPerformed
         // TODO add your handling code here:
-        
+        if(gestOrden != null){
+            try{
+                gestOrden.setClosed(true);
+            }catch(Exception ex){
+                System.out.println(ex.getMessage());
+            }
+            gestOrden.dispose();
+        }
+        gestOrden = new FrmGestionarObjeto("Orden");
+        gestOrden.setClosable(true);
+        gestOrden.pack();
+        dskPnPrincipal.add(gestOrden);
+        gestOrden.setVisible(true);
     }//GEN-LAST:event_menuiGestOrdenActionPerformed
 
     private void menuiGestUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiGestUsuarioActionPerformed
         // TODO add your handling code here:
-        if(gestObjeto != null){
+        if(gestUsuario != null){
             try{
-                gestObjeto.setClosed(true);
+                gestUsuario.setClosed(true);
             }catch(Exception ex){
                 System.out.println(ex.getMessage());
             }
-            gestObjeto.dispose();
+            gestUsuario.dispose();
         }
-        gestObjeto = new FrmGestionarObjeto();
-        gestObjeto.setClosable(true);
-        gestObjeto.pack();
-        dskPnPrincipal.add(gestObjeto);
-        gestObjeto.setVisible(true);
+        gestUsuario = new FrmGestionarObjeto("Usuario");
+        gestUsuario.setClosable(true);
+        gestUsuario.pack();
+        dskPnPrincipal.add(gestUsuario);
+        gestUsuario.setVisible(true);
     }//GEN-LAST:event_menuiGestUsuarioActionPerformed
 
     /**
