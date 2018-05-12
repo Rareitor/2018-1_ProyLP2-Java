@@ -1,20 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Vista;
-
 import java.awt.Dimension;
 import java.io.File;
 import javax.swing.JDialog;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Emilio
- */
 public class FrmLogin extends javax.swing.JFrame {
 
     /**

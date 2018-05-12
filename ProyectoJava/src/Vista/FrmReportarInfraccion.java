@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Vista;
-
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -14,10 +8,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import javax.swing.text.DateFormatter;
 
-/**
- *
- * @author Emilio
- */
 public class FrmReportarInfraccion extends javax.swing.JInternalFrame {
 
     /**
