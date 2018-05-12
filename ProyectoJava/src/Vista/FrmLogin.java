@@ -1,9 +1,7 @@
 package Vista;
 import java.awt.Dimension;
 import java.io.File;
-import javax.swing.JDialog;
-import javax.swing.JInternalFrame;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 public class FrmLogin extends javax.swing.JFrame {
 
@@ -13,7 +11,7 @@ public class FrmLogin extends javax.swing.JFrame {
     public FrmLogin() {
         initComponents();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        txtContrasena.setText("******");
+        txtContrasena.setText("");
 //        System.out.println(new File("./").getAbsolutePath());
     }
 
@@ -136,11 +134,21 @@ public class FrmLogin extends javax.swing.JFrame {
         String puesto = txtUsuario.getText();
         String contra = new String(txtContrasena.getPassword());
         try{
-            if (puesto == ""){
-                puesto = "Gerente";
+            if(puesto.equals("sysadmin")){
+                JDialog frmMainOpt = new FrmMainOptionsAdmin(this, true, puesto);
+                //frmMainOpt.add(new FrmMainOptionsAdmin());
+                frmMainOpt.pack();
+                this.setVisible(false);
+                frmMainOpt.setVisible(true);
+                limpiarCampos();
+                this.setVisible(true);
+                return;
             }
+//            if (puesto == ""){
+//                puesto = "Administrador";
+//            }
             
-            if (puesto.equals(""))
+            if (puesto.equals("") || (!puesto.equals("Administrador") && !puesto.equals("Gerente") && !puesto.equals("Jefe")) )
             {
                 JOptionPane.showMessageDialog(this, "Por favor, ingrese un usuario válido.",  "Ingresar usuario",JOptionPane.WARNING_MESSAGE);
                 return;
@@ -159,9 +167,8 @@ public class FrmLogin extends javax.swing.JFrame {
                 frmMainOpt.pack();
                 this.setVisible(false);
                 frmMainOpt.setVisible(true);
-                this.setVisible(true);
-                
                 limpiarCampos();
+                this.setVisible(true);
                 //this.dispose();
             }
             else //if (txtContrasena.Text != "")

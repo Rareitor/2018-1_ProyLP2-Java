@@ -100,20 +100,20 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuiJefesActionPerformed"/>
                   </Events>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="menuiComisionistas">
+                <MenuItem class="javax.swing.JMenuItem" name="menuiVerComisionistas">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Comisionistas"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuiComisionistasActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuiVerComisionistasActionPerformed"/>
                   </Events>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="menuiGerentes">
+                <MenuItem class="javax.swing.JMenuItem" name="menuiVerGerentes">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Gerentes"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuiGerentesActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuiVerGerentesActionPerformed"/>
                   </Events>
                 </MenuItem>
               </SubComponents>

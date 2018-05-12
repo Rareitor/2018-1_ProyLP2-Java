@@ -1,4 +1,5 @@
 package Vista;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JToolBar;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -16,21 +17,32 @@ public class FrmGestionarObjeto extends javax.swing.JInternalFrame {
         btnDel.setText(btnDel.getText() + " " + obj);
         switch(obj){
             case "Orden":
+                setItemsCmb((DefaultComboBoxModel) this.cmbCampo.getModel(), new String[]{"Fecha","Canal","IdComisionista","MontoRetribución"});
                 setColsTbl((DefaultTableModel) this.tblDatosTrabajador.getModel(), new String[]{"Fecha","Canal","IdComisionista","MontoRetribución"});
                 break;
             case "Producto":
+                setItemsCmb((DefaultComboBoxModel) this.cmbCampo.getModel(), new String[]{"Nombre","Marca","Precio unitario"});
                 setColsTbl((DefaultTableModel) this.tblDatosTrabajador.getModel(), new String[]{"Nombre","Marca","Precio unitario"});
                 break;
             case "Usuario":
+                setItemsCmb((DefaultComboBoxModel) this.cmbCampo.getModel(), new String[]{"Usuario","Nombre","Apellido Paterno","Apellido Materno","Correo","Jefe Directo","Tipo Usuario"});
                 setColsTbl((DefaultTableModel) this.tblDatosTrabajador.getModel(), new String[]{"Usuario","Nombre","Apellido Paterno","Apellido Materno","Correo","Jefe Directo","Tipo Usuario"});
                 break;
-            default : break;
+            default :
+                //NULL
+                break;
         }
     }
 
     private void setColsTbl(DefaultTableModel tbl, String[] cols){
         for(int i = 0; i < cols.length; i++){
             tbl.addColumn(cols[i]);
+        }
+    }
+    
+    private void setItemsCmb(DefaultComboBoxModel lst, String[] items){
+        for(int i = 0; i < items.length; i++){
+            lst.addElement(items[i]);
         }
     }
     /**
@@ -52,7 +64,7 @@ public class FrmGestionarObjeto extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDatosTrabajador = new javax.swing.JTable();
         lbllCampo = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmbCampo = new javax.swing.JComboBox<>();
         pnlDato = new javax.swing.JPanel();
         lblDato = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -125,7 +137,7 @@ public class FrmGestionarObjeto extends javax.swing.JInternalFrame {
 
         lbllCampo.setText("Ingrese campo a buscar:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", " " }));
+        cmbCampo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
 
         pnlDato.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -180,8 +192,8 @@ public class FrmGestionarObjeto extends javax.swing.JInternalFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(lbllCampo)
                                         .addGap(37, 37, 37)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(cmbCampo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(18, 18, 18)
                                         .addComponent(btnListar))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(pnlDato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -204,7 +216,7 @@ public class FrmGestionarObjeto extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbllCampo)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnListar)
                     .addComponent(btnRegresar))
                 .addGap(31, 31, 31)
@@ -250,7 +262,7 @@ public class FrmGestionarObjeto extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnListar;
     private javax.swing.JButton btnMod;
     private javax.swing.JButton btnRegresar;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cmbCampo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JToolBar jToolBar1;

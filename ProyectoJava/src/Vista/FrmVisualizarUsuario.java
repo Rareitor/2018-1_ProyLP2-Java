@@ -27,7 +27,7 @@ public class FrmVisualizarUsuario extends javax.swing.JInternalFrame {
 
         lblCampo.setText("Ingrese campo para buscar");
 
-        cmbCampo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbCampo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2" }));
 
         btnRegresar.setText("Regresar");
         btnRegresar.addMouseListener(new java.awt.event.MouseAdapter() {
