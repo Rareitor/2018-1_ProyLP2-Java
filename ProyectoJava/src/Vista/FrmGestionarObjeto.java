@@ -21,6 +21,8 @@ public class FrmGestionarObjeto extends javax.swing.JInternalFrame {
         btnAdd.setText(btnAdd.getText() + " " + obj);
         btnMod.setText(btnMod.getText() + " " + obj);
         btnDel.setText(btnDel.getText() + " " + obj);
+        pnlTipoUsr.setVisible(false);
+        pnlOrdDate.setVisible(false);
         switch(obj){
             case "Orden":
                 setItemsCmb((DefaultComboBoxModel) this.cmbCampo.getModel(), new String[]{"Fecha","Canal","IdComisionista","MontoRetribución"});
@@ -62,27 +64,38 @@ public class FrmGestionarObjeto extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jToolBar2 = new javax.swing.JToolBar();
+        btnGrpUsrs = new javax.swing.ButtonGroup();
+        tlbEditar = new javax.swing.JToolBar();
         btnAdd = new javax.swing.JButton();
         btnMod = new javax.swing.JButton();
         btnDel = new javax.swing.JButton();
-        jToolBar1 = new javax.swing.JToolBar();
+        tblBusqExport = new javax.swing.JToolBar();
         btnBuscqAvanz = new javax.swing.JButton();
         btnExport = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDatosTrabajador = new javax.swing.JTable();
         lbllCampo = new javax.swing.JLabel();
         cmbCampo = new javax.swing.JComboBox<>();
-        pnlDato = new javax.swing.JPanel();
-        lblDato = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         btnListar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
         calOrden = new com.toedter.calendar.JCalendar();
+        lpnOptions = new javax.swing.JLayeredPane();
+        pnlTipoUsr = new javax.swing.JPanel();
+        rdoComisionista = new javax.swing.JRadioButton();
+        rdoJefe = new javax.swing.JRadioButton();
+        rdoGerente = new javax.swing.JRadioButton();
+        rdoTodos = new javax.swing.JRadioButton();
+        lblTipoUsuario = new javax.swing.JLabel();
+        pnlDato = new javax.swing.JPanel();
+        lblDato = new javax.swing.JLabel();
+        txtDato = new javax.swing.JTextField();
+        pnlOrdDate = new javax.swing.JPanel();
+        lblFecha = new javax.swing.JLabel();
+        dtFechaOrden = new com.toedter.calendar.JDateChooser();
 
-        jToolBar2.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jToolBar2.setRollover(true);
+        tlbEditar.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        tlbEditar.setRollover(true);
 
         btnAdd.setText("Añadir");
         btnAdd.setFocusable(false);
@@ -93,7 +106,7 @@ public class FrmGestionarObjeto extends javax.swing.JInternalFrame {
                 btnAddMouseClicked(evt);
             }
         });
-        jToolBar2.add(btnAdd);
+        tlbEditar.add(btnAdd);
 
         btnMod.setText("Editar");
         btnMod.setFocusable(false);
@@ -104,15 +117,15 @@ public class FrmGestionarObjeto extends javax.swing.JInternalFrame {
                 btnModActionPerformed(evt);
             }
         });
-        jToolBar2.add(btnMod);
+        tlbEditar.add(btnMod);
 
         btnDel.setText("Eliminar");
         btnDel.setFocusable(false);
         btnDel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnDel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(btnDel);
+        tlbEditar.add(btnDel);
 
-        jToolBar1.setRollover(true);
+        tblBusqExport.setRollover(true);
 
         btnBuscqAvanz.setText("Busqueda Avanzada");
         btnBuscqAvanz.setFocusable(false);
@@ -123,7 +136,7 @@ public class FrmGestionarObjeto extends javax.swing.JInternalFrame {
                 btnBuscqAvanzMouseClicked(evt);
             }
         });
-        jToolBar1.add(btnBuscqAvanz);
+        tblBusqExport.add(btnBuscqAvanz);
 
         btnExport.setText("Exportar");
         btnExport.setFocusable(false);
@@ -134,7 +147,7 @@ public class FrmGestionarObjeto extends javax.swing.JInternalFrame {
                 btnExportMouseClicked(evt);
             }
         });
-        jToolBar1.add(btnExport);
+        tblBusqExport.add(btnExport);
 
         tblDatosTrabajador.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -157,31 +170,11 @@ public class FrmGestionarObjeto extends javax.swing.JInternalFrame {
         lbllCampo.setText("Ingrese campo a buscar:");
 
         cmbCampo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
-
-        pnlDato.setBackground(new java.awt.Color(204, 204, 204));
-
-        lblDato.setText("Ingrese dato:");
-
-        javax.swing.GroupLayout pnlDatoLayout = new javax.swing.GroupLayout(pnlDato);
-        pnlDato.setLayout(pnlDatoLayout);
-        pnlDatoLayout.setHorizontalGroup(
-            pnlDatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlDatoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlDatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblDato)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        pnlDatoLayout.setVerticalGroup(
-            pnlDatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlDatoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblDato)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
-        );
+        cmbCampo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbCampoItemStateChanged(evt);
+            }
+        });
 
         btnListar.setText("Listar Todo");
 
@@ -199,61 +192,188 @@ public class FrmGestionarObjeto extends javax.swing.JInternalFrame {
             }
         });
 
+        pnlTipoUsr.setEnabled(false);
+
+        btnGrpUsrs.add(rdoComisionista);
+        rdoComisionista.setText("Comisionista");
+
+        btnGrpUsrs.add(rdoJefe);
+        rdoJefe.setText("Jefe");
+
+        btnGrpUsrs.add(rdoGerente);
+        rdoGerente.setText("Gerente");
+
+        btnGrpUsrs.add(rdoTodos);
+        rdoTodos.setText("Todos");
+
+        lblTipoUsuario.setText("Tipo Usuario:");
+
+        javax.swing.GroupLayout pnlTipoUsrLayout = new javax.swing.GroupLayout(pnlTipoUsr);
+        pnlTipoUsr.setLayout(pnlTipoUsrLayout);
+        pnlTipoUsrLayout.setHorizontalGroup(
+            pnlTipoUsrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTipoUsrLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlTipoUsrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlTipoUsrLayout.createSequentialGroup()
+                        .addComponent(rdoComisionista)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(rdoJefe)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rdoGerente)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rdoTodos))
+                    .addComponent(lblTipoUsuario))
+                .addContainerGap(48, Short.MAX_VALUE))
+        );
+        pnlTipoUsrLayout.setVerticalGroup(
+            pnlTipoUsrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTipoUsrLayout.createSequentialGroup()
+                .addContainerGap(33, Short.MAX_VALUE)
+                .addComponent(lblTipoUsuario)
+                .addGap(18, 18, 18)
+                .addGroup(pnlTipoUsrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rdoComisionista)
+                    .addComponent(rdoJefe)
+                    .addComponent(rdoGerente)
+                    .addComponent(rdoTodos))
+                .addGap(19, 19, 19))
+        );
+
+        pnlDato.setBackground(new java.awt.Color(204, 204, 204));
+
+        lblDato.setText("Ingrese dato:");
+
+        javax.swing.GroupLayout pnlDatoLayout = new javax.swing.GroupLayout(pnlDato);
+        pnlDato.setLayout(pnlDatoLayout);
+        pnlDatoLayout.setHorizontalGroup(
+            pnlDatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDatoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlDatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlDatoLayout.createSequentialGroup()
+                        .addComponent(lblDato)
+                        .addGap(0, 226, Short.MAX_VALUE))
+                    .addComponent(txtDato))
+                .addContainerGap())
+        );
+        pnlDatoLayout.setVerticalGroup(
+            pnlDatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDatoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblDato)
+                .addGap(27, 27, 27)
+                .addComponent(txtDato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
+        );
+
+        pnlOrdDate.setEnabled(false);
+
+        lblFecha.setText("Ingrese Fecha:");
+
+        javax.swing.GroupLayout pnlOrdDateLayout = new javax.swing.GroupLayout(pnlOrdDate);
+        pnlOrdDate.setLayout(pnlOrdDateLayout);
+        pnlOrdDateLayout.setHorizontalGroup(
+            pnlOrdDateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlOrdDateLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlOrdDateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlOrdDateLayout.createSequentialGroup()
+                        .addComponent(lblFecha)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(dtFechaOrden, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        pnlOrdDateLayout.setVerticalGroup(
+            pnlOrdDateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlOrdDateLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblFecha)
+                .addGap(18, 18, 18)
+                .addComponent(dtFechaOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(44, Short.MAX_VALUE))
+        );
+
+        lpnOptions.setLayer(pnlTipoUsr, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        lpnOptions.setLayer(pnlDato, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        lpnOptions.setLayer(pnlOrdDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout lpnOptionsLayout = new javax.swing.GroupLayout(lpnOptions);
+        lpnOptions.setLayout(lpnOptionsLayout);
+        lpnOptionsLayout.setHorizontalGroup(
+            lpnOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlDato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(lpnOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(pnlTipoUsr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(lpnOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(pnlOrdDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        lpnOptionsLayout.setVerticalGroup(
+            lpnOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlDato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(lpnOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(pnlTipoUsr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(lpnOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(pnlOrdDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tlbEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1)
+                        .addComponent(jScrollPane1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lbllCampo)
-                                        .addGap(37, 37, 37)
-                                        .addComponent(cmbCampo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnListar))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(pnlDato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(56, 56, 56)
-                                        .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(calOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(101, 101, 101)
-                                .addComponent(btnRegresar))))
+                                .addComponent(lbllCampo)
+                                .addGap(37, 37, 37)
+                                .addComponent(cmbCampo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lpnOptions, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnListar, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnBuscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addComponent(calOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnRegresar))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(5, 5, 5)
-                        .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 860, Short.MAX_VALUE)))
+                        .addComponent(tblBusqExport, javax.swing.GroupLayout.DEFAULT_SIZE, 860, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 231, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tlbEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tblBusqExport, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbllCampo)
-                            .addComponent(cmbCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnListar)
-                            .addComponent(btnRegresar))
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(pnlDato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnBuscar)))
-                    .addComponent(calOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lbllCampo)
+                                    .addComponent(cmbCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnListar)
+                                    .addComponent(btnRegresar))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(87, 87, 87)
+                                        .addComponent(btnBuscar))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lpnOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(calOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         pack();
@@ -269,7 +389,23 @@ public class FrmGestionarObjeto extends javax.swing.JInternalFrame {
 
     private void btnBuscqAvanzMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscqAvanzMouseClicked
         // TODO add your handling code here:
-        
+        switch(tipo){
+            case "Orden":
+//                modDiag = new FrmAdModOrden(null, true, "Modificar");
+//                modDiag.setVisible(true);
+                break;
+            case "Producto":
+//                modDiag = new FrmAdModProducto(null, true, "Modificar");
+//                modDiag.setVisible(true);
+                break;
+            case "Usuario":
+//                modDiag = new FrmAdModUsuario(null, true, "Modificar");
+//                modDiag.setVisible(true);
+                break;
+            default :
+                //NULL
+                break;
+        }
     }//GEN-LAST:event_btnBuscqAvanzMouseClicked
 
     private void btnRegresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegresarMouseClicked
@@ -283,8 +419,15 @@ public class FrmGestionarObjeto extends javax.swing.JInternalFrame {
 
     private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
         // TODO add your handling code here:
-        if(cmbCampo.getSelectedItem().toString().equals("")){
-            JOptionPane.showMessageDialog(this, "Por favor seleccione una categoría a buscar.");
+        String option = cmbCampo.getSelectedItem().toString();
+        if(!option.equals("") && option.equals("Tipo Usuario")){
+            if(!(rdoComisionista.isSelected() || rdoGerente.isSelected()|| rdoJefe.isSelected()||rdoTodos.isSelected())){
+                JOptionPane.showMessageDialog(this, "Por favor seleccione un tipo a buscar.");
+            }
+        }else{
+            if(txtDato.getText().equals("")){
+                JOptionPane.showMessageDialog(this, "Escriba dato a buscar.");
+            }
         }
     }//GEN-LAST:event_btnBuscarMouseClicked
 
@@ -330,6 +473,45 @@ public class FrmGestionarObjeto extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnAddMouseClicked
 
+    private void cmbCampoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbCampoItemStateChanged
+        // TODO add your handling code here:
+        String option;
+        switch(tipo){
+            case "Usuario":
+                option = cmbCampo.getSelectedItem().toString();
+                if(option.equals("Tipo Usuario")){
+                    pnlDato.setEnabled(false);
+                    pnlDato.setVisible(false);
+                    pnlTipoUsr.setEnabled(true);
+                    pnlTipoUsr.setVisible(true);
+                }else{
+                    if(pnlDato.isEnabled()) return;
+                    pnlDato.setEnabled(true);
+                    pnlDato.setVisible(true);
+                    pnlTipoUsr.setEnabled(false);
+                    pnlTipoUsr.setVisible(false);
+                }
+                break;
+            case "Orden":
+                option = cmbCampo.getSelectedItem().toString();
+                if(option.equals("Fecha")){
+                    pnlDato.setEnabled(false);
+                    pnlDato.setVisible(false);
+                    pnlOrdDate.setEnabled(true);
+                    pnlOrdDate.setVisible(true);
+                }else{
+                    if(pnlDato.isEnabled()) return;
+                    pnlDato.setEnabled(true);
+                    pnlDato.setVisible(true);
+                    pnlOrdDate.setEnabled(false);
+                    pnlOrdDate.setVisible(false);
+                }
+                break;
+            default:
+                break;
+        }
+    }//GEN-LAST:event_cmbCampoItemStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
@@ -337,18 +519,29 @@ public class FrmGestionarObjeto extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnBuscqAvanz;
     private javax.swing.JButton btnDel;
     private javax.swing.JButton btnExport;
+    private javax.swing.ButtonGroup btnGrpUsrs;
     private javax.swing.JButton btnListar;
     private javax.swing.JButton btnMod;
     private javax.swing.JButton btnRegresar;
     private com.toedter.calendar.JCalendar calOrden;
     private javax.swing.JComboBox<String> cmbCampo;
+    private com.toedter.calendar.JDateChooser dtFechaOrden;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JToolBar jToolBar1;
-    private javax.swing.JToolBar jToolBar2;
     private javax.swing.JLabel lblDato;
+    private javax.swing.JLabel lblFecha;
+    private javax.swing.JLabel lblTipoUsuario;
     private javax.swing.JLabel lbllCampo;
+    private javax.swing.JLayeredPane lpnOptions;
     private javax.swing.JPanel pnlDato;
+    private javax.swing.JPanel pnlOrdDate;
+    private javax.swing.JPanel pnlTipoUsr;
+    private javax.swing.JRadioButton rdoComisionista;
+    private javax.swing.JRadioButton rdoGerente;
+    private javax.swing.JRadioButton rdoJefe;
+    private javax.swing.JRadioButton rdoTodos;
+    private javax.swing.JToolBar tblBusqExport;
     private javax.swing.JTable tblDatosTrabajador;
+    private javax.swing.JToolBar tlbEditar;
+    private javax.swing.JTextField txtDato;
     // End of variables declaration//GEN-END:variables
 }
