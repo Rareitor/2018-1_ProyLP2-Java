@@ -1,13 +1,18 @@
 package Vista;
 
-public class FrmElegirTipoExportar extends javax.swing.JDialog {
+import javax.swing.ButtonGroup;
 
+public class FrmElegirTipoExportar extends javax.swing.JDialog {
+    private ButtonGroup rdoGrp;
     /**
      * Creates new form FrmElegirTipoExportar
      */
     public FrmElegirTipoExportar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        rdoGrp = new ButtonGroup();
+        rdoGrp.add(rdoPDF);
+        rdoGrp.add(rdoXCL);
     }
 
     /**

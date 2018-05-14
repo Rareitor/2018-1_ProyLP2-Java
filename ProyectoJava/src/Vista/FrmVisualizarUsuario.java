@@ -1,5 +1,10 @@
 package Vista;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
+
 public class FrmVisualizarUsuario extends javax.swing.JInternalFrame {
 
     /**
@@ -7,6 +12,36 @@ public class FrmVisualizarUsuario extends javax.swing.JInternalFrame {
      */
     public FrmVisualizarUsuario(String str) {
         initComponents();
+        switch(str){
+            case "Jefe":
+                setItemsCmb((DefaultComboBoxModel) this.cmbCampo.getModel(), new String[]{"Usuario","Nombre","Apellido Paterno","Apellido Materno","Correo","Jefe Directo"});
+                setColsTbl((DefaultTableModel) this.tblDatosTrabajador.getModel(), new String[]{"Usuario","Nombre","Apellido Paterno","Apellido Materno","Correo","Jefe Directo"});
+                break;
+            case "Gerente":
+                setItemsCmb((DefaultComboBoxModel) this.cmbCampo.getModel(), new String[]{"Usuario","Nombre","Apellido Paterno","Apellido Materno","Correo","Jefe Directo"});
+                setColsTbl((DefaultTableModel) this.tblDatosTrabajador.getModel(), new String[]{"Usuario","Nombre","Apellido Paterno","Apellido Materno","Correo","Jefe Directo"});
+                break;
+            case "Comisionista":
+                setItemsCmb((DefaultComboBoxModel) this.cmbCampo.getModel(), new String[]{"Usuario","Nombre","Apellido Paterno","Apellido Materno","Correo","Jefe Directo"});
+                setColsTbl((DefaultTableModel) this.tblDatosTrabajador.getModel(), new String[]{"Usuario","Nombre","Apellido Paterno","Apellido Materno","Correo","Jefe Directo"});
+                break;
+            default :
+                //NULL
+                break;
+        }
+    }
+
+    private void setColsTbl(DefaultTableModel tbl, String[] cols){
+        for(int i = 0; i < cols.length; i++){
+            tbl.addColumn(cols[i]);
+        }
+        //tblDatosTrabajador.getColumn(0).setpr(tblDatosTrabajador.getColumnName(i).length()*10+20);
+    }
+    
+    private void setItemsCmb(DefaultComboBoxModel lst, String[] items){
+        for(int i = 0; i < items.length; i++){
+            lst.addElement(items[i]);
+        }
     }
 
     /**
@@ -22,12 +57,14 @@ public class FrmVisualizarUsuario extends javax.swing.JInternalFrame {
         cmbCampo = new javax.swing.JComboBox<>();
         btnRegresar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblDatosTrabajador = new javax.swing.JTable();
         btnBuscar = new javax.swing.JButton();
+        btnSelect = new javax.swing.JButton();
+        pnlSelect = new javax.swing.JPanel();
+        txtDato = new javax.swing.JTextField();
+        lblDato = new javax.swing.JLabel();
 
         lblCampo.setText("Ingrese campo para buscar");
-
-        cmbCampo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2" }));
 
         btnRegresar.setText("Regresar");
         btnRegresar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -36,18 +73,23 @@ public class FrmVisualizarUsuario extends javax.swing.JInternalFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblDatosTrabajador.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Id"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblDatosTrabajador);
 
         btnBuscar.setText("Buscar");
         btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -56,6 +98,33 @@ public class FrmVisualizarUsuario extends javax.swing.JInternalFrame {
             }
         });
 
+        btnSelect.setText("Selecionar");
+
+        lblDato.setText("Ingrese Dato");
+
+        javax.swing.GroupLayout pnlSelectLayout = new javax.swing.GroupLayout(pnlSelect);
+        pnlSelect.setLayout(pnlSelectLayout);
+        pnlSelectLayout.setHorizontalGroup(
+            pnlSelectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSelectLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlSelectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtDato)
+                    .addGroup(pnlSelectLayout.createSequentialGroup()
+                        .addComponent(lblDato)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        pnlSelectLayout.setVerticalGroup(
+            pnlSelectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSelectLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblDato)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtDato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -63,16 +132,19 @@ public class FrmVisualizarUsuario extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblCampo)
-                        .addGap(48, 48, 48)
-                        .addComponent(cmbCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)
-                        .addComponent(btnBuscar)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblCampo)
+                                .addGap(48, 48, 48)
+                                .addComponent(cmbCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(pnlSelect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(53, 53, 53)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnSelect)
+                            .addComponent(btnBuscar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnRegresar)))
                 .addContainerGap())
         );
@@ -84,11 +156,18 @@ public class FrmVisualizarUsuario extends javax.swing.JInternalFrame {
                     .addComponent(lblCampo)
                     .addComponent(cmbCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar))
-                .addGap(36, 36, 36)
-                .addComponent(btnRegresar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(btnRegresar))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(pnlSelect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSelect))))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -111,9 +190,13 @@ public class FrmVisualizarUsuario extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnRegresar;
+    private javax.swing.JButton btnSelect;
     private javax.swing.JComboBox<String> cmbCampo;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblCampo;
+    private javax.swing.JLabel lblDato;
+    private javax.swing.JPanel pnlSelect;
+    private javax.swing.JTable tblDatosTrabajador;
+    private javax.swing.JTextField txtDato;
     // End of variables declaration//GEN-END:variables
 }
