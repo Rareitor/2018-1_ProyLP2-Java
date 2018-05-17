@@ -9,7 +9,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
     private FrmReportarInfraccion reportarInfraccion;
     private FrmRealizarBackup backup;
     private FrmPapeleraReciclaje papelera;
-    private FrmVerMapa mapa;
+    private FrmVisualizarMapa mapa;
     private FrmVerRecomendaciones verRecom;
     private FrmNoticias verNoticia;
     private FrmVisualizarInfraccion visualizarInfracciones;
@@ -21,6 +21,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
     private FrmGestionarObjeto gestOrden;
     private FrmGestionarObjeto gestProducto;
     private FrmGestionarObjeto gestUsuario;
+    private FrmVisualizarMapa verMapa;
     
     /**
      * Creates new form NewJDialog
@@ -48,6 +49,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         gestOrden = null;
         gestProducto = null;
         gestUsuario = null;
+        verMapa = null;
     }
     
     private void setVisibleOpts(String usr){
@@ -428,6 +430,11 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         menuOtros.add(menuiAnadirNoticias);
 
         menuiVerMapa.setText("Ver Mapa");
+        menuiVerMapa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuiVerMapaActionPerformed(evt);
+            }
+        });
         menuOtros.add(menuiVerMapa);
 
         jMenuBar1.add(menuOtros);
@@ -585,7 +592,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
             }
             mapa.dispose();
         }
-        mapa = new FrmVerMapa();
+        mapa = new FrmVisualizarMapa();
         mapa.setClosable(true);
         mapa.pack();
         dskPnPrincipal.add(mapa);
@@ -781,6 +788,23 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         dskPnPrincipal.add(gestUsuario);
         gestUsuario.setVisible(true);
     }//GEN-LAST:event_menuiGestUsuarioActionPerformed
+
+    private void menuiVerMapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiVerMapaActionPerformed
+        // TODO add your handling code here:
+        if(verMapa != null){
+            try{
+                verMapa.setClosed(true);
+            }catch(Exception ex){
+                System.out.println(ex.getMessage());
+            }
+            verMapa.dispose();
+        }
+        verMapa = new FrmVisualizarMapa();
+        verMapa.setClosable(true);
+        verMapa.pack();
+        dskPnPrincipal.add(verMapa);
+        verMapa.setVisible(true);
+    }//GEN-LAST:event_menuiVerMapaActionPerformed
 
     /**
      * @param args the command line arguments

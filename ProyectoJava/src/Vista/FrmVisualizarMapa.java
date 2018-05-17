@@ -1,11 +1,11 @@
 package Vista;
 
-public class FrmVerMapa extends javax.swing.JInternalFrame {
+public class FrmVisualizarMapa extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form FrmVerMapa
      */
-    public FrmVerMapa() {
+    public FrmVisualizarMapa() {
         initComponents();
     }
 

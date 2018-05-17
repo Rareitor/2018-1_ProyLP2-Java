@@ -123,6 +123,11 @@ public class FrmGestionarObjeto extends javax.swing.JInternalFrame {
         btnDel.setFocusable(false);
         btnDel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnDel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnDel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDelMouseClicked(evt);
+            }
+        });
         tlbEditar.add(btnDel);
 
         tblBusqExport.setRollover(true);
@@ -391,8 +396,8 @@ public class FrmGestionarObjeto extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         switch(tipo){
             case "Orden":
-//                modDiag = new FrmAdModOrden(null, true, "Modificar");
-//                modDiag.setVisible(true);
+                modDiag = new FrmPersonalizarBusqOrden(null, true);
+                modDiag.setVisible(true);
                 break;
             case "Producto":
 //                modDiag = new FrmAdModProducto(null, true, "Modificar");
@@ -511,6 +516,12 @@ public class FrmGestionarObjeto extends javax.swing.JInternalFrame {
                 break;
         }
     }//GEN-LAST:event_cmbCampoItemStateChanged
+
+    private void btnDelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDelMouseClicked
+        // TODO add your handling code here:
+        JDialog borrar = new FrmConfirmBorrar(null, true);
+        borrar.setVisible(true);
+    }//GEN-LAST:event_btnDelMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
