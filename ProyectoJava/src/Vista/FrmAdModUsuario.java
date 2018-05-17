@@ -24,7 +24,11 @@ public class FrmAdModUsuario extends javax.swing.JDialog {
         if(userT.equals("Gerente")){
             btnBuscarJefe.setEnabled(false);
             btnBuscarJefe.setVisible(false);
+            txtJefe.setText("---");
         }else{
+            btnBuscarJefe.setEnabled(true);
+            btnBuscarJefe.setVisible(true);
+            txtJefe.setText("");
             usr=userT;
         }
    }
@@ -55,6 +59,8 @@ public class FrmAdModUsuario extends javax.swing.JDialog {
         lblApellidoM = new javax.swing.JLabel();
         txtApellidoM = new javax.swing.JTextField();
         btnBuscarJefe = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        cmbTipoUsr = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -97,6 +103,16 @@ public class FrmAdModUsuario extends javax.swing.JDialog {
             }
         });
 
+        jLabel1.setText("Tipo de usuario");
+
+        cmbTipoUsr.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Comisionista", "Jefe", "Gerente" }));
+        cmbTipoUsr.setSelectedIndex(-1);
+        cmbTipoUsr.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbTipoUsrItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -105,37 +121,40 @@ public class FrmAdModUsuario extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnFunc)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnCancelar))
+                                .addComponent(btnFunc)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnCancelar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(lblNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lblUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lblId, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel1)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblApellidoP, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblApellidoM, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblJefe, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(56, 56, 56)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtId, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtJefe)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(lblNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(lblUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(lblId, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                                            .addComponent(lblJefe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGap(56, 56, 56)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtApellidoP, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtId, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(txtJefe, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(txtApellidoM, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(18, 18, 18)
-                                .addComponent(btnBuscarJefe, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(16, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblApellidoP, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblApellidoM, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                            .addComponent(txtApellidoP, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+                                            .addComponent(txtApellidoM, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+                                            .addComponent(cmbTipoUsr, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnBuscarJefe, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,16 +179,20 @@ public class FrmAdModUsuario extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblApellidoM)
                     .addComponent(txtApellidoM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCorreo)
                     .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblJefe)
                     .addComponent(txtJefe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscarJefe))
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(cmbTipoUsr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnFunc)
                     .addComponent(btnCancelar))
@@ -187,19 +210,30 @@ public class FrmAdModUsuario extends javax.swing.JDialog {
 
     private void btnBuscarJefeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarJefeMouseClicked
         // TODO add your handling code here:
-        FrmDiagPane verComis = new FrmDiagPane(null, true);
+        FrmDiagPane verSuperior = new FrmDiagPane(null, true);
         switch(this.usr){
             case "Comisionista":
-                verComis.func("Jefe");
+                verSuperior.func("Jefe");
+                verSuperior.setTitle("Buscar Jefe");
                 break;
             case "Jefe":
-                verComis.func("Gerente");
+                verSuperior.func("Gerente");
+                verSuperior.setTitle("Buscar Gerente");
                 break;
             default:
-                break;
+                verSuperior.dispose();
+                return;
         }
-        verComis.setVisible(true);
+        verSuperior.setVisible(true);
     }//GEN-LAST:event_btnBuscarJefeMouseClicked
+
+    private void cmbTipoUsrItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbTipoUsrItemStateChanged
+        // TODO add your handling code here:
+        String str = cmbTipoUsr.getSelectedItem().toString();
+        if(str != null && !str.equals(usr)){
+            setUsr(str);
+        }
+    }//GEN-LAST:event_cmbTipoUsrItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -248,6 +282,8 @@ public class FrmAdModUsuario extends javax.swing.JDialog {
     private javax.swing.JButton btnBuscarJefe;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnFunc;
+    private javax.swing.JComboBox<String> cmbTipoUsr;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblApellidoM;
     private javax.swing.JLabel lblApellidoP;
     private javax.swing.JLabel lblCorreo;

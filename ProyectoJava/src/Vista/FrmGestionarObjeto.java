@@ -400,12 +400,12 @@ public class FrmGestionarObjeto extends javax.swing.JInternalFrame {
                 modDiag.setVisible(true);
                 break;
             case "Producto":
-//                modDiag = new FrmAdModProducto(null, true, "Modificar");
-//                modDiag.setVisible(true);
+                modDiag = new FrmPersonalizarBusqProducto(null, true);
+                modDiag.setVisible(true);
                 break;
             case "Usuario":
-//                modDiag = new FrmAdModUsuario(null, true, "Modificar");
-//                modDiag.setVisible(true);
+                modDiag = new FrmPersonalizarBusqUsuario(null, true);
+                modDiag.setVisible(true);
                 break;
             default :
                 //NULL
