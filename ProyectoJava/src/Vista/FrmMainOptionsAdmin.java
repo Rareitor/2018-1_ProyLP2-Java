@@ -9,7 +9,6 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
     private FrmReportarInfraccion reportarInfraccion;
     private FrmRealizarBackup backup;
     private FrmPapeleraReciclaje papelera;
-    private FrmVisualizarMapa mapa;
     private FrmVerRecomendaciones verRecom;
     private FrmNoticias verNoticia;
     private FrmVisualizarInfraccion visualizarInfracciones;
@@ -21,7 +20,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
     private FrmGestionarObjeto gestOrden;
     private FrmGestionarObjeto gestProducto;
     private FrmGestionarObjeto gestUsuario;
-    private FrmVisualizarMapa verMapa;
+    private PnlVerMapa verMapa;
     
     /**
      * Creates new form NewJDialog
@@ -37,7 +36,6 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         reportarInfraccion = null;
         backup = null;
         papelera = null;
-        mapa = null;
         verRecom = null;
         verNoticia = null;
         visualizarInfracciones = null;
@@ -59,7 +57,6 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
                 menuiCalcularComisiones.setVisible(false);
                 menuiReportInfraccion.setVisible(false);
                 menuiVerMapa.setVisible(false);
-                menuiActMap.setVisible(false);
                 menuiVerGerentes.setVisible(false);
                 break;
             case "Gerente":
@@ -95,7 +92,6 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
                 menuiPapelera.setVisible(false);
                 menuiBackup.setVisible(false);
                 menuiAnadirNoticias.setVisible(false);
-                menuiActMap.setVisible(false);
                 menuiVerGerentes.setVisible(false);
                 break;
             case "sysadmin": break;
@@ -157,7 +153,6 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         menuiNoticias = new javax.swing.JMenuItem();
         menuOtros = new javax.swing.JMenu();
         menuiRecomendaciones = new javax.swing.JMenuItem();
-        menuiActMap = new javax.swing.JMenuItem();
         menuiPapelera = new javax.swing.JMenuItem();
         menuiBackup = new javax.swing.JMenuItem();
         menuiReportInfraccion = new javax.swing.JMenuItem();
@@ -389,14 +384,6 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         });
         menuOtros.add(menuiRecomendaciones);
 
-        menuiActMap.setText("Actualizar Mapa");
-        menuiActMap.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuiActMapActionPerformed(evt);
-            }
-        });
-        menuOtros.add(menuiActMap);
-
         menuiPapelera.setText("Papelera de Reciclaje");
         menuiPapelera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -581,23 +568,6 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         dskPnPrincipal.add(papelera);
         papelera.setVisible(true);
     }//GEN-LAST:event_menuiPapeleraActionPerformed
-
-    private void menuiActMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiActMapActionPerformed
-        // TODO add your handling code here:
-        if(mapa != null){
-            try{
-                mapa.setClosed(true);
-            }catch(Exception ex){
-                System.out.println(ex.getMessage());
-            }
-            mapa.dispose();
-        }
-        mapa = new FrmVisualizarMapa();
-        mapa.setClosable(true);
-        mapa.pack();
-        dskPnPrincipal.add(mapa);
-        mapa.setVisible(true);
-    }//GEN-LAST:event_menuiActMapActionPerformed
 
     private void menuiRecomendacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiRecomendacionesActionPerformed
         // TODO add your handling code here:
@@ -790,20 +760,12 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
     }//GEN-LAST:event_menuiGestUsuarioActionPerformed
 
     private void menuiVerMapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiVerMapaActionPerformed
-        // TODO add your handling code here:
-        if(verMapa != null){
-            try{
-                verMapa.setClosed(true);
-            }catch(Exception ex){
-                System.out.println(ex.getMessage());
-            }
-            verMapa.dispose();
-        }
-        verMapa = new FrmVisualizarMapa();
-        verMapa.setClosable(true);
-        verMapa.pack();
-        dskPnPrincipal.add(verMapa);
-        verMapa.setVisible(true);
+        final JDialog marco = new JDialog(this,"Ver Mapa",true);
+        verMapa = new PnlVerMapa();
+        marco.add(verMapa);
+        marco.pack();
+        marco.setSize(600,700);
+        marco.setVisible(true);
     }//GEN-LAST:event_menuiVerMapaActionPerformed
 
     /**
@@ -867,7 +829,6 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
     private javax.swing.JMenu menuOtros;
     private javax.swing.JMenu menuPersonalCargo;
     private javax.swing.JMenu menuVisualizacion;
-    private javax.swing.JMenuItem menuiActMap;
     private javax.swing.JMenuItem menuiAnadirNoticias;
     private javax.swing.JMenuItem menuiBackup;
     private javax.swing.JMenuItem menuiCalcularComisiones;
