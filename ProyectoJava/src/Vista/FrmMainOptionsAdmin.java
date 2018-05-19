@@ -133,7 +133,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         lblNoticias = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        menubPrincipal = new javax.swing.JMenuBar();
         menuAdministracion = new javax.swing.JMenu();
         menuiGestUsuario = new javax.swing.JMenuItem();
         menuiGestOrden = new javax.swing.JMenuItem();
@@ -280,7 +280,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         });
         menuAdministracion.add(menuiGestProducto);
 
-        jMenuBar1.add(menuAdministracion);
+        menubPrincipal.add(menuAdministracion);
 
         menuCalculo.setText("Cálculo");
 
@@ -300,7 +300,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         });
         menuCalculo.add(menuiCalcularComisiones);
 
-        jMenuBar1.add(menuCalculo);
+        menubPrincipal.add(menuCalculo);
 
         menuVisualizacion.setText("Visualización");
 
@@ -372,7 +372,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         });
         menuVisualizacion.add(menuiNoticias);
 
-        jMenuBar1.add(menuVisualizacion);
+        menubPrincipal.add(menuVisualizacion);
 
         menuOtros.setText("Otros");
 
@@ -424,7 +424,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         });
         menuOtros.add(menuiVerMapa);
 
-        jMenuBar1.add(menuOtros);
+        menubPrincipal.add(menuOtros);
 
         menuCuenta.setText("Mi Cuenta");
 
@@ -444,7 +444,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         });
         menuCuenta.add(menuiCambContr);
 
-        jMenuBar1.add(menuCuenta);
+        menubPrincipal.add(menuCuenta);
 
         menuCerrar.setText("Cerrar Sesión");
         menuCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -452,9 +452,9 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
                 menuCerrarMouseClicked(evt);
             }
         });
-        jMenuBar1.add(menuCerrar);
+        menubPrincipal.add(menuCerrar);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(menubPrincipal);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -815,7 +815,6 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane dskPnPrincipal;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
@@ -829,6 +828,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
     private javax.swing.JMenu menuOtros;
     private javax.swing.JMenu menuPersonalCargo;
     private javax.swing.JMenu menuVisualizacion;
+    private javax.swing.JMenuBar menubPrincipal;
     private javax.swing.JMenuItem menuiAnadirNoticias;
     private javax.swing.JMenuItem menuiBackup;
     private javax.swing.JMenuItem menuiCalcularComisiones;
