@@ -130,51 +130,27 @@ public class FrmLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
-        // TODO add your handling code here:
         String puesto = txtUsuario.getText();
         String contra = new String(txtContrasena.getPassword());
         try{
-            if(puesto.equals("sysadmin")){
-                JDialog frmMainOpt = new FrmMainOptionsAdmin(this, true, puesto);
-                //frmMainOpt.add(new FrmMainOptionsAdmin());
-                frmMainOpt.pack();
-                this.setVisible(false);
-                frmMainOpt.setVisible(true);
-                limpiarCampos();
-                this.setVisible(true);
-                return;
-            }
-//            if (puesto == ""){
-//                puesto = "Administrador";
-//            }
-            
-            if (puesto.equals("") || (!puesto.equals("Administrador") && !puesto.equals("Gerente") && !puesto.equals("Jefe")) )
-            {
+            if (!puesto.equals("sysadmin") && !puesto.equals("Administrador") && !puesto.equals("Gerente")
+            && !puesto.equals("Jefe") && !puesto.equals("Comisionista")){
                 JOptionPane.showMessageDialog(this, "Por favor, ingrese un usuario válido.",  "Ingresar usuario",JOptionPane.WARNING_MESSAGE);
-                return;
             }
-            else if (contra.equals(""))
-            {
+            else if(contra.equals("")){
                 JOptionPane.showMessageDialog(this, "Por favor, ingrese una contraseña válida.", "Ingrese contraseña", JOptionPane.WARNING_MESSAGE);
-                return;
             }
-
-            if (contra.equals("pucp"))
-            {
-                //frmMainOptions frmAdmin = new frmMainOptions(puesto);
-                JDialog frmMainOpt = new FrmMainOptionsAdmin(this, true, puesto);
-                //frmMainOpt.add(new FrmMainOptionsAdmin());
-                frmMainOpt.pack();
-                this.setVisible(false);
-                frmMainOpt.setVisible(true);
-                limpiarCampos();
-                this.setVisible(true);
-                //this.dispose();
-            }
-            else //if (txtContrasena.Text != "")
+            else if(!contra.equals("pucp"))
             {
                 JOptionPane.showMessageDialog(this, "Contraseña errónea, vuelva a ingresar la contraseña", "Contraseña", JOptionPane.ERROR_MESSAGE);
-                //MessageBox.Show("Contraseña errónea, vuelva a ingresar la contraseña");
+            }
+            else{
+                JDialog frmMainOpt = new FrmMainOptionsAdmin(this, true, puesto);
+                frmMainOpt.pack();
+                this.setVisible(false);
+                frmMainOpt.setVisible(true);
+                limpiarCampos();
+                this.setVisible(true);
             }
         }catch(Exception ex){
             System.out.println(ex.getMessage());
