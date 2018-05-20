@@ -6,7 +6,6 @@ public abstract class Persona{
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
-    private int edad;
 //métodos
     //constructores
     public Persona(){
@@ -44,15 +43,5 @@ public abstract class Persona{
     public String getApellidoMaterno(){
             return this.apellidoMaterno;
     }
-
-    public void setEdad(int edad){
-            this.edad = edad;
-    }
-
-    public int getEdad(){
-            return this.edad;
-    }
-
-    //métodos adicionales
 	
 }

@@ -4,10 +4,10 @@ import java.util.Date;
 public abstract class Trabajador extends Persona{
 //atributos	
     private String idTrabajador;
-    private TipoRegimen regimen;
+//    private TipoRegimen regimen;
     private Date fechaIngreso;
     private String email;
-    private String telefono;
+//    private String telefono;
     private String userName;
     private String password;
 //métodos
@@ -25,13 +25,13 @@ public abstract class Trabajador extends Persona{
             return this.idTrabajador;
     }
 
-    public void setTipoRegimen(TipoRegimen regimen){
-            this.regimen = regimen;
-    }
-
-    public TipoRegimen getTipoRegimen(){
-            return this.regimen;
-    }
+//    public void setTipoRegimen(TipoRegimen regimen){
+//            this.regimen = regimen;
+//    }
+//
+//    public TipoRegimen getTipoRegimen(){
+//            return this.regimen;
+//    }
 
     public void setFechaIngreso(Date fechaIngreso){
             this.fechaIngreso = fechaIngreso;
@@ -49,13 +49,13 @@ public abstract class Trabajador extends Persona{
         return email;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
+//    public void setTelefono(String telefono) {
+//        this.telefono = telefono;
+//    }
+//
+//    public String getTelefono() {
+//        return telefono;
+//    }
 	
     public String getUserName(){
             return this.userName;
@@ -72,8 +72,4 @@ public abstract class Trabajador extends Persona{
     public void setPassword(String password){
             this.password = password;
     }
-    
-    //métodos adicionales
-
-    public abstract void emitirReporte();
 }

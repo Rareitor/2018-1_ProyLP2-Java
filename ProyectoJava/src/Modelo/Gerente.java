@@ -2,7 +2,7 @@ package Modelo;
 
 import java.util.*;
 
-public class Gerente extends Trabajador{
+public class Gerente extends Payee{
 //atributos
     private ArrayList<Jefe> listaJefes;
     private TipoLocacion sede;
@@ -27,11 +27,6 @@ public class Gerente extends Trabajador{
 
     public void setSede(TipoLocacion sede) {
         this.sede = sede;
-    }
-    
-    //métodos adicionales
-    @Override
-    public void emitirReporte() {
     }
     
     public void listarJefes(){

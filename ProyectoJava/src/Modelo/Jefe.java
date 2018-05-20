@@ -30,13 +30,6 @@ public class Jefe extends Payee{
         this.sede = sede;
     }
     
-    //métodos adicionales
-
-    @Override
-    public void emitirReporte() {
-    }
-    
     public void listarComisionistas(){
     }
-    
 }

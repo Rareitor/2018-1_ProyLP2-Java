@@ -1,6 +1,6 @@
 package Modelo;
 
-public class Comisionista extends Trabajador{
+public class Comisionista extends Payee{
 //atributos
     private TipoLocacion region;
 //métodos
@@ -15,11 +15,6 @@ public class Comisionista extends Trabajador{
 
     public void setRegion(TipoLocacion region) {
         this.region = region;
-    }
-    
-    //métodos adicionales
-    @Override
-    public void emitirReporte() {
     }
     
 }

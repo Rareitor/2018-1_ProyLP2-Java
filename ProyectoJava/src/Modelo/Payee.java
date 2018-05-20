@@ -7,8 +7,4 @@ public abstract class Payee extends Trabajador{
     public Payee()
     {
     }
-	//métodos adicionales
-
-    @Override
-    public abstract void emitirReporte();
 }
