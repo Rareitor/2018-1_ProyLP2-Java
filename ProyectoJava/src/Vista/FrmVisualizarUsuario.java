@@ -1,5 +1,8 @@
 package Vista;
 
+import Controlador.PayeeBL;
+import Modelo.Payee;
+import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -7,27 +10,44 @@ import javax.swing.table.TableColumnModel;
 
 public class FrmVisualizarUsuario extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form FrmVisualizarUsuario
-     */
-    public FrmVisualizarUsuario(String str) {
+    private List<Payee> lista;
+    private PayeeBL logicaNegocio;
+    
+    public FrmVisualizarUsuario(String str, String idPayee) {
         initComponents();
+        logicaNegocio = new PayeeBL();
         switch(str){
             case "Jefe":
-                setItemsCmb((DefaultComboBoxModel) this.cmbCampo.getModel(), new String[]{"Usuario","Nombre","Apellido Paterno","Apellido Materno","Correo","Jefe Directo"});
-                setColsTbl((DefaultTableModel) this.tblDatosTrabajador.getModel(), new String[]{"Usuario","Nombre","Apellido Paterno","Apellido Materno","Correo","Jefe Directo"});
+                setItemsCmb((DefaultComboBoxModel) this.cmbCampo.getModel(), new String[]{"idPayee","Nombre","Apellido Paterno","Apellido Materno","Correo","Distrito","Usuario","Cargo"});
+                setColsTbl((DefaultTableModel) this.tblDatosTrabajador.getModel(), new String[]{"idPayee","DNI","Nombre","Apellido Paterno","Apellido Materno","Correo","Usuario","Distrito","Cargo"});
+                lista = logicaNegocio.listarPayees("");
+                //lista = logicaNegocio.listarPayees(idPayee);
                 break;
             case "Gerente":
-                setItemsCmb((DefaultComboBoxModel) this.cmbCampo.getModel(), new String[]{"Usuario","Nombre","Apellido Paterno","Apellido Materno","Correo","Jefe Directo"});
-                setColsTbl((DefaultTableModel) this.tblDatosTrabajador.getModel(), new String[]{"Usuario","Nombre","Apellido Paterno","Apellido Materno","Correo","Jefe Directo"});
+                setItemsCmb((DefaultComboBoxModel) this.cmbCampo.getModel(), new String[]{"idPayee","Nombre","Apellido Paterno","Apellido Materno","Correo","Distrito","Usuario","Cargo","Jefe Directo"});
+                setColsTbl((DefaultTableModel) this.tblDatosTrabajador.getModel(), new String[]{"idPayee","DNI","Nombre","Apellido Paterno","Apellido Materno","Correo","Usuario","Distrito","Cargo"});
+                lista = logicaNegocio.listarPayees("");
                 break;
             case "Comisionista":
-                setItemsCmb((DefaultComboBoxModel) this.cmbCampo.getModel(), new String[]{"Usuario","Nombre","Apellido Paterno","Apellido Materno","Correo","Jefe Directo"});
-                setColsTbl((DefaultTableModel) this.tblDatosTrabajador.getModel(), new String[]{"Usuario","Nombre","Apellido Paterno","Apellido Materno","Correo","Jefe Directo"});
                 break;
             default :
-                //NULL
+                lista = logicaNegocio.listarPayees("");
                 break;
+        }
+        
+        DefaultTableModel modelo = (DefaultTableModel) this.tblDatosTrabajador.getModel();
+        Object[] fila = new Object [10];
+        for (int i=0;i<lista.size();i++){
+            fila[0] = lista.get(i).getIdTrabajador();
+            fila[1] = lista.get(i).getDni();
+            fila[2] = lista.get(i).getNombre();
+            fila[3] = lista.get(i).getApellidoPaterno();
+            fila[4] = lista.get(i).getApellidoMaterno();
+            fila[5] = lista.get(i).getEmail();
+            fila[6] = lista.get(i).getUserName();
+            fila[7] = lista.get(i).getDistrito();
+            fila[8] = lista.get(i).getCargo();
+            modelo.addRow(fila);
         }
     }
 

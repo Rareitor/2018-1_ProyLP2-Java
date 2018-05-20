@@ -1,4 +1,5 @@
 package Vista;
+import Controlador.PayeeBL;
 import java.awt.*;
 import javax.swing.*;
 
@@ -21,12 +22,14 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
     private FrmGestionarObjeto gestProducto;
     private FrmGestionarObjeto gestUsuario;
     private PnlVerMapa verMapa;
-    
+    private PayeeBL logicaNegocio;
+    private String idPayee;
     /**
      * Creates new form NewJDialog
      */
     public FrmMainOptionsAdmin(java.awt.Frame parent, boolean modal, String user) {
         super(parent, modal);
+        logicaNegocio = new PayeeBL();
         initComponents();
         setVisibleOpts(user);
         this.setTitle("GESCOM TDP - " + user);
@@ -48,6 +51,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         gestProducto = null;
         gestUsuario = null;
         verMapa = null;
+        this.idPayee = logicaNegocio.obtenerId(user);
     }
     
     private void setVisibleOpts(String usr){
@@ -110,9 +114,10 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
             }
             usuarios.dispose();
         }
-        usuarios = new FrmVisualizarUsuario(str);
+        usuarios = new FrmVisualizarUsuario(str, this.idPayee);
         usuarios.setClosable(true);
-        dskPnPrincipal.add(usuarios);usuarios.setVisible(true);
+        dskPnPrincipal.add(usuarios);
+        usuarios.setVisible(true);
     }
 
     /**

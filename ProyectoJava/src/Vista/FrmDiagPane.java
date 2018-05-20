@@ -27,7 +27,7 @@ public class FrmDiagPane extends javax.swing.JDialog {
         if(tipo.equals("Canal")){
             funcFrame = new FrmVisualizarCanal();
         }else{
-            funcFrame = new FrmVisualizarUsuario(tipo);
+            funcFrame = new FrmVisualizarUsuario(tipo, "");
         }
         this.add(funcFrame);
         funcFrame.setLocation(-6, -25);

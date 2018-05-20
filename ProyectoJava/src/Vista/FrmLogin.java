@@ -1,13 +1,10 @@
 package Vista;
+import Controlador.PayeeBL;
 import java.awt.Dimension;
 import java.io.File;
 import javax.swing.*;
 
 public class FrmLogin extends javax.swing.JFrame {
-
-    /**
-     * Creates new form frmLogin
-     */
     public FrmLogin() {
         initComponents();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -130,11 +127,11 @@ public class FrmLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
-        String puesto = txtUsuario.getText();
+        String user = txtUsuario.getText();
         String contra = new String(txtContrasena.getPassword());
         try{
-            if (!puesto.equals("sysadmin") && !puesto.equals("Administrador") && !puesto.equals("Gerente")
-            && !puesto.equals("Jefe") && !puesto.equals("Comisionista")){
+            if (!user.equals("sysadmin") && !user.equals("Administrador") && !user.equals("Gerente")
+            && !user.equals("Jefe") && !user.equals("Comisionista")){
                 JOptionPane.showMessageDialog(this, "Por favor, ingrese un usuario válido.",  "Ingresar usuario",JOptionPane.WARNING_MESSAGE);
             }
             else if(contra.equals("")){
@@ -145,7 +142,7 @@ public class FrmLogin extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Contraseña errónea, vuelva a ingresar la contraseña", "Contraseña", JOptionPane.ERROR_MESSAGE);
             }
             else{
-                JDialog frmMainOpt = new FrmMainOptionsAdmin(this, true, puesto);
+                JDialog frmMainOpt = new FrmMainOptionsAdmin(this, true, user);
                 frmMainOpt.pack();
                 this.setVisible(false);
                 frmMainOpt.setVisible(true);
