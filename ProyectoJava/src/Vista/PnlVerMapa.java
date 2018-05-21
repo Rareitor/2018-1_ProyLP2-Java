@@ -9,70 +9,82 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 public class PnlVerMapa extends javax.swing.JPanel {
     public static final int MAX_DISTRITOS = 25;
     private BufferedImage[] imagenes;
     private BufferedImage background;
-    private int numDistritos;
+    private int numDistritos = 0;
     private List<String> lista;
     private DistritoBL logicaNegocio;
     JButton buttonPrevious,buttonNext;
+    hiloCargarMapa hilo;
     
     public PnlVerMapa() {
-        initComponents();   
-        logicaNegocio = new DistritoBL();
-        numDistritos = Integer.parseInt(txtNumDistritos.getText());
+        hilo = new hiloCargarMapa();
+        hilo.start();
+        //Empieza concurrencia
+        numDistritos = 4;
+        initComponents(); 
         imagenes = new BufferedImage[MAX_DISTRITOS];
-        
-        //lista = logicaNegocio.listarDistritos();
-        lista = new ArrayList<String>();
-        lista.add("Pueblo Libre");
-        lista.add("San Miguel");
-        lista.add("Chorrillos");
-        lista.add("Magdalena");
-        agregarComponentes();
+        //Termina concurrencia
+        try{
+            hilo.join();
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }
     
-    private void agregarComponentes(){
+    private void escribirLabel(){
         String cadDistritos = lista.get(0);
-        for(int i=1;i<lista.size();i++){
+        for(int i=1;i<numDistritos;i++){
             if(i==lista.size()-1)
                 cadDistritos += " y " + lista.get(i);
             else
                 cadDistritos += ", " + lista.get(i);
         }
         labelDistrito.setText(cadDistritos);
-        
-        //Agregamos la imagen de fondo
-        String cadena = "./src/Distritos/Mapa en blanco.png";
-        try {
-            background = ImageIO.read(new File(cadena));
-        } catch (Exception e){
-            System.out.println("Error en la carga de la imagen");
-        }
-        
-        //Agregamos cada distrito
-        for(int i=0;i<lista.size();i++){
-            cadena = "./src/Distritos/" + lista.get(i) + ".png";
-            try {
-                imagenes[i] = ImageIO.read(new File(cadena));
-            } catch (Exception e){
-                System.out.println("Error en la carga de la imagen" + i);
-            }
-        }
     }
     
     public void paint(Graphics g){
         super.paint(g);
+        escribirLabel();
         g.drawImage(background, 90, 130, this);
         for(int i=0;i<numDistritos;i++)
             g.drawImage(imagenes[i], 90, 130, this);
     }
     
-    public class hiloCargarMapa extends Thread(){
-    
-}
+    private class hiloCargarMapa extends Thread {
+        @Override
+        public void run(){
+            logicaNegocio = new DistritoBL();
+            //lista = logicaNegocio.listarDistritos();
+            lista = new ArrayList<String>();
+            lista.add("Pueblo Libre");
+            lista.add("San Miguel");
+            lista.add("Chorrillos");
+            lista.add("Magdalena");
+
+            //Agregamos la imagen de fondo
+            String cadena = "./src/Distritos/Mapa en blanco.png";
+            try {
+                background = ImageIO.read(new File(cadena));
+            } catch (Exception e){
+                System.out.println("Error en la carga de la imagen");
+            }
+
+            //Agregamos todos los distritos
+            for(int i=0;i<lista.size();i++){
+                cadena = "./src/Distritos/" + lista.get(i) + ".png";
+                try {
+                    imagenes[i] = ImageIO.read(new File(cadena));
+                } catch (Exception e){
+                    System.out.println("Error en la carga de la imagen" + i);
+                }
+            }
+        }  
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -143,8 +155,17 @@ public class PnlVerMapa extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnverMouseClicked
-        numDistritos = Integer.parseInt(txtNumDistritos.getText());
-        repaint();
+        try {
+            int newnum = Integer.parseInt(txtNumDistritos.getText());
+            if (newnum <= 0 || newnum > MAX_DISTRITOS)
+                throw new Exception();
+            numDistritos = newnum; 
+            repaint();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,"Por favor, inserte un número válido", "Número de distritos inválido",JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_btnverMouseClicked
 
 
