@@ -658,7 +658,6 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
     }//GEN-LAST:event_menuiCanalesVentaActionPerformed
 
     private void menuiProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiProductosActionPerformed
-        // TODO add your handling code here:
         if(productos != null){
             try{
                 productos.setClosed(true);

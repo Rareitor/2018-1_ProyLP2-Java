@@ -12,7 +12,7 @@ public class PayeeDA {
     public List<Payee> listarPayee(String idPayee){
         List<Payee> lista = new ArrayList<>();
         try{
-            Class.forName("com.mysql.jb.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection
             ("jdbc:mysql://200.16.7.96/inf282g8", "inf282g8", "4LDJZU");
             String sql = "{call LISTAR_PAYEES(" + idPayee + ")}";
@@ -40,7 +40,7 @@ public class PayeeDA {
     
     public String obtenerId(String username){
         try{
-            Class.forName("com.mysql.jb.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection
             ("jdbc:mysql://200.16.7.96/inf282g8", "inf282g8", "4LDJZU");
             String sql = "{call OBTENER_ID(?,?)}";

@@ -1,14 +1,30 @@
 package Vista;
 
+import Controlador.ProductoBL;
+import Modelo.Producto;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 public class FrmVisualizarProducto extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form FrmVisualizarUsuario
-     */
+    private ProductoBL logicaNegocio;
     public FrmVisualizarProducto() {
         initComponents();
+        logicaNegocio = new ProductoBL();
+        agregarLista();
     }
-
+    
+    private void agregarLista(){
+        List<Producto> lista = logicaNegocio.listarProductos();
+        DefaultTableModel modelo = (DefaultTableModel) this.jTable1.getModel();
+        Object[] fila = new Object [10];
+        for (int i=0;i<lista.size();i++){
+            fila[0] = lista.get(i).getIdProducto();
+            fila[1] = lista.get(i).getNombre();
+            fila[2] = lista.get(i).getTipo();
+            modelo.addRow(fila);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,17 +57,9 @@ public class FrmVisualizarProducto extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "id", "nombre", "precio", "marca", "stock"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
-        });
+        ));
         jScrollPane1.setViewportView(jTable1);
 
         btnBuscar.setText("Buscar");
