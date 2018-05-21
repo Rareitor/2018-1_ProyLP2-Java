@@ -27,7 +27,6 @@ public class PnlVerMapa extends javax.swing.JPanel {
         //Empieza concurrencia
         numDistritos = 4;
         initComponents(); 
-        imagenes = new BufferedImage[MAX_DISTRITOS];
         //Termina concurrencia
         try{
             hilo.join();
@@ -73,7 +72,7 @@ public class PnlVerMapa extends javax.swing.JPanel {
             } catch (Exception e){
                 System.out.println("Error en la carga de la imagen");
             }
-
+			imagenes = new BufferedImage[MAX_DISTRITOS];
             //Agregamos todos los distritos
             for(int i=0;i<lista.size();i++){
                 cadena = "./src/Distritos/" + lista.get(i) + ".png";
