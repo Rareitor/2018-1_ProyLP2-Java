@@ -1,5 +1,6 @@
 package Vista;
 
+import Controlador.DistritoBL;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -10,18 +11,20 @@ import javax.imageio.ImageIO;
 import javax.swing.JButton;
 
 public class PnlVerMapa extends javax.swing.JPanel {
-    public static final int MAX_DISTRITOS = 4;
+    public static final int MAX_DISTRITOS = 25;
     private BufferedImage[] imagenes;
     private BufferedImage background;
-    private int currDistrito;
-    private ArrayList<String> lista;
-    //private ---BL logicaNegocio;
+    private int numDistritos;
+    private List<String> lista;
+    private DistritoBL logicaNegocio;
     JButton buttonPrevious,buttonNext;
     
     public PnlVerMapa() {
         initComponents();   
-        currDistrito = 0;
+        logicaNegocio = new DistritoBL();
+        numDistritos = Integer.parseInt(txtNumDistritos.getText());
         imagenes = new BufferedImage[MAX_DISTRITOS];
+        
         //lista = logicaNegocio.listarDistritos();
         lista = new ArrayList<String>();
         lista.add("Pueblo Libre");
@@ -33,8 +36,8 @@ public class PnlVerMapa extends javax.swing.JPanel {
     
     private void agregarComponentes(){
         String cadDistritos = lista.get(0);
-        for(int i=1;i<MAX_DISTRITOS;i++){
-            if(i==MAX_DISTRITOS-1)
+        for(int i=1;i<lista.size();i++){
+            if(i==lista.size()-1)
                 cadDistritos += " y " + lista.get(i);
             else
                 cadDistritos += ", " + lista.get(i);
@@ -50,7 +53,7 @@ public class PnlVerMapa extends javax.swing.JPanel {
         }
         
         //Agregamos cada distrito
-        for(int i=0;i<MAX_DISTRITOS;i++){
+        for(int i=0;i<lista.size();i++){
             cadena = "./src/Distritos/" + lista.get(i) + ".png";
             try {
                 imagenes[i] = ImageIO.read(new File(cadena));
@@ -62,10 +65,14 @@ public class PnlVerMapa extends javax.swing.JPanel {
     
     public void paint(Graphics g){
         super.paint(g);
-        g.drawImage(background, 90, 100, this);
-        for(int i=0;i<MAX_DISTRITOS;i++)
-            g.drawImage(imagenes[i], 90, 100, this);
+        g.drawImage(background, 90, 130, this);
+        for(int i=0;i<numDistritos;i++)
+            g.drawImage(imagenes[i], 90, 130, this);
     }
+    
+    public class hiloCargarMapa extends Thread(){
+    
+}
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -73,6 +80,9 @@ public class PnlVerMapa extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         labelDistrito = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtNumDistritos = new javax.swing.JTextField();
+        btnver = new javax.swing.JButton();
 
         setToolTipText("Ver Mapa");
 
@@ -82,33 +92,67 @@ public class PnlVerMapa extends javax.swing.JPanel {
         labelDistrito.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelDistrito.setText("Texto");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setText("Número de distritos: ");
+
+        txtNumDistritos.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtNumDistritos.setText("4");
+
+        btnver.setText("Ver");
+        btnver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnverMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel1)
-                .addContainerGap(139, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelDistrito)
-                .addGap(247, 247, 247))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel1)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelDistrito)
+                            .addGap(108, 108, 108)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(27, 27, 27)
+                        .addComponent(txtNumDistritos, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(61, 61, 61)
+                        .addComponent(btnver)))
+                .addContainerGap(148, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtNumDistritos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnver))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(labelDistrito)
-                .addContainerGap(444, Short.MAX_VALUE))
+                .addGap(0, 424, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnverMouseClicked
+        numDistritos = Integer.parseInt(txtNumDistritos.getText());
+        repaint();
+    }//GEN-LAST:event_btnverMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnver;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     public javax.swing.JLabel labelDistrito;
+    private javax.swing.JTextField txtNumDistritos;
     // End of variables declaration//GEN-END:variables
 }
