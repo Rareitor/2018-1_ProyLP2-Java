@@ -2,27 +2,49 @@ package Vista;
 
 import Controlador.ProductoBL;
 import Modelo.Producto;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 public class FrmVisualizarProducto extends javax.swing.JInternalFrame {
 
     private ProductoBL logicaNegocio;
+    private List<Producto> listaOriginal;
+    
     public FrmVisualizarProducto() {
         initComponents();
         logicaNegocio = new ProductoBL();
-        agregarLista();
+        hiloagregarLista hiloProductos = new hiloagregarLista();
+        //Inicia concurrencia
+        hiloProductos.start();
+        agregarComboBox();
+        try{
+            hiloProductos.join();
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        //Termina concurrencia
     }
     
-    private void agregarLista(){
-        List<Producto> lista = logicaNegocio.listarProductos();
-        DefaultTableModel modelo = (DefaultTableModel) this.jTable1.getModel();
-        Object[] fila = new Object [10];
-        for (int i=0;i<lista.size();i++){
-            fila[0] = lista.get(i).getIdProducto();
-            fila[1] = lista.get(i).getNombre();
-            fila[2] = lista.get(i).getTipo();
-            modelo.addRow(fila);
+    private void agregarComboBox(){
+        List<String> tipos = logicaNegocio.listarTiposProductos();
+        for(int i=0;i<tipos.size();i++){
+            cmbTipo.addItem(tipos.get(i));
+        }
+    }
+    
+    private class hiloagregarLista extends Thread{
+        @Override
+        public void run(){
+            listaOriginal = logicaNegocio.listarProductos();
+            DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+            Object[] fila = new Object [3];
+            for (int i=0;i<listaOriginal.size();i++){
+                fila[0] = listaOriginal.get(i).getIdProducto();
+                fila[1] = listaOriginal.get(i).getNombre();
+                fila[2] = listaOriginal.get(i).getTipo();
+                modelo.addRow(fila);
+            }
         }
     }
     /**
@@ -35,15 +57,13 @@ public class FrmVisualizarProducto extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         lblTipo = new javax.swing.JLabel();
-        cmbCampo = new javax.swing.JComboBox<>();
+        cmbTipo = new javax.swing.JComboBox<>();
         btnRegresar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         btnBuscar = new javax.swing.JButton();
 
         lblTipo.setText("Tipo de producto:");
-
-        cmbCampo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnRegresar.setText("Regresar");
         btnRegresar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -80,7 +100,7 @@ public class FrmVisualizarProducto extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblTipo)
                         .addGap(29, 29, 29)
-                        .addComponent(cmbCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32)
                         .addComponent(btnBuscar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -93,12 +113,12 @@ public class FrmVisualizarProducto extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTipo)
-                    .addComponent(cmbCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar)
                     .addComponent(btnRegresar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -114,14 +134,27 @@ public class FrmVisualizarProducto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnRegresarMouseClicked
 
     private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
-        // TODO add your handling code here:
+        //Borramos toda la data
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        int rowCount = modelo.getRowCount();
+        for (int i=0;i<rowCount;i++) modelo.removeRow(i);
+
+        Object[] fila = new Object [3];
+        for (int i=0;i<listaOriginal.size();i++){
+            if (listaOriginal.get(i).getTipo().equals(cmbTipo.getSelectedItem().toString())){
+                fila[0] = listaOriginal.get(i).getIdProducto();
+                fila[1] = listaOriginal.get(i).getNombre();
+                fila[2] = listaOriginal.get(i).getTipo();
+                modelo.addRow(fila);
+            }
+        }
     }//GEN-LAST:event_btnBuscarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnRegresar;
-    private javax.swing.JComboBox<String> cmbCampo;
+    private javax.swing.JComboBox<String> cmbTipo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblTipo;

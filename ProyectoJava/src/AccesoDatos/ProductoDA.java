@@ -42,4 +42,25 @@ public class ProductoDA {
         }
         return lista;
     }
+    
+    public List<String> listarTiposProductos(){
+        List<String> lista = new ArrayList<>();
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection
+            ("jdbc:mysql://200.16.7.96/inf282g8", "inf282g8", "4LDJZU");
+            String sql = "{CALL LISTAR_TIPOS_PRODUCTOS()}";
+            CallableStatement cs = con.prepareCall(sql);
+            ResultSet rs = cs.executeQuery();
+            while(rs.next()){
+                String tipo;
+                tipo = rs.getString("tipo");
+                lista.add(tipo);
+            }
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return lista;
+    }
 }

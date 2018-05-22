@@ -21,4 +21,8 @@ public class ProductoBL {
         return accesoDatos.listarProductos();
     }
     
+    public List<String> listarTiposProductos(){
+        return accesoDatos.listarTiposProductos();
+    }
+    
 }
