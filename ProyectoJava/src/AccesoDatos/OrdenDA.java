@@ -46,7 +46,7 @@ public class OrdenDA {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection
             ("jdbc:mysql://200.16.7.96/inf282g8", "inf282g8", "4LDJZU");
-            String sql = "{call LISTAR_ORDENES_COMISIONISTA(?,?,?)}";
+            String sql = "{call LISTAR_ORDENES_JEFE(?,?,?)}";
             CallableStatement cs = con.prepareCall(sql);
             cs.setString(1,idJefe);
             cs.setDate(2, new java.sql.Date(fecha1.getTime()));

@@ -7,14 +7,14 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
-public class FrmRecordVendido extends javax.swing.JInternalFrame {
+public class FrmVisualizarOrdenes extends javax.swing.JInternalFrame {
 
     private OrdenBL logicaNegocio;
     private List<Orden> listaOrdenes;
     private String puesto;
     private String idPayee;
     
-    public FrmRecordVendido(String puesto, String idPayee) {
+    public FrmVisualizarOrdenes(String puesto, String idPayee) {
         initComponents();
         listaOrdenes = new ArrayList<>();
         logicaNegocio = new OrdenBL();

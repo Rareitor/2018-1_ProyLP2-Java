@@ -16,7 +16,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
     private FrmVisualizarUsuario usuarios;
     private FrmVisualizarCanal canalesVenta;
     private FrmVisualizarProducto productos;
-    private FrmRecordVendido comisiones;
+    private FrmVisualizarOrdenes comisiones;
     private FrmFijarPeriodoCalculo fijarPerCalc;
     private FrmGestionarObjeto gestOrden;
     private FrmGestionarObjeto gestProducto;
@@ -28,13 +28,12 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
     /**
      * Creates new form NewJDialog
      */
-    public FrmMainOptionsAdmin(java.awt.Frame parent, boolean modal, String user) {
+    public FrmMainOptionsAdmin(java.awt.Frame parent, boolean modal, String username, String puesto) {
         super(parent, modal);
         logicaNegocio = new PayeeBL();
         initComponents();
-        setVisibleOpts(user);
-        this.setTitle("GESCOM TDP - " + user);
-        this.puesto = user;
+        setVisibleOpts(puesto);
+        this.setTitle("GESCOM TDP - " + puesto);
         
         administrarCuenta = null;
         addNoticia = null;
@@ -53,19 +52,20 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         gestProducto = null;
         gestUsuario = null;
         verMapa = null;
-        this.idPayee = logicaNegocio.obtenerId(user);
+        this.idPayee = logicaNegocio.obtenerId(username);
+        this.puesto = puesto;
     }
     
-    private void setVisibleOpts(String usr){
-        switch(usr){
-            case "Administrador":
+    private void setVisibleOpts(String puesto){
+        switch(puesto){
+            case "ADMINISTRADOR":
                 menuVisualizacion.setVisible(false);
                 menuiCalcularComisiones.setVisible(false);
                 menuiReportInfraccion.setVisible(false);
                 menuiVerMapa.setVisible(false);
                 menuiVerGerentes.setVisible(false);
                 break;
-            case "Gerente":
+            case "GERENTE":
                 menuiGestUsuario.setVisible(false);
                 menuiGestProducto.setVisible(false);
                 menuiFijarPeriodo.setVisible(false);
@@ -75,7 +75,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
                 menuiRecomendaciones.setVisible(false);
                 menuiReportInfraccion.setVisible(false);
                 break;
-            case "Jefe":
+            case "JEFE":
                 menuiGestUsuario.setVisible(false);
                 menuiGestProducto.setVisible(false);
                 menuCalculo.setVisible(false);
@@ -88,7 +88,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
                 menuiVerMapa.setVisible(false);
                 menuiVerGerentes.setVisible(false);
                 break;
-            case "Comisionista":
+            case "COMISIONISTA":
                 menuiGestUsuario.setVisible(false);
                 menuiGestProducto.setVisible(false);
                 menuCalculo.setVisible(false);
@@ -685,7 +685,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
             }
             comisiones.dispose();
         }
-        comisiones = new FrmRecordVendido(this.puesto,this.idPayee);
+        comisiones = new FrmVisualizarOrdenes(this.puesto,this.idPayee);
         comisiones.setClosable(true);
         comisiones.pack();
         dskPnPrincipal.add(comisiones);
@@ -807,7 +807,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FrmMainOptionsAdmin dialog = new FrmMainOptionsAdmin(new javax.swing.JFrame(), true, "");
+                FrmMainOptionsAdmin dialog = new FrmMainOptionsAdmin(new javax.swing.JFrame(), true ,"" ,"");
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
