@@ -13,7 +13,6 @@ public class FrmLogin extends javax.swing.JFrame {
         accesoDatos = new PayeeDA();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         txtContrasena.setText("");
-//        System.out.println(new File("./").getAbsolutePath());
     }
 
     /**
@@ -74,7 +73,7 @@ public class FrmLogin extends javax.swing.JFrame {
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setText("Admin: 20090380\nGerente: 88888888\nJefe: 12345678\nComisionista: (no hay)");
+        jTextArea1.setText("Admin: 20090380\nGerente: 78956423\nJefe: 99999999\nComisionista: (no hay)");
         jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -141,11 +140,15 @@ public class FrmLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
         String username = txtUsuario.getText();
-        String contra = new String(txtContrasena.getPassword());
+        String contra = txtContrasena.getText();
         
-        String puesto = accesoDatos.obtenerPuesto(username);
+        String[] data = accesoDatos.obtenerPuestoContraseña(username);
+        String puesto = data[0];
+        String password = data[1];
+        
         try{
             if (!puesto.equals("ADMINISTRADOR") && !puesto.equals("GERENTE")
             && !puesto.equals("JEFE") && !puesto.equals("COMISIONISTA")){
@@ -154,7 +157,7 @@ public class FrmLogin extends javax.swing.JFrame {
             else if(contra.equals("")){
                 JOptionPane.showMessageDialog(this, "Por favor, ingrese una contraseña válida.", "Ingrese contraseña", JOptionPane.WARNING_MESSAGE);
             }
-            else if(!contra.equals("pucp"))
+            else if(!contra.equals(password))
             {
                 JOptionPane.showMessageDialog(this, "Contraseña errónea, vuelva a ingresar la contraseña", "Contraseña", JOptionPane.ERROR_MESSAGE);
             }

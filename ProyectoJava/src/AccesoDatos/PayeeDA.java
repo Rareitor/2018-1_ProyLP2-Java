@@ -71,4 +71,40 @@ public class PayeeDA {
             return "";
         }
     }
+    
+    public String obtenerContraseña(String username){
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection
+            ("jdbc:mysql://200.16.7.96/inf282g8", "inf282g8", "4LDJZU");
+            String sql = "{call OBTENER_CONTRASEÑA(?,?)}";
+            CallableStatement cs = con.prepareCall(sql);
+            cs.setString(1, username);
+            cs.executeUpdate();
+            return cs.getString(2);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return "";
+        }
+    }
+    
+    public String[] obtenerPuestoContraseña(String username){
+        String[] data = new String[2];
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection
+            ("jdbc:mysql://200.16.7.96/inf282g8", "inf282g8", "4LDJZU");
+            String sql = "{call OBTENER_PUESTO_CONTRASEÑA(?,?,?)}";
+            CallableStatement cs = con.prepareCall(sql);
+            cs.setString(1, username);
+            cs.executeUpdate();
+            data[0] = cs.getString(2);
+            data[1] = cs.getString(3);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return data;
+    }
 }
