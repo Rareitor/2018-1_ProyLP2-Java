@@ -3,8 +3,9 @@ Proyecto LP2: parte Java
 Implementar:
 	-Ver Mapa (Listo -> Descomentar)
 	-Listar Usuarios
-	-Listar Órdenes
+	-Listar Órdenes (Listo -> Probar)
 	-Listar Productos (Listo)
+	
 	-Manejo de periodo de comisión
 	-Gestión de datos cuenta (usuario en uso)
 	-Cálculo de comisión

@@ -24,6 +24,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
     private PnlVerMapa verMapa;
     private PayeeBL logicaNegocio;
     private String idPayee;
+    private String puesto;
     /**
      * Creates new form NewJDialog
      */
@@ -33,6 +34,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         initComponents();
         setVisibleOpts(user);
         this.setTitle("GESCOM TDP - " + user);
+        this.puesto = user;
         
         administrarCuenta = null;
         addNoticia = null;
@@ -683,7 +685,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
             }
             comisiones.dispose();
         }
-        comisiones = new FrmRecordVendido();
+        comisiones = new FrmRecordVendido(this.puesto,this.idPayee);
         comisiones.setClosable(true);
         comisiones.pack();
         dskPnPrincipal.add(comisiones);
