@@ -37,7 +37,7 @@ public class FrmVisualizarProducto extends javax.swing.JInternalFrame {
         @Override
         public void run(){
             listaOriginal = logicaNegocio.listarProductos();
-            DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+            DefaultTableModel modelo = (DefaultTableModel) tblProducto.getModel();
             Object[] fila = new Object [3];
             for (int i=0;i<listaOriginal.size();i++){
                 fila[0] = listaOriginal.get(i).getIdProducto();
@@ -60,12 +60,17 @@ public class FrmVisualizarProducto extends javax.swing.JInternalFrame {
         cmbTipo = new javax.swing.JComboBox<>();
         btnRegresar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        btnBuscar = new javax.swing.JButton();
+        tblProducto = new javax.swing.JTable();
 
         setToolTipText("Visualizar Productos");
 
         lblTipo.setText("Tipo de producto:");
+
+        cmbTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbTipoActionPerformed(evt);
+            }
+        });
 
         btnRegresar.setText("Regresar");
         btnRegresar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -74,7 +79,7 @@ public class FrmVisualizarProducto extends javax.swing.JInternalFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblProducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -82,14 +87,7 @@ public class FrmVisualizarProducto extends javax.swing.JInternalFrame {
                 "idProducto", "Nombre", "Tiipo"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
-
-        btnBuscar.setText("Buscar");
-        btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnBuscarMouseClicked(evt);
-            }
-        });
+        jScrollPane1.setViewportView(tblProducto);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,8 +101,6 @@ public class FrmVisualizarProducto extends javax.swing.JInternalFrame {
                         .addComponent(lblTipo)
                         .addGap(29, 29, 29)
                         .addComponent(cmbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addComponent(btnBuscar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnRegresar)))
                 .addContainerGap())
@@ -116,11 +112,10 @@ public class FrmVisualizarProducto extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTipo)
                     .addComponent(cmbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar)
                     .addComponent(btnRegresar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -135,30 +130,31 @@ public class FrmVisualizarProducto extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnRegresarMouseClicked
 
-    private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
-        //Borramos toda la data
-        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+    private void cmbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoActionPerformed
+        String filtro = cmbTipo.getSelectedItem().toString();
+        //Borramos las filas
+        DefaultTableModel modelo = (DefaultTableModel) tblProducto.getModel();
         int rowCount = modelo.getRowCount();
         for (int i = rowCount - 1; i >= 0; i--) modelo.removeRow(i);
-
+        
         Object[] fila = new Object [3];
         for (int i=0;i<listaOriginal.size();i++){
-            if (listaOriginal.get(i).getTipo().equals(cmbTipo.getSelectedItem().toString())){
+            if (listaOriginal.get(i).getTipo().equals(filtro)){
                 fila[0] = listaOriginal.get(i).getIdProducto();
                 fila[1] = listaOriginal.get(i).getNombre();
                 fila[2] = listaOriginal.get(i).getTipo();
                 modelo.addRow(fila);
             }
+        tblProducto.setModel(modelo);
         }
-    }//GEN-LAST:event_btnBuscarMouseClicked
+    }//GEN-LAST:event_cmbTipoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JComboBox<String> cmbTipo;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblTipo;
+    private javax.swing.JTable tblProducto;
     // End of variables declaration//GEN-END:variables
 }

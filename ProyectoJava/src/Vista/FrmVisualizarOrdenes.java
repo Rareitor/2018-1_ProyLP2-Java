@@ -38,6 +38,8 @@ public class FrmVisualizarOrdenes extends javax.swing.JInternalFrame {
         btnSalir = new javax.swing.JButton();
         dateFIni = new com.toedter.calendar.JDateChooser();
         dateFFin = new com.toedter.calendar.JDateChooser();
+        jLabel1 = new javax.swing.JLabel();
+        textTotal = new javax.swing.JTextField();
 
         setToolTipText("Visualizar Órdenes");
 
@@ -89,6 +91,11 @@ public class FrmVisualizarOrdenes extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setText("Total: ");
+
+        textTotal.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,16 +104,13 @@ public class FrmVisualizarOrdenes extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblTipoReporte)
-                                .addGap(47, 47, 47)
-                                .addComponent(rdoMensual)
-                                .addGap(38, 38, 38)
-                                .addComponent(rdoRadio)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
+                        .addComponent(lblTipoReporte)
+                        .addGap(47, 47, 47)
+                        .addComponent(rdoMensual)
+                        .addGap(38, 38, 38)
+                        .addComponent(rdoRadio)
+                        .addGap(0, 214, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblFechaInicio)
@@ -121,7 +125,13 @@ public class FrmVisualizarOrdenes extends javax.swing.JInternalFrame {
                             .addComponent(btnImprimir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnExportar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(152, 152, 152))))
+                        .addGap(142, 142, 142))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(textTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,7 +141,7 @@ public class FrmVisualizarOrdenes extends javax.swing.JInternalFrame {
                     .addComponent(lblTipoReporte)
                     .addComponent(rdoMensual)
                     .addComponent(rdoRadio))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblFechaInicio)
@@ -151,7 +161,11 @@ public class FrmVisualizarOrdenes extends javax.swing.JInternalFrame {
                         .addComponent(btnSalir)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(textTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
 
         pack();
@@ -169,6 +183,7 @@ public class FrmVisualizarOrdenes extends javax.swing.JInternalFrame {
         //Listamos
         Date fecha1 = dateFIni.getDate();
         Date fecha2 = dateFFin.getDate();
+        Double subtotal = 0.0;
         switch(puesto){
             case "Comisionista":
                 listaOrdenes = logicaNegocio.listarOrdenesComisionista(this.idPayee, fecha1, fecha2);
@@ -193,8 +208,11 @@ public class FrmVisualizarOrdenes extends javax.swing.JInternalFrame {
             fila[2] = listaOrdenes.get(i).getIdProducto();
             fila[3] = listaOrdenes.get(i).getIdCanal();
             fila[4] = listaOrdenes.get(i).getFechaVenta();
+            subtotal += listaOrdenes.get(i).getMontoPago();
             modelo.addRow(fila);
         }
+        
+        textTotal.setText(subtotal.toString());
     }//GEN-LAST:event_btnBuscarMouseClicked
    
 
@@ -205,6 +223,7 @@ public class FrmVisualizarOrdenes extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnSalir;
     private com.toedter.calendar.JDateChooser dateFFin;
     private com.toedter.calendar.JDateChooser dateFIni;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblFechaFin;
     private javax.swing.JLabel lblFechaInicio;
@@ -212,5 +231,6 @@ public class FrmVisualizarOrdenes extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton rdoMensual;
     private javax.swing.JRadioButton rdoRadio;
     private javax.swing.JTable tbOrdenes;
+    private javax.swing.JTextField textTotal;
     // End of variables declaration//GEN-END:variables
 }
