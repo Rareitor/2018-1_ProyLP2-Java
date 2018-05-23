@@ -39,6 +39,8 @@ public class FrmVisualizarOrdenes extends javax.swing.JInternalFrame {
         dateFIni = new com.toedter.calendar.JDateChooser();
         dateFFin = new com.toedter.calendar.JDateChooser();
 
+        setToolTipText("Visualizar Órdenes");
+
         lblFechaInicio.setText("Fecha de Inicio:");
         lblFechaInicio.setToolTipText("");
 

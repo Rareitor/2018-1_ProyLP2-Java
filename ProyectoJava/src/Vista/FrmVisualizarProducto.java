@@ -63,6 +63,8 @@ public class FrmVisualizarProducto extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
         btnBuscar = new javax.swing.JButton();
 
+        setToolTipText("Visualizar Productos");
+
         lblTipo.setText("Tipo de producto:");
 
         btnRegresar.setText("Regresar");
@@ -77,7 +79,7 @@ public class FrmVisualizarProducto extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-
+                "idProducto", "Nombre", "Tiipo"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -137,7 +139,7 @@ public class FrmVisualizarProducto extends javax.swing.JInternalFrame {
         //Borramos toda la data
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         int rowCount = modelo.getRowCount();
-        for (int i=0;i<rowCount;i++) modelo.removeRow(i);
+        for (int i = rowCount - 1; i >= 0; i--) modelo.removeRow(i);
 
         Object[] fila = new Object [3];
         for (int i=0;i<listaOriginal.size();i++){
