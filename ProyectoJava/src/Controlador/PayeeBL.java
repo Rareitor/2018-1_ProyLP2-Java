@@ -12,8 +12,20 @@ public class PayeeBL {
         accesoDatos = new PayeeDA();
     }
     
-    public List<Payee> listarPayees(String idPayee){
-        return accesoDatos.listarPayee(idPayee);
+    public List<Payee> listarTrabajadores(){
+        return accesoDatos.listarTrabajadores();
+    }
+    
+    public List<Payee> listarGerentes(){
+        return accesoDatos.listarTrabajadores();
+    }
+    
+    public List<Payee> listarJefes(String idPayee){
+        return accesoDatos.listarJefes(idPayee);
+    }
+    
+    public List<Payee> listarComisionistas(String idPayee){
+        return accesoDatos.listarComisionistas(idPayee);
     }
     
     public String obtenerId(String username){

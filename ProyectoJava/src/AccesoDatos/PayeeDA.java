@@ -9,26 +9,116 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PayeeDA {
-    public List<Payee> listarPayee(String idPayee){
+    
+    public List<Payee> listarTrabajadores(){
         List<Payee> lista = new ArrayList<>();
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection
             ("jdbc:mysql://200.16.7.96/inf282g8", "inf282g8", "4LDJZU");
-            String sql = "{call LISTAR_PAYEES(" + idPayee + ")}";
+            String sql = "{call LISTAR_TRABAJADORES()}";
             CallableStatement cs = con.prepareCall(sql);
             ResultSet rs = cs.executeQuery();
             while(rs.next()){
                 Payee p = new Payee();
                 p.setIdTrabajador(rs.getString("idPayee"));
-                p.setDni("dni");
-                p.setNombre("nombre");
-                p.setApellidoPaterno("apellidoPaterno");
-                p.setApellidoMaterno("apellidoMaterno");
-                p.setEmail("email");
-                p.setUserName("username");
-                p.setDistrito("distrito");
-                p.setCargo("cargo");
+                p.setDni(rs.getString("dni"));
+                p.setNombre(rs.getString("nombre"));
+                p.setApellidoPaterno(rs.getString("apellidoPaterno"));
+                p.setApellidoMaterno(rs.getString("apellidoMaterno"));
+                p.setEmail(rs.getString("email"));
+                p.setUserName(rs.getString("username"));
+                p.setDistrito(rs.getString("distrito"));
+                p.setCargo(rs.getString("cargo"));
+                lista.add(p);
+            }
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return lista;
+    }
+    
+    public List<Payee> listarGerentes(){
+        List<Payee> lista = new ArrayList<>();
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection
+            ("jdbc:mysql://200.16.7.96/inf282g8", "inf282g8", "4LDJZU");
+            String sql = "{call LISTAR_GERENTES()}";
+            CallableStatement cs = con.prepareCall(sql);
+            ResultSet rs = cs.executeQuery();
+            while(rs.next()){
+                Payee p = new Payee();
+                p.setIdTrabajador(rs.getString("idPayee"));
+                p.setDni(rs.getString("dni"));
+                p.setNombre(rs.getString("nombre"));
+                p.setApellidoPaterno(rs.getString("apellidoPaterno"));
+                p.setApellidoMaterno(rs.getString("apellidoMaterno"));
+                p.setEmail(rs.getString("email"));
+                p.setUserName(rs.getString("username"));
+                p.setDistrito(rs.getString("distrito"));
+                p.setCargo(rs.getString("cargo"));
+                lista.add(p);
+            }
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return lista;
+    }
+    
+    public List<Payee> listarJefes(String idPayee){
+        List<Payee> lista = new ArrayList<>();
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection
+            ("jdbc:mysql://200.16.7.96/inf282g8", "inf282g8", "4LDJZU");
+            String sql = "{call LISTAR_JEFES(" + idPayee + ")}";
+            CallableStatement cs = con.prepareCall(sql);
+            ResultSet rs = cs.executeQuery();
+            while(rs.next()){
+                Payee p = new Payee();
+                p.setIdTrabajador(rs.getString("idPayee"));
+                p.setDni(rs.getString("dni"));
+                p.setNombre(rs.getString("nombre"));
+                p.setApellidoPaterno(rs.getString("apellidoPaterno"));
+                p.setApellidoMaterno(rs.getString("apellidoMaterno"));
+                p.setEmail(rs.getString("email"));
+                p.setUserName(rs.getString("username"));
+                p.setDistrito(rs.getString("distrito"));
+                p.setCargo(rs.getString("cargo"));
+                lista.add(p);
+            }
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return lista;
+    }
+    
+    public List<Payee> listarComisionistas(String idPayee){
+        List<Payee> lista = new ArrayList<>();
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection
+            ("jdbc:mysql://200.16.7.96/inf282g8", "inf282g8", "4LDJZU");
+            idPayee = "\"" + idPayee + "\"";
+            String sql = "{call LISTAR_COMISIONISTAS(" + idPayee + ")}";
+            System.out.println(sql);
+            CallableStatement cs = con.prepareCall(sql);
+            ResultSet rs = cs.executeQuery();
+            while(rs.next()){
+                Payee p = new Payee();
+                p.setIdTrabajador(rs.getString("idPayee"));
+                p.setDni(rs.getString("dni"));
+                p.setNombre(rs.getString("nombre"));
+                p.setApellidoPaterno(rs.getString("apellidoPaterno"));
+                p.setApellidoMaterno(rs.getString("apellidoMaterno"));
+                p.setEmail(rs.getString("email"));
+                p.setUserName(rs.getString("username"));
+                p.setDistrito(rs.getString("distrito"));
+                p.setCargo(rs.getString("cargo"));
                 lista.add(p);
             }
         }

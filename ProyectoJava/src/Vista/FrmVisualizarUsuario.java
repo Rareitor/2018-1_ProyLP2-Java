@@ -2,66 +2,105 @@ package Vista;
 
 import Controlador.PayeeBL;
 import Modelo.Payee;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 public class FrmVisualizarUsuario extends javax.swing.JInternalFrame {
 
-    private List<Payee> lista;
+    private List<Payee> listaOrig;
     private PayeeBL logicaNegocio;
+    private String puesto;
     
-    public FrmVisualizarUsuario(String str, String idPayee) {
+    public FrmVisualizarUsuario(String cargoLista, String idPayee, String puesto) {
         initComponents();
-//        logicaNegocio = new PayeeBL();
-//        List<Payee> aux;
-//        switch(str){
-//            case "Jefe":
-//                setItemsCmb((DefaultComboBoxModel) this.cmbCampo.getModel(), new String[]{"idPayee","Nombre","Apellido Paterno","Apellido Materno","Correo","Distrito","Usuario","Cargo"});
-//                setColsTbl((DefaultTableModel) this.tblDatosTrabajador.getModel(), new String[]{"idPayee","DNI","Nombre","Apellido Paterno","Apellido Materno","Correo","Usuario","Distrito","Cargo"});
-//                aux = logicaNegocio.listarPayees("");
-//                break;
-//            case "Gerente":
-//                setItemsCmb((DefaultComboBoxModel) this.cmbCampo.getModel(), new String[]{"idPayee","Nombre","Apellido Paterno","Apellido Materno","Correo","Distrito","Usuario","Cargo","Jefe Directo"});
-//                setColsTbl((DefaultTableModel) this.tblDatosTrabajador.getModel(), new String[]{"idPayee","DNI","Nombre","Apellido Paterno","Apellido Materno","Correo","Usuario","Distrito","Cargo"});
-//                aux = logicaNegocio.listarPayees("");
-//                break;
-//            case "Comisionista":
-//                setItemsCmb((DefaultComboBoxModel) this.cmbCampo.getModel(), new String[]{"idPayee","Nombre","Apellido Paterno","Apellido Materno","Correo","Distrito","Usuario","Cargo","Jefe Directo"});
-//                setColsTbl((DefaultTableModel) this.tblDatosTrabajador.getModel(), new String[]{"idPayee","DNI","Nombre","Apellido Paterno","Apellido Materno","Correo","Usuario","Distrito","Cargo"});
-//                aux = logicaNegocio.listarPayees("");
-//                break;
-//            default :
-//                aux = logicaNegocio.listarPayees("");
-//                break;
-//        }
-//        
-//        
-//        DefaultTableModel modelo = (DefaultTableModel) this.tblDatosTrabajador.getModel();
-//        Object[] fila = new Object [10];
-//        for (int i=0;i<lista.size();i++){
-//            
-//            fila[0] = lista.get(i).getIdTrabajador();
-//            fila[1] = lista.get(i).getDni();
-//            fila[2] = lista.get(i).getNombre();
-//            fila[3] = lista.get(i).getApellidoPaterno();
-//            fila[4] = lista.get(i).getApellidoMaterno();
-//            fila[5] = lista.get(i).getEmail();
-//            fila[6] = lista.get(i).getUserName();
-//            fila[7] = lista.get(i).getDistrito();
-//            fila[8] = lista.get(i).getCargo();
-//            modelo.addRow(fila);
-//        }
+        cmbCampo.addItem("ID");
+        cmbCampo.addItem("Nombre");
+        cmbCampo.addItem("Distrito");
+        cmbCampo.addItem("Cargo");
+        
+        this.puesto = puesto;
+        logicaNegocio = new PayeeBL();
+        
+        
+        listaOrig = new ArrayList<>();
+        switch(this.puesto){
+            case "ADMINISTRADOR":
+                switch(cargoLista){
+                    case "Gerente":
+                        listaOrig = logicaNegocio.listarGerentes();
+                        break;
+                    case "Jefe":
+                        listaOrig = logicaNegocio.listarJefes("ALL");
+                        break;
+                    case "Comisionista":
+                        listaOrig = logicaNegocio.listarComisionistas("ALL");
+                }
+                break;
+            case "GERENTE":
+                switch(cargoLista){
+                    case "Jefe":
+                        listaOrig = logicaNegocio.listarJefes("ALL");
+                        break;
+                    case "Comisionista":
+                        listaOrig = logicaNegocio.listarComisionistas("ALL");
+                }
+                break;
+            case "JEFE":
+                switch(cargoLista){
+                    case "Comisionista":
+                        listaOrig = logicaNegocio.listarComisionistas(idPayee);
+                }
+                break;
+            default:
+                JOptionPane.showMessageDialog(null, "No se econtraron resultados", "Lista vacía", JOptionPane.WARNING_MESSAGE);
+                break;
+        }
+        tblDatosTrabajador.setAutoResizeMode(tblDatosTrabajador.AUTO_RESIZE_ALL_COLUMNS);
+        
+        //setColsTbl((DefaultTableModel) this.tblDatosTrabajador.getModel(), new String[]{"idPayee","DNI","Nombre","Apellido Paterno","Apellido Materno","Correo","Usuario","Distrito","Cargo"});   
+//        tblDatosTrabajador.getParent().addComponentListener(new ComponentAdapter() {
+//            @Override
+//            public void componentResized(final ComponentEvent e) {
+//                if (tblDatosTrabajador.getPreferredSize().width < tblDatosTrabajador.getParent().getWidth()) {
+//                    tblDatosTrabajador.setAutoResizeMode(tblDatosTrabajador.AUTO_RESIZE_ALL_COLUMNS);
+//                } else {
+//                    tblDatosTrabajador.setAutoResizeMode(tblDatosTrabajador.AUTO_RESIZE_OFF);
+//                }
+//            }
+//        });
+        
+        
+        DefaultTableModel modelo = (DefaultTableModel) this.tblDatosTrabajador.getModel();
+        Object[] fila = new Object [10];
+        for (int i=0;i<listaOrig.size();i++){
+            
+            fila[0] = listaOrig.get(i).getIdTrabajador();
+            fila[1] = listaOrig.get(i).getDni();
+            fila[2] = listaOrig.get(i).getNombre();
+            fila[3] = listaOrig.get(i).getApellidoPaterno();
+            fila[4] = listaOrig.get(i).getApellidoMaterno();
+            fila[5] = listaOrig.get(i).getEmail();
+            fila[6] = listaOrig.get(i).getUserName();
+            fila[7] = listaOrig.get(i).getDistrito();
+            fila[8] = listaOrig.get(i).getCargo();
+            modelo.addRow(fila);
+        }
     }
 
-    private void setColsTbl(DefaultTableModel tbl, String[] cols){
-        for(int i = 0; i < cols.length; i++){
-            tbl.addColumn(cols[i]);
-        }
-        //tblDatosTrabajador.getColumn(0).setpr(tblDatosTrabajador.getColumnName(i).length()*10+20);
-    }
+//    private void setColsTbl(DefaultTableModel tbl, String[] cols){
+//        for(int i = 0; i < cols.length; i++){
+//            tbl.addColumn(cols[i]);
+//        }
+//        //tblDatosTrabajador.getColumn(0).setpr(tblDatosTrabajador.getColumnName(i).length()*10+20);
+//    }
     
     private void setItemsCmb(DefaultComboBoxModel lst, String[] items){
         for(int i = 0; i < items.length; i++){
@@ -81,13 +120,12 @@ public class FrmVisualizarUsuario extends javax.swing.JInternalFrame {
         lblCampo = new javax.swing.JLabel();
         cmbCampo = new javax.swing.JComboBox<>();
         btnRegresar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblDatosTrabajador = new javax.swing.JTable();
         btnBuscar = new javax.swing.JButton();
-        btnSelect = new javax.swing.JButton();
         pnlSelect = new javax.swing.JPanel();
         txtDato = new javax.swing.JTextField();
         lblDato = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblDatosTrabajador = new javax.swing.JTable();
 
         lblCampo.setText("Ingrese campo para buscar");
 
@@ -98,32 +136,12 @@ public class FrmVisualizarUsuario extends javax.swing.JInternalFrame {
             }
         });
 
-        tblDatosTrabajador.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Id"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(tblDatosTrabajador);
-
         btnBuscar.setText("Buscar");
         btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnBuscarMouseClicked(evt);
             }
         });
-
-        btnSelect.setText("Selecionar");
 
         lblDato.setText("Ingrese Dato");
 
@@ -150,6 +168,20 @@ public class FrmVisualizarUsuario extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
+        tblDatosTrabajador.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "DNI", "Nombre", "Apellido Paterno", "Apellido Materno", "E-mail", "Username", "Distrito", "Cargo"
+            }
+        ));
+        jScrollPane2.setViewportView(tblDatosTrabajador);
+        if (tblDatosTrabajador.getColumnModel().getColumnCount() > 0) {
+            tblDatosTrabajador.getColumnModel().getColumn(0).setMaxWidth(80);
+            tblDatosTrabajador.getColumnModel().getColumn(5).setMinWidth(120);
+        }
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -157,7 +189,6 @@ public class FrmVisualizarUsuario extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
@@ -165,12 +196,15 @@ public class FrmVisualizarUsuario extends javax.swing.JInternalFrame {
                                 .addGap(48, 48, 48)
                                 .addComponent(cmbCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(pnlSelect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(53, 53, 53)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnSelect)
-                            .addComponent(btnBuscar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnRegresar)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnRegresar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnBuscar)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 897, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -180,19 +214,17 @@ public class FrmVisualizarUsuario extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCampo)
                     .addComponent(cmbCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar))
+                    .addComponent(btnRegresar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(btnRegresar))
+                        .addComponent(pnlSelect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(pnlSelect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSelect))))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                .addContainerGap())
+                        .addComponent(btnBuscar)
+                        .addGap(49, 49, 49)))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         pack();
@@ -215,9 +247,8 @@ public class FrmVisualizarUsuario extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnRegresar;
-    private javax.swing.JButton btnSelect;
     private javax.swing.JComboBox<String> cmbCampo;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblCampo;
     private javax.swing.JLabel lblDato;
     private javax.swing.JPanel pnlSelect;

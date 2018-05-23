@@ -73,7 +73,7 @@ public class FrmLogin extends javax.swing.JFrame {
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setText("Admin: 20090380\nGerente: 78956423\nJefe: 99999999\nComisionista: (no hay)");
+        jTextArea1.setText("Admin: 20090380\nGerente: 45678219\nJefe: 99999999\nComisionista: 87956412");
         jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -171,6 +171,7 @@ public class FrmLogin extends javax.swing.JFrame {
             }
         }catch(Exception ex){
             System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese un usuario válido.",  "Ingresar usuario",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnLoginMouseClicked
 

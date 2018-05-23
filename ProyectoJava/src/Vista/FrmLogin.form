@@ -172,7 +172,7 @@
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="Admin: 20090380&#xa;Gerente: 78956423&#xa;Jefe: 99999999&#xa;Comisionista: (no hay)"/>
+            <Property name="text" type="java.lang.String" value="Admin: 20090380&#xa;Gerente: 45678219&#xa;Jefe: 99999999&#xa;Comisionista: 87956412"/>
           </Properties>
         </Component>
       </SubComponents>

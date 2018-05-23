@@ -107,7 +107,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         }
     }
         
-    private void getUserForm(String str){
+    private void getUserForm(String listar){
         if(usuarios != null){
             try{
                 usuarios.setClosed(true);
@@ -116,7 +116,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
             }
             usuarios.dispose();
         }
-        usuarios = new FrmVisualizarUsuario(str, this.idPayee);
+        usuarios = new FrmVisualizarUsuario(listar, this.idPayee, this.puesto);
         usuarios.setClosable(true);
         dskPnPrincipal.add(usuarios);
         usuarios.setVisible(true);
