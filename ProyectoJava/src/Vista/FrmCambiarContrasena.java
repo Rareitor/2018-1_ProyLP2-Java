@@ -147,7 +147,7 @@ public class FrmCambiarContrasena extends javax.swing.JDialog {
         String nuevo = new String(txtNuevo.getPassword());
         String confirm = new String(txtConfirm.getPassword());
         
-        if(!(nuevo.equals("")) && nuevo.equals(confirm) && (new String(txtNuevo.getPassword())).equals(pyBL.obtenerContraseña(username)))
+        if(!(nuevo.equals("")) && nuevo.equals(confirm) && (new String(txtActual.getPassword())).equals(pyBL.obtenerContraseña(username)))
         {
             if (pyBL.cambiarContrasena(username,nuevo)){
                 JOptionPane.showMessageDialog(this, "Contraseña actualizada", "Actualizada",JOptionPane.INFORMATION_MESSAGE);
@@ -157,10 +157,10 @@ public class FrmCambiarContrasena extends javax.swing.JDialog {
             }
         }else if (confirm.equals(""))
         {
-            JOptionPane.showMessageDialog(this, "Ingrese la contraseña", "Error",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Ingrese la confirmacióncontraseña", "Error",JOptionPane.INFORMATION_MESSAGE);
         }else
         {
-            JOptionPane.showMessageDialog(this, "Por favor, verique que las contraseñas coincidan.", "Las contraseñas no coinciden",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor, verique que las contraseñas sean correctas.", "Las contraseñas no coinciden",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAceptarMouseClicked
 

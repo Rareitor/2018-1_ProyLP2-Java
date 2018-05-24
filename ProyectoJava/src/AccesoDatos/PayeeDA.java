@@ -181,7 +181,7 @@ public class PayeeDA {
             String sql = "{call OBTENER_CONTRASEÑA(?,?)}";
             CallableStatement cs = con.prepareCall(sql);
             cs.setString(1, username);
-            cs.executeUpdate();
+            cs.execute();
             cnsn = cs.getString(2);
             con.close();
         }
@@ -200,7 +200,7 @@ public class PayeeDA {
             String sql = "{call OBTENER_PUESTO_CONTRASEÑA(?,?,?)}";
             CallableStatement cs = con.prepareCall(sql);
             cs.setString(1, username);
-            cs.executeUpdate();
+            cs.execute();
             data[0] = cs.getString(2);
             data[1] = cs.getString(3);
             con.close();
@@ -234,7 +234,7 @@ public class PayeeDA {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://quilla.lab.inf.pucp.edu.pe/inf282g8", "inf282g8", "4LDJZU");
             Statement stt = con.createStatement();
-            ResultSet origData = stt.executeQuery("SELECT nombre,apellidoPaterno,apellidoMaterno,dni,email, FROM PAYEE WHERE username = "+ user.getUserName()+";");
+            ResultSet origData = stt.executeQuery("SELECT nombre,apellidoPaterno,apellidoMaterno,dni,email FROM Payee WHERE username = '"+ user.getUserName()+"'");
             origData.first();
             
             user.setNombre(origData.getString(1));

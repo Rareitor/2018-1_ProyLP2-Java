@@ -35,6 +35,7 @@ public class FrmAdministrarCuenta extends javax.swing.JInternalFrame {
             try {
                 JOptionPane.showMessageDialog(this, "Error en carga de datos originales de usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
                 this.setClosed(true);
+                this.dispose();
             } catch (Exception ex) {
                 Logger.getLogger(FrmAdministrarCuenta.class.getName()).log(Level.SEVERE, null, ex);
             }
