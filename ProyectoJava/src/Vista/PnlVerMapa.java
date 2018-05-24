@@ -37,6 +37,8 @@ public class PnlVerMapa extends javax.swing.JPanel {
     
     private void escribirLabel(){
         String cadDistritos = lista.get(0);
+        if (numDistritos>lista.size())
+            numDistritos = lista.size();
         for(int i=1;i<numDistritos;i++){
             if(i==lista.size()-1)
                 cadDistritos += " y " + lista.get(i);
