@@ -27,7 +27,7 @@ public class FrmPermisos extends javax.swing.JDialog {
     }
 
     public void getPermisos(String puesto){
-        lblCargo.setText(lblCargo.getText() + " son:");
+        lblCargo.setText(lblCargo.getText() + puesto + " son:");
         String str = "";
         switch(puesto){
             case "ADMINISTRADOR":
