@@ -794,6 +794,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         FrmPermisos permisos = new FrmPermisos(this, "Permisos", true);
         permisos.getPermisos(puesto);
         //final JDialog marco = new JDialog(this,"Ver Mapa",true);
+        permisos.setVisible(true);
         
     }//GEN-LAST:event_menuiPermisosActionPerformed
 
