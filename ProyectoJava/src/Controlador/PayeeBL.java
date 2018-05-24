@@ -28,6 +28,18 @@ public class PayeeBL {
         return accesoDatos.listarComisionistas(idPayee);
     }
     
+    public String obtenerPuesto(String username){
+        return accesoDatos.obtenerPuesto(username);
+    }
+    
+    public String obtenerContraseña(String username){
+        return accesoDatos.obtenerContraseña(username);
+    }
+    
+    public String[] obtenerPuestoContraseña(String username){
+        return accesoDatos.obtenerPuestoContraseña(username);
+    }
+    
     public String obtenerId(String username){
         return accesoDatos.obtenerId(username);
     }

@@ -6,11 +6,11 @@ import java.io.File;
 import javax.swing.*;
 
 public class FrmLogin extends javax.swing.JFrame {
-    private PayeeDA accesoDatos;
+    private PayeeBL logicanegocio;
     
     public FrmLogin() {
         initComponents();
-        accesoDatos = new PayeeDA();
+        logicanegocio = new PayeeBL();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         txtContrasena.setText("");
     }
@@ -145,7 +145,7 @@ public class FrmLogin extends javax.swing.JFrame {
         String username = txtUsuario.getText();
         String contra = txtContrasena.getText();
         
-        String[] data = accesoDatos.obtenerPuestoContraseña(username);
+        String[] data = logicanegocio.obtenerPuestoContraseña(username);
         String puesto = data[0];
         String password = data[1];
         
