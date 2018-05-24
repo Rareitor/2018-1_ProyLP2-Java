@@ -48,8 +48,12 @@ public class PnlVerMapa extends javax.swing.JPanel {
     
     public void paint(Graphics g){
         super.paint(g);
-        escribirLabel();
         g.drawImage(background, 90, 130, this);
+        if (imagenes[0] == null){
+            return;
+        }
+        
+        escribirLabel();
         for(int i=0;i<numDistritos;i++)
             g.drawImage(imagenes[i], 90, 130, this);
     }
@@ -58,12 +62,12 @@ public class PnlVerMapa extends javax.swing.JPanel {
         @Override
         public void run(){
             logicaNegocio = new DistritoBL();
-            //lista = logicaNegocio.listarDistritos();
-            lista = new ArrayList<String>();
-            lista.add("Pueblo Libre");
-            lista.add("San Miguel");
-            lista.add("Chorrillos");
-            lista.add("Magdalena");
+            lista = logicaNegocio.listarDistritos();
+//            lista = new ArrayList<String>();
+//            lista.add("Pueblo Libre");
+//            lista.add("San Miguel");
+//            lista.add("Chorrillos");
+//            lista.add("Magdalena");
 
             //Agregamos la imagen de fondo
             String cadena = "./src/Distritos/Mapa en blanco.png";
@@ -72,7 +76,7 @@ public class PnlVerMapa extends javax.swing.JPanel {
             } catch (Exception e){
                 System.out.println("Error en la carga de la imagen");
             }
-			imagenes = new BufferedImage[MAX_DISTRITOS];
+            imagenes = new BufferedImage[MAX_DISTRITOS];
             //Agregamos todos los distritos
             for(int i=0;i<lista.size();i++){
                 cadena = "./src/Distritos/" + lista.get(i) + ".png";
@@ -154,17 +158,21 @@ public class PnlVerMapa extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnverMouseClicked
+        if(imagenes[0] == null){
+                JOptionPane.showMessageDialog(this, "Aún no existen ordenes con distritos válidos para mostrar", "Error en listar distritos", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+        
         try {
             int newnum = Integer.parseInt(txtNumDistritos.getText());
-            if (newnum <= 0 || newnum > MAX_DISTRITOS)
+            if (newnum <= 0 || newnum > MAX_DISTRITOS || newnum > lista.size())
                 throw new Exception();
-            numDistritos = newnum; 
+            numDistritos = newnum;
             repaint();
         }catch (Exception e){
             System.out.println(e.getMessage());
             JOptionPane.showMessageDialog(null,"Por favor, inserte un número válido", "Número de distritos inválido",JOptionPane.ERROR_MESSAGE);
         }
-        
     }//GEN-LAST:event_btnverMouseClicked
 
 

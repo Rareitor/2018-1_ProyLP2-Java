@@ -65,20 +65,7 @@ public class FrmVisualizarUsuario extends javax.swing.JInternalFrame {
                 break;
         }
         tblDatosTrabajador.setAutoResizeMode(tblDatosTrabajador.AUTO_RESIZE_ALL_COLUMNS);
-        
-        //setColsTbl((DefaultTableModel) this.tblDatosTrabajador.getModel(), new String[]{"idPayee","DNI","Nombre","Apellido Paterno","Apellido Materno","Correo","Usuario","Distrito","Cargo"});   
-//        tblDatosTrabajador.getParent().addComponentListener(new ComponentAdapter() {
-//            @Override
-//            public void componentResized(final ComponentEvent e) {
-//                if (tblDatosTrabajador.getPreferredSize().width < tblDatosTrabajador.getParent().getWidth()) {
-//                    tblDatosTrabajador.setAutoResizeMode(tblDatosTrabajador.AUTO_RESIZE_ALL_COLUMNS);
-//                } else {
-//                    tblDatosTrabajador.setAutoResizeMode(tblDatosTrabajador.AUTO_RESIZE_OFF);
-//                }
-//            }
-//        });
-        
-        
+           
         DefaultTableModel modelo = (DefaultTableModel) this.tblDatosTrabajador.getModel();
         Object[] fila = new Object [10];
         for (int i=0;i<listaOrig.size();i++){

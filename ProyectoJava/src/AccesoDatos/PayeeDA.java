@@ -74,6 +74,7 @@ public class PayeeDA {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection
             ("jdbc:mysql://200.16.7.96/inf282g8", "inf282g8", "4LDJZU");
+            idPayee = "\"" + idPayee + "\"";
             String sql = "{call LISTAR_JEFES(" + idPayee + ")}";
             CallableStatement cs = con.prepareCall(sql);
             ResultSet rs = cs.executeQuery();

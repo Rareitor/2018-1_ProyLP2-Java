@@ -71,7 +71,7 @@ public class FrmVisualizarOrdenes extends javax.swing.JInternalFrame {
 
         rdoMensual.setText("Mensual");
 
-        rdoRadio.setText("Radio");
+        rdoRadio.setText("Anual");
 
         btnBuscar.setText("Buscar");
         btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -185,10 +185,10 @@ public class FrmVisualizarOrdenes extends javax.swing.JInternalFrame {
         Date fecha2 = dateFFin.getDate();
         Double subtotal = 0.0;
         switch(puesto){
-            case "Comisionista":
+            case "COMISIONISTA":
                 listaOrdenes = logicaNegocio.listarOrdenesComisionista(this.idPayee, fecha1, fecha2);
                 break;
-            case "Jefe":
+            case "JEFE":
                 listaOrdenes = logicaNegocio.listarOrdenesJefe(this.idPayee, fecha1, fecha2);
                 break;
             default:
