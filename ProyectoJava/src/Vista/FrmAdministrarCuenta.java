@@ -1,17 +1,45 @@
 package Vista;
 
+import Controlador.PayeeBL;
+import Modelo.Payee;
+import java.beans.PropertyVetoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class FrmAdministrarCuenta extends javax.swing.JInternalFrame {
 
+    private final Payee curUser = new Payee();
+    private final PayeeBL pyBL;
+    private String[] datos;
     /**
      * Creates new form FrmAdministrarCuenta
+     * @param username
      */
-    public FrmAdministrarCuenta() {
+    public FrmAdministrarCuenta(String username) {
         initComponents();
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        pyBL = new PayeeBL();
+        ldDatosUsuario(username);
     }
 
+    private void ldDatosUsuario(String username){
+        curUser.setUserName(username);
+        if(pyBL.obtenerDatosOriginales(curUser)){
+            txtNombre.setText(curUser.getNombre());
+            txtApellidoPaterno.setText(curUser.getApellidoPaterno());
+            txtApellidoMaterno.setText(curUser.getApellidoMaterno());
+            txtDNI.setText(curUser.getDni());
+            txtCorreo.setText(curUser.getEmail());
+        }else{
+            try {
+                JOptionPane.showMessageDialog(this, "Error en carga de datos originales de usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
+                this.setClosed(true);
+            } catch (Exception ex) {
+                Logger.getLogger(FrmAdministrarCuenta.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,6 +86,12 @@ public class FrmAdministrarCuenta extends javax.swing.JInternalFrame {
 
         lblCorreo.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         lblCorreo.setText("Correo:");
+
+        txtTelefono.setEnabled(false);
+
+        txtDNI.setEnabled(false);
+
+        txtDireccion.setEnabled(false);
 
         btnAceptar.setText("Aceptar");
         btnAceptar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -160,19 +194,36 @@ public class FrmAdministrarCuenta extends javax.swing.JInternalFrame {
 
     private void btnAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAceptarMouseClicked
         // TODO add your handling code here:
-        if (txtTelefono.getText().equals("") || (txtCorreo.getText().equals("")) || (txtDireccion.getText().equals("")))
-            {
-                JOptionPane.showMessageDialog(this, "Ingrese todos los datos");
-            }
-            else
-            {
+        if (txtNombre.getText().trim().equals("") || (txtApellidoPaterno.getText().trim().equals("")) || (txtApellidoMaterno.getText().trim().equals("")) || txtCorreo.getText().trim().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Ingrese todos los datos");
+        }
+        else
+        {
+            String tmp = txtNombre.getText().trim();
+            if(!curUser.getNombre().equals(tmp)) curUser.setNombre(tmp);
+            
+            tmp = txtApellidoPaterno.getText().trim();
+            if(!curUser.getApellidoPaterno().equals(tmp)) curUser.setApellidoPaterno(tmp);
+            
+            tmp = txtApellidoMaterno.getText().trim();
+            if(!curUser.getApellidoMaterno().equals(tmp)) curUser.setApellidoMaterno(tmp);
+            
+            tmp = txtCorreo.getText().trim();
+            if(!curUser.getEmail().equals(tmp)) curUser.setEmail(tmp);
+            
+            if(pyBL.modificarDatosPropios(curUser)){
                 JOptionPane.showMessageDialog(this, "Datos Actualizados");
-                try{
-                    this.setClosed(true);
-                }catch(Exception e){
-                    System.out.println(e.getMessage());
-                }
+            }else{
+                JOptionPane.showMessageDialog(this, "Error en la actualización");
             }
+            
+            try{
+                this.setClosed(true);
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
     }//GEN-LAST:event_btnAceptarMouseClicked
 
 

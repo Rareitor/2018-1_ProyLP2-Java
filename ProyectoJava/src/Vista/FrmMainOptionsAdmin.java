@@ -25,6 +25,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
     private PayeeBL logicaNegocio;
     private String idPayee;
     private String puesto;
+    private String username;
     /**
      * Creates new form NewJDialog
      */
@@ -35,6 +36,13 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         setVisibleOpts(puesto);
         this.setTitle("GESCOM TDP - " + puesto);
         
+        this.initForms();
+        this.idPayee = logicaNegocio.obtenerId(username);
+        this.puesto = puesto;
+        this.username = username;
+    }
+    
+    private void initForms(){
         administrarCuenta = null;
         addNoticia = null;
         reportarInfraccion = null;
@@ -52,8 +60,6 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         gestProducto = null;
         gestUsuario = null;
         verMapa = null;
-        this.idPayee = logicaNegocio.obtenerId(username);
-        this.puesto = puesto;
     }
     
     private void setVisibleOpts(String puesto){
@@ -72,7 +78,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
                 menuiVerGerentes.setVisible(false);
                 menuiPapelera.setVisible(false);
                 menuiBackup.setVisible(false);
-                menuiRecomendaciones.setVisible(false);
+                //menuiEnvRecomendaciones.setVisible(false);
                 menuiReportInfraccion.setVisible(false);
                 break;
             case "JEFE":
@@ -81,7 +87,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
                 menuCalculo.setVisible(false);
                 menuiJefes.setVisible(false);
                 menuiInfracciones.setVisible(false);
-                menuiRecomendaciones.setVisible(false);
+                //menuiEnvRecomendaciones.setVisible(false);
                 menuiPapelera.setVisible(false);
                 menuiBackup.setVisible(false);
                 menuiAnadirNoticias.setVisible(false);
@@ -94,15 +100,15 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
                 menuCalculo.setVisible(false);
                 menuPersonalCargo.setVisible(false);
                 menuiInfracciones.setVisible(false);
-                menuiRecomendaciones.setVisible(false);
+                //menuiEnvRecomendaciones.setVisible(false);
                 menuiPapelera.setVisible(false);
                 menuiBackup.setVisible(false);
                 menuiAnadirNoticias.setVisible(false);
                 menuiVerGerentes.setVisible(false);
                 break;
-            case "sysadmin": break;
+            //case "sysadmin": break;
             default: 
-                JOptionPane.showMessageDialog(this, "Usuario deconocido.");
+                JOptionPane.showMessageDialog(this, "Usuario desconocido.");
                 break;
         }
     }
@@ -383,7 +389,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
 
         menuOtros.setText("Otros");
 
-        menuiRecomendaciones.setText("Enviar Recomendaciones");
+        menuiRecomendaciones.setText("Ver Recomendaciones");
         menuiRecomendaciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuiRecomendacionesActionPerformed(evt);
@@ -486,6 +492,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
     private void menuiCambContrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiCambContrActionPerformed
         // TODO add your handling code here:
         FrmCambiarContrasena frm = new FrmCambiarContrasena(null, true);
+        frm.setUsername(username);//temp until actual use of iddata between alll forms
         frm.setVisible(true);
         //.setVisible(false);
         frm.dispose();
@@ -501,7 +508,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
             }
             administrarCuenta.dispose();
         }
-        administrarCuenta = new FrmAdministrarCuenta();
+        administrarCuenta = new FrmAdministrarCuenta(this.username);
         administrarCuenta.setClosable(true);
         dskPnPrincipal.add(administrarCuenta);
         //System.out.println(dskPnPrincipal.getAllFrames().length);

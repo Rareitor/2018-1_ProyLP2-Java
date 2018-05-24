@@ -86,7 +86,7 @@
     <Component class="javax.swing.JLabel" name="lblNueva">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="11"/>
-        <Property name="text" type="java.lang.String" value="Contrase&#xf1;a Nuevo:"/>
+        <Property name="text" type="java.lang.String" value="Contrase&#xf1;a Nueva:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblConfirmar">

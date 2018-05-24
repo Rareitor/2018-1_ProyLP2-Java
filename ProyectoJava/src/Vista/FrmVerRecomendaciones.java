@@ -10,13 +10,13 @@ public class FrmVerRecomendaciones extends javax.swing.JInternalFrame {
     public FrmVerRecomendaciones() {
         initComponents();
         try{
-            inicializarArchivo();
+            cargarArchivo();
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
     }
 
-    private void inicializarArchivo() throws Exception
+    private void cargarArchivo() throws Exception
     {
         FileReader archRecom = new FileReader("./archivos/archRecomendaciones.dat");
         BufferedReader rd = new BufferedReader(archRecom);
@@ -47,7 +47,6 @@ public class FrmVerRecomendaciones extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         txtARecomend = new javax.swing.JTextArea();
         btnAceptar = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
 
         lblRecomend.setText("Se le recomienda:");
 
@@ -55,17 +54,10 @@ public class FrmVerRecomendaciones extends javax.swing.JInternalFrame {
         txtARecomend.setRows(5);
         jScrollPane2.setViewportView(txtARecomend);
 
-        btnAceptar.setText("Aceptar");
+        btnAceptar.setText("Cancelar");
         btnAceptar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAceptarMouseClicked(evt);
-            }
-        });
-
-        btnCancelar.setText("Cancelar");
-        btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCancelarMouseClicked(evt);
             }
         });
 
@@ -76,19 +68,13 @@ public class FrmVerRecomendaciones extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblRecomend)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(btnAceptar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
-                        .addComponent(btnCancelar)
-                        .addGap(56, 56, 56))))
+                            .addComponent(lblRecomend)
+                            .addComponent(btnAceptar))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,33 +84,25 @@ public class FrmVerRecomendaciones extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAceptar)
-                    .addComponent(btnCancelar))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addComponent(btnAceptar)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
+    private void btnAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAceptarMouseClicked
         // TODO add your handling code here:
         try{
             this.setClosed(true);
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
-    }//GEN-LAST:event_btnCancelarMouseClicked
-
-    private void btnAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAceptarMouseClicked
-        // TODO add your handling code here:
-        
     }//GEN-LAST:event_btnAceptarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
-    private javax.swing.JButton btnCancelar;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblRecomend;
     private javax.swing.JTextArea txtARecomend;

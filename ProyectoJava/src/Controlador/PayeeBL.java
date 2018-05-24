@@ -43,4 +43,25 @@ public class PayeeBL {
     public String obtenerId(String username){
         return accesoDatos.obtenerId(username);
     }
+
+    public boolean cambiarContrasena(String usr,String str){
+        return this.accesoDatos.cambiarContrasena(usr,str);
+    }
+    
+    public boolean obtenerDatosOriginales(Payee user){
+        return this.accesoDatos.obtenerDatosOriginales(user);
+    }
+    
+    public boolean modificarDatosPropios(Payee user){
+        return this.accesoDatos.modificarDatosPropios(user);
+    }
+    
+    public void cargarRecomendaciones(String id){
+        String recs = this.accesoDatos.obtenerRecomendaciones(id);
+        try{
+            
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+    }
 }

@@ -1,20 +1,28 @@
 package Vista;
 
+import Controlador.PayeeBL;
+import Modelo.Payee;
 import javax.swing.JOptionPane;
 
 public class FrmCambiarContrasena extends javax.swing.JDialog {
 
+    private final PayeeBL pyBL;
+    private String username;
     /**
      * Creates new form FrmCambiarContrasena
      */
     public FrmCambiarContrasena(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        txtActual.setText("******");
-        txtNuevo.setText("******");
-        txtConfirm.setText("******");
+        pyBL = new PayeeBL();
+        txtActual.setText("");
+        txtNuevo.setText("");
+        txtConfirm.setText("");
     }
 
+    public void setUsername(String usr){
+        this.username = usr;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,7 +48,7 @@ public class FrmCambiarContrasena extends javax.swing.JDialog {
         lblActual.setText("Contraseña Actual:");
 
         lblNueva.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        lblNueva.setText("Contraseña Nuevo:");
+        lblNueva.setText("Contraseña Nueva:");
 
         lblConfirmar.setText("Confirmar Contraseña:");
 
@@ -135,24 +143,25 @@ public class FrmCambiarContrasena extends javax.swing.JDialog {
 
     private void btnAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAceptarMouseClicked
         // TODO add your handling code here:
-        String actual = new String(txtActual.getPassword());
+        //String actual = new String(txtActual.getPassword());
         String nuevo = new String(txtNuevo.getPassword());
         String confirm = new String(txtConfirm.getPassword());
         
-        if(nuevo.equals(confirm) && !(nuevo.equals("")))
-            {
-                //MessageBox.Show("Contraseña actualizada");
+        if(!(nuevo.equals("")) && nuevo.equals(confirm) && (new String(txtNuevo.getPassword())).equals(pyBL.obtenerContraseña(username)))
+        {
+            if (pyBL.cambiarContrasena(username,nuevo)){
                 JOptionPane.showMessageDialog(this, "Contraseña actualizada", "Actualizada",JOptionPane.INFORMATION_MESSAGE);
-                //this.setVisible(false);
+                this.setVisible(false);
+            }else{
+                JOptionPane.showMessageDialog(this,"Ocurrió un error al hacer la actualización.","ERROR",JOptionPane.WARNING_MESSAGE);
             }
-            else if (confirm.equals(""))
-            {
-                JOptionPane.showMessageDialog(this, "Ingrese la contraseña", "Error",JOptionPane.INFORMATION_MESSAGE);
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(this, "Por favor, verique que las contraseñas coincidan.", "Las contraseñas no coinciden",JOptionPane.ERROR_MESSAGE);
-            }
+        }else if (confirm.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Ingrese la contraseña", "Error",JOptionPane.INFORMATION_MESSAGE);
+        }else
+        {
+            JOptionPane.showMessageDialog(this, "Por favor, verique que las contraseñas coincidan.", "Las contraseñas no coinciden",JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnAceptarMouseClicked
 
     /**
