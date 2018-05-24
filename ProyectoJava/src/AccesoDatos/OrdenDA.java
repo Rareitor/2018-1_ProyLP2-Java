@@ -11,7 +11,7 @@ import java.util.List;
 
 public class OrdenDA {
     public List<Orden> listarOrdenesComisionista(String idPayee, Date fecha1, Date fecha2){
-        List<Orden> lista = new ArrayList<>();
+        List<Orden> lista = new ArrayList<Orden>();
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection
@@ -33,6 +33,7 @@ public class OrdenDA {
                 o.setFechaVenta(new java.util.Date(dateSQL.getTime()));
                 lista.add(o);
             }
+            con.close();
         }
         catch (Exception e){
             System.out.println(e.getMessage());
@@ -63,6 +64,7 @@ public class OrdenDA {
                 o.setFechaVenta(new java.util.Date(dateSQL.getTime()));
                 lista.add(o);
             }
+            con.close();
         }
         catch (Exception e){
             System.out.println(e.getMessage());
@@ -92,6 +94,7 @@ public class OrdenDA {
                 o.setFechaVenta(new java.util.Date(dateSQL.getTime()));
                 lista.add(o);
             }
+            con.close();
         }
         catch (Exception e){
             System.out.println(e.getMessage());

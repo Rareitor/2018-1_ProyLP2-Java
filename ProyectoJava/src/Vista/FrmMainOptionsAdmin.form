@@ -92,12 +92,12 @@
                 <Property name="text" type="java.lang.String" value="Personal a Cargo"/>
               </Properties>
               <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="menuiJefes">
+                <MenuItem class="javax.swing.JMenuItem" name="menuiVerJefes">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Jefes"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuiJefesActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuiVerJefesActionPerformed"/>
                   </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="menuiVerComisionistas">
@@ -210,6 +210,14 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuiCambContrActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuiPermisos">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Permisos"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuiPermisosActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

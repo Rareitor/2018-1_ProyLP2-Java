@@ -4,6 +4,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,8 +26,9 @@ public class DistritoDA {
                 String distrito = rs.getString("distrito");
                 lista.add(distrito);
             }
+            con.close();
         }
-        catch (Exception e){
+        catch (ClassNotFoundException | SQLException e){
             System.out.println(e.getMessage());
         }
         return lista;

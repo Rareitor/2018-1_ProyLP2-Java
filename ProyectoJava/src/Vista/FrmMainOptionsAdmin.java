@@ -69,7 +69,6 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
                 menuiCalcularComisiones.setVisible(false);
                 menuiReportInfraccion.setVisible(false);
                 menuiVerMapa.setVisible(false);
-                menuiVerGerentes.setVisible(false);
                 break;
             case "GERENTE":
                 menuiGestUsuario.setVisible(false);
@@ -85,14 +84,14 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
                 menuiGestUsuario.setVisible(false);
                 menuiGestProducto.setVisible(false);
                 menuCalculo.setVisible(false);
-                menuiJefes.setVisible(false);
+                menuiVerGerentes.setVisible(false);
+                menuiVerJefes.setVisible(false);
                 menuiInfracciones.setVisible(false);
                 //menuiEnvRecomendaciones.setVisible(false);
                 menuiPapelera.setVisible(false);
                 menuiBackup.setVisible(false);
                 menuiAnadirNoticias.setVisible(false);
                 menuiVerMapa.setVisible(false);
-                menuiVerGerentes.setVisible(false);
                 break;
             case "COMISIONISTA":
                 menuiGestUsuario.setVisible(false);
@@ -159,7 +158,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         menuiProductos = new javax.swing.JMenuItem();
         menuiCanalesVenta = new javax.swing.JMenuItem();
         menuPersonalCargo = new javax.swing.JMenu();
-        menuiJefes = new javax.swing.JMenuItem();
+        menuiVerJefes = new javax.swing.JMenuItem();
         menuiVerComisionistas = new javax.swing.JMenuItem();
         menuiVerGerentes = new javax.swing.JMenuItem();
         menuiInfracciones = new javax.swing.JMenuItem();
@@ -174,6 +173,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         menuCuenta = new javax.swing.JMenu();
         menuiCambDatPer = new javax.swing.JMenuItem();
         menuiCambContr = new javax.swing.JMenuItem();
+        menuiPermisos = new javax.swing.JMenuItem();
         menuCerrar = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -343,13 +343,13 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
 
         menuPersonalCargo.setText("Personal a Cargo");
 
-        menuiJefes.setText("Jefes");
-        menuiJefes.addActionListener(new java.awt.event.ActionListener() {
+        menuiVerJefes.setText("Jefes");
+        menuiVerJefes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuiJefesActionPerformed(evt);
+                menuiVerJefesActionPerformed(evt);
             }
         });
-        menuPersonalCargo.add(menuiJefes);
+        menuPersonalCargo.add(menuiVerJefes);
 
         menuiVerComisionistas.setText("Comisionistas");
         menuiVerComisionistas.addActionListener(new java.awt.event.ActionListener() {
@@ -456,6 +456,14 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
             }
         });
         menuCuenta.add(menuiCambContr);
+
+        menuiPermisos.setText("Permisos");
+        menuiPermisos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuiPermisosActionPerformed(evt);
+            }
+        });
+        menuCuenta.add(menuiPermisos);
 
         menubPrincipal.add(menuCuenta);
 
@@ -644,10 +652,10 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         getUserForm("Comisionista");
     }//GEN-LAST:event_menuiVerComisionistasActionPerformed
 
-    private void menuiJefesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiJefesActionPerformed
+    private void menuiVerJefesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiVerJefesActionPerformed
         // TODO add your handling code here:
         getUserForm("Jefe");
-    }//GEN-LAST:event_menuiJefesActionPerformed
+    }//GEN-LAST:event_menuiVerJefesActionPerformed
 
     private void menuiCanalesVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiCanalesVentaActionPerformed
         // TODO add your handling code here:
@@ -781,6 +789,14 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         marco.setVisible(true);
     }//GEN-LAST:event_menuiVerMapaActionPerformed
 
+    private void menuiPermisosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiPermisosActionPerformed
+        // TODO add your handling code here:
+        FrmPermisos permisos = new FrmPermisos(this, "Permisos", true);
+        permisos.getPermisos(puesto);
+        //final JDialog marco = new JDialog(this,"Ver Mapa",true);
+        
+    }//GEN-LAST:event_menuiPermisosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -854,14 +870,15 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
     private javax.swing.JMenuItem menuiGestProducto;
     private javax.swing.JMenuItem menuiGestUsuario;
     private javax.swing.JMenuItem menuiInfracciones;
-    private javax.swing.JMenuItem menuiJefes;
     private javax.swing.JMenuItem menuiNoticias;
     private javax.swing.JMenuItem menuiPapelera;
+    private javax.swing.JMenuItem menuiPermisos;
     private javax.swing.JMenuItem menuiProductos;
     private javax.swing.JMenuItem menuiRecomendaciones;
     private javax.swing.JMenuItem menuiReportInfraccion;
     private javax.swing.JMenuItem menuiVerComisionistas;
     private javax.swing.JMenuItem menuiVerGerentes;
+    private javax.swing.JMenuItem menuiVerJefes;
     private javax.swing.JMenuItem menuiVerMapa;
     private javax.swing.JPanel pnlComisionistas;
     private javax.swing.JPanel pnlNoticia;

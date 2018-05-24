@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,13 +21,13 @@ import java.util.List;
  */
 public class ProductoDA {
     public List<Producto> listarProductos(){
-        List<Producto> lista = new ArrayList<>();
+        List<Producto> lista = new ArrayList<Producto>();
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection
             ("jdbc:mysql://200.16.7.96/inf282g8", "inf282g8", "4LDJZU");
             String sql = "SELECT*FROM Producto";
-            PreparedStatement sentencia = con.prepareStatement(sql);
+            Statement sentencia = con.createStatement();
             ResultSet rs = sentencia.executeQuery(sql);
             while(rs.next()){
                 Producto p = new Producto();
@@ -35,7 +36,7 @@ public class ProductoDA {
                 p.setTipo(rs.getString("tipo"));
                 lista.add(p);
             }
-            
+            con.close();
         }
         catch (Exception e){
             System.out.println(e.getMessage());
@@ -44,19 +45,20 @@ public class ProductoDA {
     }
     
     public List<String> listarTiposProductos(){
-        List<String> lista = new ArrayList<>();
+        List<String> lista = new ArrayList<String>();
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection
             ("jdbc:mysql://200.16.7.96/inf282g8", "inf282g8", "4LDJZU");
             String sql = "{CALL LISTAR_TIPOS_PRODUCTOS()}";
             CallableStatement cs = con.prepareCall(sql);
-            ResultSet rs = cs.executeQuery();
+            ResultSet rs = cs.executeQuery();//usar execute y despues getResultSet
             while(rs.next()){
                 String tipo;
                 tipo = rs.getString("tipo");
                 lista.add(tipo);
             }
+            con.close();
         }
         catch (Exception e){
             System.out.println(e.getMessage());
