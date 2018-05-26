@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Modelo.Payee;
 import java.awt.Dialog;
 import javax.swing.JOptionPane;
 
@@ -26,10 +27,11 @@ public class FrmPermisos extends javax.swing.JDialog {
         initComponents();
     }
 
-    public void getPermisos(String puesto){
+    public void getPermisos(String puesto){//Payee user){
+//        lblUsuario.setText(lblUsuario.getText()+ user.getNombre() + " " + user.getApellidoPaterno()+ " " + user.getApellidoMaterno());
         lblCargo.setText(lblCargo.getText() + puesto + " son:");
         String str = "";
-        switch(puesto){
+        switch(puesto){//(user.getCargo()){
             case "ADMINISTRADOR":
                 str += "Gestionar Ordenes, Productos y Usuarios.\n"+
                         "Fijar el periodo (rango de días) para el cálculo de comisiones.\n"+
@@ -54,14 +56,12 @@ public class FrmPermisos extends javax.swing.JDialog {
                         "Ver comisiones, productos, canales, personal a su cargo, y noticias."+
                         "Ver recomendaciones."+
                         "Administrar sus datos personales.";
-                //menuiEnvRecomendaciones.setVisible(false);
                 break;
             case "COMISIONISTA":
                 str += "Gestionar Ordenes.\n"+
                         "Ver comisiones, productos, canales y noticias."+
                         "Ver recomendaciones."+
                         "Administrar sus datos personales.";
-                //menuiEnvRecomendaciones.setVisible(false);
                 break;
             default: 
                 JOptionPane.showMessageDialog(this, "Usuario desconocido.");
@@ -80,14 +80,14 @@ public class FrmPermisos extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblPermisos = new javax.swing.JLabel();
+        lblUsuario = new javax.swing.JLabel();
         lblCargo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAPermisos = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        lblPermisos.setText("Saludos:");
+        lblUsuario.setText("Saludos ");
 
         lblCargo.setText("Sus permisos como ");
 
@@ -107,7 +107,7 @@ public class FrmPermisos extends javax.swing.JDialog {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblPermisos)
+                            .addComponent(lblUsuario)
                             .addComponent(lblCargo))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -116,7 +116,7 @@ public class FrmPermisos extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblPermisos)
+                .addComponent(lblUsuario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblCargo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -172,7 +172,7 @@ public class FrmPermisos extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCargo;
-    private javax.swing.JLabel lblPermisos;
+    private javax.swing.JLabel lblUsuario;
     private javax.swing.JTextArea txtAPermisos;
     // End of variables declaration//GEN-END:variables
 }

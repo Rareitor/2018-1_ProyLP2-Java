@@ -4,7 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 
 public class FrmMainOptionsAdmin extends javax.swing.JDialog {
-
+    
     private FrmAdministrarCuenta administrarCuenta;
     private FrmAnadirNoticia addNoticia;
     private FrmReportarInfraccion reportarInfraccion;
