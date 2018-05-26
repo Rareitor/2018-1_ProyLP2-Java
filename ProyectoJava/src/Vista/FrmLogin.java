@@ -1,6 +1,7 @@
 package Vista;
 import AccesoDatos.PayeeDA;
 import Controlador.PayeeBL;
+import Modelo.Payee;
 import java.awt.Dimension;
 import java.io.File;
 import javax.swing.*;
@@ -142,10 +143,12 @@ public class FrmLogin extends javax.swing.JFrame {
 
 
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
-        String username = txtUsuario.getText();
+        Payee user = new Payee();
+        user.setUserName(txtUsuario.getText());
         String contra = new String(txtContrasena.getPassword());
         
-        String[] data = logicanegocio.obtenerPuestoContraseña(username);
+        String[] data = logicanegocio.obtenerPuestoContraseña(user.getUserName());
+        user.setCargo(data[0]);
         String puesto = data[0];
         String password = data[1];
         
@@ -162,8 +165,10 @@ public class FrmLogin extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Contraseña errónea, vuelva a ingresar la contraseña", "Contraseña", JOptionPane.ERROR_MESSAGE);
             }
             else{
-                JDialog frmMainOpt = new FrmMainOptionsAdmin(this, true, username, puesto);
+                JDialog frmMainOpt = new FrmMainOptionsAdmin(this, true, user);
+                //user = null;
                 frmMainOpt.pack();
+
                 this.setVisible(false);
                 frmMainOpt.setVisible(true);
                 limpiarCampos();

@@ -27,11 +27,11 @@ public class FrmPermisos extends javax.swing.JDialog {
         initComponents();
     }
 
-    public void getPermisos(String puesto){//Payee user){
-//        lblUsuario.setText(lblUsuario.getText()+ user.getNombre() + " " + user.getApellidoPaterno()+ " " + user.getApellidoMaterno());
-        lblCargo.setText(lblCargo.getText() + puesto + " son:");
+    public void setUser(Payee user){
+        lblUsuario.setText(lblUsuario.getText()+ user.getNombre() + " " + user.getApellidoPaterno()+ " " + user.getApellidoMaterno());
+        lblCargo.setText(lblCargo.getText() + user.getCargo() + " son:");
         String str = "";
-        switch(puesto){//(user.getCargo()){
+        switch(user.getCargo()){
             case "ADMINISTRADOR":
                 str += "Gestionar Ordenes, Productos y Usuarios.\n"+
                         "Fijar el periodo (rango de días) para el cálculo de comisiones.\n"+

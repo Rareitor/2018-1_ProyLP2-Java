@@ -1,10 +1,11 @@
 package Vista;
 import Controlador.PayeeBL;
+import Modelo.Payee;
 import java.awt.*;
 import javax.swing.*;
 
 public class FrmMainOptionsAdmin extends javax.swing.JDialog {
-    
+    private final Payee currentUser;
     private FrmAdministrarCuenta administrarCuenta;
     private FrmAnadirNoticia addNoticia;
     private FrmReportarInfraccion reportarInfraccion;
@@ -24,22 +25,29 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
     private PnlVerMapa verMapa;
     private PayeeBL logicaNegocio;
     private String idPayee;
-    private String puesto;
-    private String username;
     /**
      * Creates new form NewJDialog
      */
-    public FrmMainOptionsAdmin(java.awt.Frame parent, boolean modal, String username, String puesto) {
+    public FrmMainOptionsAdmin(java.awt.Frame parent, boolean modal, Payee user) {
         super(parent, modal);
-        logicaNegocio = new PayeeBL();
         initComponents();
-        setVisibleOpts(puesto);
-        this.setTitle("GESCOM TDP - " + puesto);
-        
-        this.initForms();
-        this.idPayee = logicaNegocio.obtenerId(username);
-        this.puesto = puesto;
-        this.username = username;
+        logicaNegocio = new PayeeBL();
+        currentUser = user;
+        try{
+            if(currentUser == null){
+                throw new Exception();
+            }else{
+                setVisibleOpts();
+                this.setTitle("GESCOM TDP - " + currentUser.getCargo());
+
+                this.initForms();
+                this.idPayee = logicaNegocio.obtenerId(currentUser.getUserName());
+            }            
+        }catch(Exception ex){
+            System.out.println("No user has been detected.");
+            JOptionPane.showMessageDialog(this, "NO USER DETECTED", "ERROR", JOptionPane.ERROR_MESSAGE);
+            this.dispose();
+        }
     }
     
     private void initForms(){
@@ -62,8 +70,8 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         verMapa = null;
     }
     
-    private void setVisibleOpts(String puesto){
-        switch(puesto){
+    private void setVisibleOpts(){
+        switch(currentUser.getCargo()){
             case "ADMINISTRADOR":
                 menuVisualizacion.setVisible(false);
                 menuiCalcularComisiones.setVisible(false);
@@ -121,7 +129,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
             }
             usuarios.dispose();
         }
-        usuarios = new FrmVisualizarUsuario(listar, this.idPayee, this.puesto);
+        usuarios = new FrmVisualizarUsuario(listar, this.idPayee, currentUser.getCargo());
         usuarios.setClosable(true);
         dskPnPrincipal.add(usuarios);
         usuarios.setVisible(true);
@@ -500,7 +508,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
     private void menuiCambContrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiCambContrActionPerformed
         // TODO add your handling code here:
         FrmCambiarContrasena frm = new FrmCambiarContrasena(null, true);
-        frm.setUsername(username);//temp until actual use of iddata between alll forms
+        frm.setUsername(currentUser.getUserName());//temp until actual use of iddata between alll forms
         frm.setVisible(true);
         //.setVisible(false);
         frm.dispose();
@@ -516,7 +524,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
             }
             administrarCuenta.dispose();
         }
-        administrarCuenta = new FrmAdministrarCuenta(this.username);
+        administrarCuenta = new FrmAdministrarCuenta(currentUser.getUserName());
         administrarCuenta.setClosable(true);
         dskPnPrincipal.add(administrarCuenta);
         //System.out.println(dskPnPrincipal.getAllFrames().length);
@@ -700,7 +708,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
             }
             comisiones.dispose();
         }
-        comisiones = new FrmVisualizarOrdenes(this.puesto,this.idPayee);
+        comisiones = new FrmVisualizarOrdenes(currentUser.getCargo(),this.idPayee);
         comisiones.setClosable(true);
         comisiones.pack();
         dskPnPrincipal.add(comisiones);
@@ -792,10 +800,9 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
     private void menuiPermisosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiPermisosActionPerformed
         // TODO add your handling code here:
         FrmPermisos permisos = new FrmPermisos(this, "Permisos", true);
-        permisos.getPermisos(puesto);
+        permisos.setUser(currentUser);
         //final JDialog marco = new JDialog(this,"Ver Mapa",true);
         permisos.setVisible(true);
-        
     }//GEN-LAST:event_menuiPermisosActionPerformed
 
     /**
@@ -831,7 +838,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FrmMainOptionsAdmin dialog = new FrmMainOptionsAdmin(new javax.swing.JFrame(), true ,"" ,"");
+                FrmMainOptionsAdmin dialog = new FrmMainOptionsAdmin(new javax.swing.JFrame(), true , null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
