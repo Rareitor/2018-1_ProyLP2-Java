@@ -172,43 +172,23 @@ public class PayeeDA {
         return puesto;
     }
     
-    public String obtenerContraseña(String username){
-        String cnsn="";
+    public boolean verificarContraseña(String username, String psw){
+        boolean returnVal = false;
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection
-            ("jdbc:mysql://200.16.7.96/inf282g8", "inf282g8", "4LDJZU");
+            ("jdbc:mysql://quilla.lab.inf.pucp.edu.pe/inf282g8", "inf282g8", "4LDJZU");
             String sql = "{call OBTENER_CONTRASEÑA(?,?)}";
             CallableStatement cs = con.prepareCall(sql);
             cs.setString(1, username);
             cs.execute();
-            cnsn = cs.getString(2);
+            returnVal = psw.equals(cs.getString(2));
             con.close();
         }
         catch (Exception e){
             System.out.println(e.getMessage());
         }
-        return cnsn;
-    }
-    
-    public String[] obtenerPuestoContraseña(String username){
-        String[] data = new String[2];
-        try{
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection
-            ("jdbc:mysql://200.16.7.96/inf282g8", "inf282g8", "4LDJZU");
-            String sql = "{call OBTENER_PUESTO_CONTRASEÑA(?,?,?)}";
-            CallableStatement cs = con.prepareCall(sql);
-            cs.setString(1, username);
-            cs.execute();
-            data[0] = cs.getString(2);
-            data[1] = cs.getString(3);
-            con.close();
-        }
-        catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-        return data;
+        return returnVal;
     }
     
     public boolean cambiarContrasena(String usr, String str){
@@ -229,19 +209,21 @@ public class PayeeDA {
         return false;
     }
     
-    public boolean obtenerDatosOriginales(Payee user){
+    public boolean obtenerDatosUsuario(Payee user){
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://quilla.lab.inf.pucp.edu.pe/inf282g8", "inf282g8", "4LDJZU");
             Statement stt = con.createStatement();
-            ResultSet origData = stt.executeQuery("SELECT nombre,apellidoPaterno,apellidoMaterno,dni,email FROM Payee WHERE username = '"+ user.getUserName()+"'");
+            ResultSet origData = stt.executeQuery("SELECT P.dni,P.nombre,P.apellidoPaterno,P.apellidoMaterno,P.email,J.cargo FROM Payee P, Jerarquia J WHERE P.username = '"+ user.getUserName()+"' and P.idPayee = J.idPayee");
+            //can be inner join on idpayee
             origData.first();
             
-            user.setNombre(origData.getString(1));
-            user.setApellidoPaterno(origData.getString(2));
-            user.setApellidoMaterno(origData.getString(3));
-            user.setDni(origData.getString(4));
+            user.setDni(origData.getString(1));
+            user.setNombre(origData.getString(2));
+            user.setApellidoPaterno(origData.getString(3));
+            user.setApellidoMaterno(origData.getString(4));
             user.setEmail(origData.getString(5));
+            user.setCargo(origData.getString(6));
 
             con.close();
             return true;
@@ -271,23 +253,5 @@ public class PayeeDA {
             System.out.println(ex.getMessage());
         }
         return false;
-    }
-    
-    public String obtenerRecomendaciones(String id){
-        String rec = "";
-        try{
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://quilla.lab.inf.pucp.edu.pe/inf282g8", "inf282g8", "4LDJZU");
-//            CallableStatement cstt = con.prepareCall("{call PROC-TO-GET-RECS(?,?)}");
-//            
-//            cstt.setString(1,id);
-//
-//            cstt.execute();
-//            rec += cstt.getXXXXX(2,rec);
-            con.close();
-        }catch(Exception ex){
-            System.out.println(ex.getMessage());
-        }
-        return rec;
     }
 }

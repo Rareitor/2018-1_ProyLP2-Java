@@ -3,6 +3,7 @@ package Controlador;
 import AccesoDatos.PayeeDA;
 import Modelo.Payee;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 
 public class PayeeBL {
@@ -32,14 +33,6 @@ public class PayeeBL {
         return accesoDatos.obtenerPuesto(username);
     }
     
-    public String obtenerContraseña(String username){
-        return accesoDatos.obtenerContraseña(username);
-    }
-    
-    public String[] obtenerPuestoContraseña(String username){
-        return accesoDatos.obtenerPuestoContraseña(username);
-    }
-    
     public String obtenerId(String username){
         return accesoDatos.obtenerId(username);
     }
@@ -48,20 +41,26 @@ public class PayeeBL {
         return this.accesoDatos.cambiarContrasena(usr,str);
     }
     
-    public boolean obtenerDatosOriginales(Payee user){
-        return this.accesoDatos.obtenerDatosOriginales(user);
+    public boolean verificarContrasena(String username, String str){
+        return this.accesoDatos.verificarContraseña(username, str);
+    }
+    
+    public Payee verificarLogin(String username, String str){
+        if(this.accesoDatos.verificarContraseña(username, str)){
+            str=""; Payee user = new Payee();
+            user.setUserName(username);
+            if(this.accesoDatos.obtenerDatosUsuario(user)){
+                return user;
+            }else{
+                JOptionPane.showMessageDialog(null, "ERROR DE CARGA DE DATOS", "ERROR", JOptionPane.WARNING_MESSAGE);
+                return null;
+            }
+        }else{
+            return null;
+        }
     }
     
     public boolean modificarDatosPropios(Payee user){
         return this.accesoDatos.modificarDatosPropios(user);
-    }
-    
-    public void cargarRecomendaciones(String id){
-        String recs = this.accesoDatos.obtenerRecomendaciones(id);
-        try{
-            
-        }catch(Exception ex){
-            System.out.println(ex.getMessage());
-        }
     }
 }

@@ -143,32 +143,31 @@ public class FrmLogin extends javax.swing.JFrame {
 
 
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
-        Payee user = new Payee();
-        user.setUserName(txtUsuario.getText());
-        String contra = new String(txtContrasena.getPassword());
-        
-        String[] data = logicanegocio.obtenerPuestoContraseña(user.getUserName());
-        user.setCargo(data[0]);
-        String puesto = data[0];
-        String password = data[1];
+        if(txtUsuario.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese usuario.", "USUARIO", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        if(txtContrasena.getPassword().length==0){
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese contraseña.", "CONTRASEÑA", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        Payee user = logicanegocio.verificarLogin(txtUsuario.getText(), new String(txtContrasena.getPassword()));
         
         try{
-            if (!puesto.equals("ADMINISTRADOR") && !puesto.equals("GERENTE")
-            && !puesto.equals("JEFE") && !puesto.equals("COMISIONISTA")){
-                JOptionPane.showMessageDialog(this, "Por favor, ingrese un usuario válido.",  "Ingresar usuario",JOptionPane.WARNING_MESSAGE);
-            }
-            else if(contra.equals("")){
-                JOptionPane.showMessageDialog(this, "Por favor, ingrese una contraseña válida.", "Ingrese contraseña", JOptionPane.WARNING_MESSAGE);
-            }
-            else if(!contra.equals(password))
+            if(user == null)
             {
-                JOptionPane.showMessageDialog(this, "Contraseña errónea, vuelva a ingresar la contraseña", "Contraseña", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Contraseña o usuario erróneos, vuelva a ingresar los datos", "Error de login", JOptionPane.ERROR_MESSAGE);
             }
-            else{
+            else
+            {
+                if (!user.getCargo().equals("ADMINISTRADOR") && !user.getCargo().equals("GERENTE")
+                        && !user.getCargo().equals("JEFE") && !user.getCargo().equals("COMISIONISTA")){
+                    JOptionPane.showMessageDialog(this, "Por favor, ingrese un usuario válido.",  "Ingresar usuario",JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
                 JDialog frmMainOpt = new FrmMainOptionsAdmin(this, true, user);
                 //user = null;
                 frmMainOpt.pack();
-
                 this.setVisible(false);
                 frmMainOpt.setVisible(true);
                 limpiarCampos();

@@ -24,5 +24,8 @@ public class Payee extends Trabajador{
     //constructores
     public Payee()
     {
+        super();
+        this.cargo = null;
+        this.distrito = null;
     }
 }

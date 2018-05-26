@@ -9,23 +9,23 @@ import javax.swing.JOptionPane;
 
 public class FrmAdministrarCuenta extends javax.swing.JInternalFrame {
 
-    private final Payee curUser = new Payee();
+    private final Payee curUser;
     private final PayeeBL pyBL;
     private String[] datos;
     /**
      * Creates new form FrmAdministrarCuenta
      * @param username
      */
-    public FrmAdministrarCuenta(String username) {
+    public FrmAdministrarCuenta(Payee user) {
         initComponents();
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         pyBL = new PayeeBL();
-        ldDatosUsuario(username);
+        curUser = user;
+        ldDatosUsuario();
     }
 
-    private void ldDatosUsuario(String username){
-        curUser.setUserName(username);
-        if(pyBL.obtenerDatosOriginales(curUser)){
+    private void ldDatosUsuario(){
+        if(curUser != null){
             txtNombre.setText(curUser.getNombre());
             txtApellidoPaterno.setText(curUser.getApellidoPaterno());
             txtApellidoMaterno.setText(curUser.getApellidoMaterno());
@@ -201,19 +201,31 @@ public class FrmAdministrarCuenta extends javax.swing.JInternalFrame {
         }
         else
         {
+            Payee altUser = new Payee();
+            altUser.setUserName(curUser.getUserName());
             String tmp = txtNombre.getText().trim();
-            if(!curUser.getNombre().equals(tmp)) curUser.setNombre(tmp);
+            if(!curUser.getNombre().equals(tmp)) altUser.setNombre(tmp);
             
             tmp = txtApellidoPaterno.getText().trim();
-            if(!curUser.getApellidoPaterno().equals(tmp)) curUser.setApellidoPaterno(tmp);
+            if(!curUser.getApellidoPaterno().equals(tmp)) altUser.setApellidoPaterno(tmp);
             
             tmp = txtApellidoMaterno.getText().trim();
-            if(!curUser.getApellidoMaterno().equals(tmp)) curUser.setApellidoMaterno(tmp);
+            if(!curUser.getApellidoMaterno().equals(tmp)) altUser.setApellidoMaterno(tmp);
             
             tmp = txtCorreo.getText().trim();
-            if(!curUser.getEmail().equals(tmp)) curUser.setEmail(tmp);
+            if(!curUser.getEmail().equals(tmp)) altUser.setEmail(tmp);
             
-            if(pyBL.modificarDatosPropios(curUser)){
+            if(pyBL.modificarDatosPropios(altUser)){
+                if(!curUser.getNombre().equals(tmp)) altUser.setNombre(tmp);
+            
+            tmp = txtApellidoPaterno.getText().trim();
+            if(!curUser.getApellidoPaterno().equals(tmp)) altUser.setApellidoPaterno(tmp);
+            
+            tmp = txtApellidoMaterno.getText().trim();
+            if(!curUser.getApellidoMaterno().equals(tmp)) altUser.setApellidoMaterno(tmp);
+            
+            tmp = txtCorreo.getText().trim();
+            if(!curUser.getEmail().equals(tmp)) altUser.setEmail(tmp);
                 JOptionPane.showMessageDialog(this, "Datos Actualizados");
             }else{
                 JOptionPane.showMessageDialog(this, "Error en la actualización");

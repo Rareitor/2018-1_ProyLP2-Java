@@ -2,13 +2,17 @@ package Modelo;
 
 public abstract class Persona{
 //atributos	
-    private String dni;
-    private String nombre;
-    private String apellidoPaterno;
-    private String apellidoMaterno;
+    protected String dni;
+    protected String nombre;
+    protected String apellidoPaterno;
+    protected String apellidoMaterno;
 //métodos
     //constructores
     public Persona(){
+        this.dni = null;
+        this.nombre = null;
+        this.apellidoPaterno = null;
+        this.apellidoMaterno = null;
     }
 
     //setters y getters

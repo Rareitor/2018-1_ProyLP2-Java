@@ -524,7 +524,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
             }
             administrarCuenta.dispose();
         }
-        administrarCuenta = new FrmAdministrarCuenta(currentUser.getUserName());
+        administrarCuenta = new FrmAdministrarCuenta(currentUser);
         administrarCuenta.setClosable(true);
         dskPnPrincipal.add(administrarCuenta);
         //System.out.println(dskPnPrincipal.getAllFrames().length);

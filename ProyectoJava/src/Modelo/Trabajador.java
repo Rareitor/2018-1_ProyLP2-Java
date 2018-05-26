@@ -3,16 +3,20 @@ import java.util.Date;
 
 public abstract class Trabajador extends Persona{
 //atributos	
-    private String idTrabajador;
-//    private TipoRegimen regimen;
-    private Date fechaIngreso;
-    private String email;
-//    private String telefono;
-    private String userName;
-    private String password;
+    protected String idTrabajador;
+    protected Date fechaIngreso;
+    protected String email;
+    protected String userName;
+    protected String password;
 //métodos
     //constructores
     public Trabajador(){
+        super();
+        this.idTrabajador = null;
+        this.fechaIngreso = null;
+        this.email = null;
+        this.userName = null;
+        this.password = null;
     }
 
     //setters y getters
@@ -24,14 +28,6 @@ public abstract class Trabajador extends Persona{
     public String getIdTrabajador(){
             return this.idTrabajador;
     }
-
-//    public void setTipoRegimen(TipoRegimen regimen){
-//            this.regimen = regimen;
-//    }
-//
-//    public TipoRegimen getTipoRegimen(){
-//            return this.regimen;
-//    }
 
     public void setFechaIngreso(Date fechaIngreso){
             this.fechaIngreso = fechaIngreso;
@@ -48,14 +44,6 @@ public abstract class Trabajador extends Persona{
     public String getEmail() {
         return email;
     }
-
-//    public void setTelefono(String telefono) {
-//        this.telefono = telefono;
-//    }
-//
-//    public String getTelefono() {
-//        return telefono;
-//    }
 	
     public String getUserName(){
             return this.userName;
