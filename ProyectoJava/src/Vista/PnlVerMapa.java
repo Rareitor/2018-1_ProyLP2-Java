@@ -35,18 +35,17 @@ public class PnlVerMapa extends javax.swing.JPanel {
         }
     }
     
-    private void escribirLabel(){
-        String cadDistritos = lista.get(0);
-        if (numDistritos>lista.size())
-            numDistritos = lista.size();
-        for(int i=1;i<numDistritos;i++){
-            if(i==lista.size()-1)
-                cadDistritos += " y " + lista.get(i);
-            else
-                cadDistritos += ", " + lista.get(i);
-        }
-        labelDistrito.setText(cadDistritos);
-    }
+//    private void escribirLabel(){
+//        String cadDistritos = lista.get(0);
+//        if (numDistritos>lista.size())
+//            numDistritos = lista.size();
+//        for(int i=1;i<numDistritos;i++){
+//            if(i==lista.size()-1)
+//                cadDistritos += " y " + lista.get(i);
+//            else
+//                cadDistritos += ", " + lista.get(i);
+//        }
+//    }
     
     public void paint(Graphics g){
         super.paint(g);
@@ -54,8 +53,8 @@ public class PnlVerMapa extends javax.swing.JPanel {
         if (imagenes[0] == null){
             return;
         }
-        
-        escribirLabel();
+        if (numDistritos>lista.size())
+            numDistritos = lista.size();
         for(int i=0;i<numDistritos;i++)
             g.drawImage(imagenes[i], 90, 130, this);
     }
@@ -84,6 +83,7 @@ public class PnlVerMapa extends javax.swing.JPanel {
                 cadena = "./src/Distritos/" + lista.get(i) + ".png";
                 try {
                     imagenes[i] = ImageIO.read(new File(cadena));
+                    System.out.println("--->" + lista.get(i));
                 } catch (Exception e){
                     System.out.println("Error en la carga de la imagen" + i);
                 }
@@ -96,7 +96,6 @@ public class PnlVerMapa extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        labelDistrito = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtNumDistritos = new javax.swing.JTextField();
         btnver = new javax.swing.JButton();
@@ -105,9 +104,6 @@ public class PnlVerMapa extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Actualmente, los distritos con mayor índice de comisiones son: ");
-
-        labelDistrito.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelDistrito.setText("Texto");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Número de distritos: ");
@@ -129,12 +125,7 @@ public class PnlVerMapa extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel1)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelDistrito)
-                            .addGap(108, 108, 108)))
+                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(27, 27, 27)
@@ -153,9 +144,7 @@ public class PnlVerMapa extends javax.swing.JPanel {
                     .addComponent(btnver))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(labelDistrito)
-                .addGap(0, 424, Short.MAX_VALUE))
+                .addGap(0, 459, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -164,11 +153,12 @@ public class PnlVerMapa extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Aún no existen ordenes con distritos válidos para mostrar", "Error en listar distritos", JOptionPane.WARNING_MESSAGE);
                 return;
             }
-        
         try {
             int newnum = Integer.parseInt(txtNumDistritos.getText());
-            if (newnum <= 0 || newnum > MAX_DISTRITOS || newnum > lista.size())
-                throw new Exception();
+            if (newnum <= 0 || newnum > MAX_DISTRITOS || newnum > lista.size()){
+                JOptionPane.showMessageDialog(null,"Por favor, inserte un número entre 1 y "+lista.size(), "Número de distritos fuera del rango",JOptionPane.WARNING_MESSAGE);
+                return;
+            }
             numDistritos = newnum;
             repaint();
         }catch (Exception e){
@@ -182,7 +172,6 @@ public class PnlVerMapa extends javax.swing.JPanel {
     private javax.swing.JButton btnver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    public javax.swing.JLabel labelDistrito;
     private javax.swing.JTextField txtNumDistritos;
     // End of variables declaration//GEN-END:variables
 }
