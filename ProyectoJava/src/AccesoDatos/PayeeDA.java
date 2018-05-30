@@ -214,7 +214,7 @@ public class PayeeDA {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://quilla.lab.inf.pucp.edu.pe/inf282g8", "inf282g8", "4LDJZU");
             Statement stt = con.createStatement();
-            ResultSet origData = stt.executeQuery("SELECT P.dni,P.nombre,P.apellidoPaterno,P.apellidoMaterno,P.email,J.cargo FROM Payee P, Jerarquia J WHERE P.username = '"+ user.getUserName()+"' and P.idPayee = J.idPayee");
+            ResultSet origData = stt.executeQuery("SELECT P.dni,P.nombre,P.apellidoPaterno,P.apellidoMaterno,P.email,J.cargo FROM Payee P, Jerarquia J WHERE P.username = '"+ user.getUserName()+"' and P.idPayee = J.idPayee and P.isVisible = 1");
             //can be inner join on idpayee
             origData.first();
             
