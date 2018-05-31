@@ -24,6 +24,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
     private FrmGestionarObjeto gestProducto;
     private FrmGestionarObjeto gestUsuario;
     private JInternalFrame calcularComisiones;
+    private JInternalFrame productosDestacados;
     private PnlVerMapa verMapa;
     private PayeeBL logicaNegocio;
     private String idPayee;
@@ -71,6 +72,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         gestUsuario = null;
         verMapa = null;
         calcularComisiones = null;
+        productosDestacados = null;
     }
     
     private void setVisibleOpts(){
@@ -103,6 +105,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
                 menuiBackup.setVisible(false);
                 menuiAnadirNoticias.setVisible(false);
                 menuiVerMapa.setVisible(false);
+                menuiVerProdDestacados.setVisible(false);
                 break;
             case "COMISIONISTA":
                 menuiGestUsuario.setVisible(false);
@@ -115,6 +118,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
                 menuiBackup.setVisible(false);
                 menuiAnadirNoticias.setVisible(false);
                 menuiVerGerentes.setVisible(false);
+                menuiVerProdDestacados.setVisible(false);
                 break;
             //case "sysadmin": break;
             default: 
@@ -174,6 +178,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         menuiVerGerentes = new javax.swing.JMenuItem();
         menuiInfracciones = new javax.swing.JMenuItem();
         menuiNoticias = new javax.swing.JMenuItem();
+        menuiVerProdDestacados = new javax.swing.JMenuItem();
         menuOtros = new javax.swing.JMenu();
         menuiRecomendaciones = new javax.swing.JMenuItem();
         menuiPapelera = new javax.swing.JMenuItem();
@@ -395,6 +400,14 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
             }
         });
         menuVisualizacion.add(menuiNoticias);
+
+        menuiVerProdDestacados.setText("Productos Destacados");
+        menuiVerProdDestacados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuiVerProdDestacadosActionPerformed(evt);
+            }
+        });
+        menuVisualizacion.add(menuiVerProdDestacados);
 
         menubPrincipal.add(menuVisualizacion);
 
@@ -823,6 +836,26 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         permisos.setVisible(true);
     }//GEN-LAST:event_menuiPermisosActionPerformed
 
+    private void menuiVerProdDestacadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiVerProdDestacadosActionPerformed
+        // TODO add your handling code here:
+        if(productosDestacados != null){
+            try{
+                productosDestacados.setClosed(true);
+            }catch(Exception ex){
+                System.out.println(ex.getMessage());
+            }
+            productosDestacados.dispose();
+        }
+        productosDestacados = new JInternalFrame();
+//        PnlGrafTopProductos pnl = new PnlGrafTopProductos();
+//        calcularComisiones.setContentPane(pnl);
+        productosDestacados.setContentPane(new PnlGrafTopProductos());
+        productosDestacados.setClosable(true);
+        productosDestacados.pack();
+        dskPnPrincipal.add(productosDestacados);
+        productosDestacados.setVisible(true);
+    }//GEN-LAST:event_menuiVerProdDestacadosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -906,6 +939,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
     private javax.swing.JMenuItem menuiVerGerentes;
     private javax.swing.JMenuItem menuiVerJefes;
     private javax.swing.JMenuItem menuiVerMapa;
+    private javax.swing.JMenuItem menuiVerProdDestacados;
     private javax.swing.JPanel pnlComisionistas;
     private javax.swing.JPanel pnlNoticia;
     // End of variables declaration//GEN-END:variables

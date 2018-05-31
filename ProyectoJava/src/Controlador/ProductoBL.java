@@ -7,7 +7,7 @@ package Controlador;
 
 import AccesoDatos.ProductoDA;
 import Modelo.Producto;
-import java.util.List;
+import java.util.*;
 
 
 public class ProductoBL {
@@ -25,4 +25,8 @@ public class ProductoBL {
         return accesoDatos.listarTiposProductos();
     }
     
+    public boolean productosDestacados(ArrayList<String> noms, ArrayList<Double> mnts, Date fechaIni, Date fechaFin){
+        this.accesoDatos.ldProductosDestacados(noms, mnts, fechaIni, fechaFin);
+        return (mnts.isEmpty() && noms.isEmpty())? true : false;
+    }
 }

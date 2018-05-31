@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -64,5 +65,28 @@ public class ProductoDA {
             System.out.println(e.getMessage());
         }
         return lista;
+    }
+    
+    public void ldProductosDestacados(ArrayList<String> noms, ArrayList<Double> mnts, Date ini, Date fin){
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://quilla.lab.inf.pucp.edu.pe/inf282g8", "inf282g8", "4LDJZU");
+            CallableStatement cs = con.prepareCall("{CALL LISTAR_TIPOS_PRODUCTOS(?,?)}");
+            cs.setDate(1, (java.sql.Date) ini);
+            cs.setDate(2, (java.sql.Date) fin);
+            cs.execute();
+            
+            ResultSet rs = cs.getResultSet();
+            while(rs.next()){
+                noms.add(rs.getString(2));
+                mnts.add(rs.getDouble(3));
+            }
+            con.close();
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            noms.clear();
+            mnts.clear();
+        }
     }
 }
