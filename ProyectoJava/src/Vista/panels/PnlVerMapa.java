@@ -1,4 +1,4 @@
-package Vista;
+package Vista.panels;
 
 import Controlador.DistritoBL;
 import java.awt.Font;

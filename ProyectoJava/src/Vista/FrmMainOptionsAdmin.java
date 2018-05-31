@@ -1,4 +1,5 @@
 package Vista;
+import Vista.panels.*;
 import Controlador.PayeeBL;
 import Modelo.Payee;
 import java.awt.*;
@@ -22,6 +23,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
     private FrmGestionarObjeto gestOrden;
     private FrmGestionarObjeto gestProducto;
     private FrmGestionarObjeto gestUsuario;
+    private JInternalFrame calcularComisiones;
     private PnlVerMapa verMapa;
     private PayeeBL logicaNegocio;
     private String idPayee;
@@ -68,6 +70,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         gestProducto = null;
         gestUsuario = null;
         verMapa = null;
+        calcularComisiones = null;
     }
     
     private void setVisibleOpts(){
@@ -717,7 +720,22 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
 
     private void menuiCalcularComisionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiCalcularComisionesActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "CALCULADA");
+        if(calcularComisiones != null){
+            try{
+                calcularComisiones.setClosed(true);
+            }catch(Exception ex){
+                System.out.println(ex.getMessage());
+            }
+            calcularComisiones.dispose();
+        }
+        calcularComisiones = new JInternalFrame();
+//        PnlCalcComis pnl = new PnlCalcComis();
+//        calcularComisiones.setContentPane(pnl);
+        calcularComisiones.setContentPane(new PnlCalcComis());
+        calcularComisiones.setClosable(true);
+        calcularComisiones.pack();
+        dskPnPrincipal.add(calcularComisiones);
+        calcularComisiones.setVisible(true);
     }//GEN-LAST:event_menuiCalcularComisionesActionPerformed
 
     private void menuiFijarPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiFijarPeriodoActionPerformed
