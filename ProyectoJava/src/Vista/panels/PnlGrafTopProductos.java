@@ -6,9 +6,12 @@
 package Vista.panels;
 
 import Controlador.ProductoBL;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.border.Border;
 
 /**
  *
@@ -25,6 +28,7 @@ public class PnlGrafTopProductos extends javax.swing.JPanel {
      */
     public PnlGrafTopProductos() {
         initComponents();
+        pnlLabels.setBorder(BorderFactory.createLineBorder(Color.black));
         prodBL = new ProductoBL();
         nombres = new ArrayList<>();
         montos = new ArrayList<>();
@@ -44,6 +48,7 @@ public class PnlGrafTopProductos extends javax.swing.JPanel {
         lblFechaFin = new javax.swing.JLabel();
         dtchFin = new com.toedter.calendar.JDateChooser();
         btnObtenerGraf = new javax.swing.JButton();
+        pnlLabels = new javax.swing.JPanel();
 
         lblFechaIni.setText("Fecha Inicio:");
 
@@ -56,23 +61,37 @@ public class PnlGrafTopProductos extends javax.swing.JPanel {
             }
         });
 
+        pnlLabels.setBackground(new java.awt.Color(204, 204, 204));
+
+        javax.swing.GroupLayout pnlLabelsLayout = new javax.swing.GroupLayout(pnlLabels);
+        pnlLabels.setLayout(pnlLabelsLayout);
+        pnlLabelsLayout.setHorizontalGroup(
+            pnlLabelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        pnlLabelsLayout.setVerticalGroup(
+            pnlLabelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 128, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnObtenerGraf)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblFechaIni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(dtchIni, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                            .addComponent(dtchIni, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
                             .addComponent(dtchFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(btnObtenerGraf))
-                .addContainerGap(314, Short.MAX_VALUE))
+                    .addComponent(pnlLabels, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(313, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,7 +106,9 @@ public class PnlGrafTopProductos extends javax.swing.JPanel {
                     .addComponent(lblFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(btnObtenerGraf)
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlLabels, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -100,15 +121,21 @@ public class PnlGrafTopProductos extends javax.swing.JPanel {
         if(!prodBL.productosDestacados(nombres, montos, dtchIni.getDate(), dtchFin.getDate())){
             JOptionPane.showMessageDialog(this, "Error de fechas o base de datos.");
             graph=false;
+            this.repaint();
+            this.pnlLabels.repaint();
         }else{
             Graphics g = this.getGraphics();
+            Graphics gplbl = pnlLabels.getGraphics();
             int mxSz = 210;
 
-            g.drawString("1. "+nombres.get(0), 20, 160);
+//            g.drawString("1. "+nombres.get(0), 20, 160);
+            gplbl.drawString("1. "+nombres.get(0), 5, 30);
             g.drawString("1", 270, 220);
-            g.drawString("2. "+nombres.get(1), 20, 190);
+//            g.drawString("2. "+nombres.get(1), 20, 190);
+            gplbl.drawString("2. "+nombres.get(1), 5, 60);
             g.drawString("2", 380, 220);
-            g.drawString("3. "+nombres.get(2), 20, 220);
+//            g.drawString("3. "+nombres.get(2), 20, 220);
+            gplbl.drawString("3. "+nombres.get(2), 5, 90);
             g.drawString("3", 490, 220);
 
             Double tot = montos.get(0) + montos.get(1) + montos.get(2);
@@ -119,6 +146,7 @@ public class PnlGrafTopProductos extends javax.swing.JPanel {
             g.fillRect(380, 210-v2, 40, v2);
             g.fillRect(480, 210-v3, 40, v3);
             g.dispose();
+            gplbl.dispose();
         }
     }//GEN-LAST:event_btnObtenerGrafMouseClicked
 
@@ -129,5 +157,6 @@ public class PnlGrafTopProductos extends javax.swing.JPanel {
     private com.toedter.calendar.JDateChooser dtchIni;
     private javax.swing.JLabel lblFechaFin;
     private javax.swing.JLabel lblFechaIni;
+    private javax.swing.JPanel pnlLabels;
     // End of variables declaration//GEN-END:variables
 }
