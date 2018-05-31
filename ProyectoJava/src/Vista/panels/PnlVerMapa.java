@@ -83,9 +83,8 @@ public class PnlVerMapa extends javax.swing.JPanel {
                 cadena = "./src/Distritos/" + lista.get(i) + ".png";
                 try {
                     imagenes[i] = ImageIO.read(new File(cadena));
-                    System.out.println("--->" + lista.get(i));
                 } catch (Exception e){
-                    System.out.println("Error en la carga de la imagen" + i);
+                    System.out.println("Error en la carga de la imagen: " + lista.get(i) + ".png");
                 }
             }
         }  
