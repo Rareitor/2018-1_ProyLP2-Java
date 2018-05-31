@@ -74,7 +74,7 @@ public class FrmLogin extends javax.swing.JFrame {
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setText("Admin: 20090380\nGerente: 45678219\nJefe: 99999999\nComisionista: 87956412");
+        jTextArea1.setText("Admin: 20090380\nGerente: 20176455 pucp123\nJefe: 20175863 rodri12\nComisionista: 20175581 victor558");
         jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
