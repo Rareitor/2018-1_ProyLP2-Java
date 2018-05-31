@@ -19,7 +19,12 @@ public class PnlCalcComis extends javax.swing.JPanel {
     
     public Date get0TimeDate(Date dtIn){
         Calendar cal = Calendar.getInstance();
-        cal.setTime(dtIn);
+        if(dtIn == null){
+            cal.setTime(new Date());
+        }else{
+            cal.setTime(dtIn);
+        }
+        
         cal.set(Calendar.HOUR_OF_DAY, 0);
         cal.set(Calendar.MINUTE, 0);
         cal.set(Calendar.SECOND, 0);

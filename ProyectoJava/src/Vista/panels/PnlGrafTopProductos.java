@@ -5,15 +5,18 @@
  */
 package Vista.panels;
 
+import Controlador.ProductoBL;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Emilio
  */
 public class PnlGrafTopProductos extends javax.swing.JPanel {
-    private boolean notGraph = true;
+    private final ProductoBL prodBL;
+    private boolean graph = false;
     private final ArrayList<String> nombres;
     private final ArrayList<Double> montos;
 
@@ -22,32 +25,11 @@ public class PnlGrafTopProductos extends javax.swing.JPanel {
      */
     public PnlGrafTopProductos() {
         initComponents();
+        prodBL = new ProductoBL();
         nombres = new ArrayList<>();
         montos = new ArrayList<>();
     }
     
-    @Override
-    public void paint(Graphics g) {
-        super.paint(g); //To change body of generated methods, choose Tools | Templates.
-        if(notGraph) return;
-        nombres.clear();
-        montos.clear();
-        int mxSz = -190;
-        
-        g.drawString("1. "+nombres.get(0), 20, 130);
-        g.drawString("1", 220, 220);
-        g.drawString("2. "+nombres.get(1), 20, 160);
-        g.drawString("2", 320, 220);
-        g.drawString("3. "+nombres.get(2), 20, 190);
-        g.drawString("3", 420, 220);
-        
-        Double tot = montos.get(0) + montos.get(1) + montos.get(2);
-        
-        g.fillRect(220, 200, 40, (int) (mxSz*montos.get(0)/tot));
-        g.fillRect(320, 200, 40, (int) (mxSz*montos.get(1)/tot));
-        g.fillRect(420, 200, 40, (int) (mxSz*montos.get(2)/tot));
-        //drawgraf
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -82,27 +64,27 @@ public class PnlGrafTopProductos extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblFechaIni)
-                            .addComponent(lblFechaFin))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblFechaIni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dtchFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dtchIni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(dtchIni, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                            .addComponent(dtchFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(btnObtenerGraf))
-                .addContainerGap(352, Short.MAX_VALUE))
+                .addContainerGap(314, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(7, 7, 7)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(dtchIni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblFechaIni))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(dtchIni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblFechaIni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblFechaFin)
-                    .addComponent(dtchFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(dtchFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(btnObtenerGraf)
                 .addContainerGap(145, Short.MAX_VALUE))
@@ -111,8 +93,33 @@ public class PnlGrafTopProductos extends javax.swing.JPanel {
 
     private void btnObtenerGrafMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnObtenerGrafMouseClicked
         // TODO add your handling code here:
-        notGraph = false;
-        this.repaint();
+        
+        nombres.clear();
+        montos.clear();
+        this.paint(this.getGraphics());
+        if(!prodBL.productosDestacados(nombres, montos, dtchIni.getDate(), dtchFin.getDate())){
+            JOptionPane.showMessageDialog(this, "Error de fechas o base de datos.");
+            graph=false;
+        }else{
+            Graphics g = this.getGraphics();
+            int mxSz = 210;
+
+            g.drawString("1. "+nombres.get(0), 20, 160);
+            g.drawString("1", 270, 220);
+            g.drawString("2. "+nombres.get(1), 20, 190);
+            g.drawString("2", 380, 220);
+            g.drawString("3. "+nombres.get(2), 20, 220);
+            g.drawString("3", 490, 220);
+
+            Double tot = montos.get(0) + montos.get(1) + montos.get(2);
+            int v1 = (int) (mxSz*montos.get(0)/tot);
+            int v2 = (int) (mxSz*montos.get(1)/tot);
+            int v3 = (int) (mxSz*montos.get(2)/tot);
+            g.fillRect(280, 210-v1, 40, v1);
+            g.fillRect(380, 210-v2, 40, v2);
+            g.fillRect(480, 210-v3, 40, v3);
+            g.dispose();
+        }
     }//GEN-LAST:event_btnObtenerGrafMouseClicked
 
 

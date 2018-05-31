@@ -254,4 +254,20 @@ public class PayeeDA {
         }
         return false;
     }
+    
+    public void obtenerComisionistasDestac(String idP){
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://quilla.lab.inf.pucp.edu.pe/inf282g8", "inf282g8", "4LDJZU");
+            CallableStatement cstt = con.prepareCall("{call RANKING_COMISIONISTAS(?)}");
+            
+            cstt.setString(1, idP);
+            cstt.execute();
+
+            
+            con.close();
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+    }
 }

@@ -63,4 +63,8 @@ public class PayeeBL {
     public boolean modificarDatosPropios(Payee user){
         return this.accesoDatos.modificarDatosPropios(user);
     }
+    
+    public void comisionistasDestacados(String idP){
+        this.accesoDatos.obtenerComisionistasDestac(idP);
+    }
 }

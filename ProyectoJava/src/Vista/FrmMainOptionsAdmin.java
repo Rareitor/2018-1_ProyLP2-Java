@@ -179,6 +179,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         menuiInfracciones = new javax.swing.JMenuItem();
         menuiNoticias = new javax.swing.JMenuItem();
         menuiVerProdDestacados = new javax.swing.JMenuItem();
+        menuiVerPayeeDestacados = new javax.swing.JMenuItem();
         menuOtros = new javax.swing.JMenu();
         menuiRecomendaciones = new javax.swing.JMenuItem();
         menuiPapelera = new javax.swing.JMenuItem();
@@ -408,6 +409,14 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
             }
         });
         menuVisualizacion.add(menuiVerProdDestacados);
+
+        menuiVerPayeeDestacados.setText("Usuarios Destacados");
+        menuiVerPayeeDestacados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuiVerPayeeDestacadosActionPerformed(evt);
+            }
+        });
+        menuVisualizacion.add(menuiVerPayeeDestacados);
 
         menubPrincipal.add(menuVisualizacion);
 
@@ -848,13 +857,33 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         }
         productosDestacados = new JInternalFrame();
 //        PnlGrafTopProductos pnl = new PnlGrafTopProductos();
-//        calcularComisiones.setContentPane(pnl);
+//        productosDestacados.setContentPane(pnl);
         productosDestacados.setContentPane(new PnlGrafTopProductos());
         productosDestacados.setClosable(true);
         productosDestacados.pack();
         dskPnPrincipal.add(productosDestacados);
         productosDestacados.setVisible(true);
     }//GEN-LAST:event_menuiVerProdDestacadosActionPerformed
+
+    private void menuiVerPayeeDestacadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiVerPayeeDestacadosActionPerformed
+        // TODO add your handling code here:
+//        if(productosDestacados != null){
+//            try{
+//                productosDestacados.setClosed(true);
+//            }catch(Exception ex){
+//                System.out.println(ex.getMessage());
+//            }
+//            productosDestacados.dispose();
+//        }
+//        productosDestacados = new JInternalFrame();
+////        PnlGrafTopProductos pnl = new PnlGrafTopProductos();
+////        calcularComisiones.setContentPane(pnl);
+//        productosDestacados.setContentPane(new PnlGrafTopProductos());
+//        productosDestacados.setClosable(true);
+//        productosDestacados.pack();
+//        dskPnPrincipal.add(productosDestacados);
+//        productosDestacados.setVisible(true);
+    }//GEN-LAST:event_menuiVerPayeeDestacadosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -939,6 +968,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
     private javax.swing.JMenuItem menuiVerGerentes;
     private javax.swing.JMenuItem menuiVerJefes;
     private javax.swing.JMenuItem menuiVerMapa;
+    private javax.swing.JMenuItem menuiVerPayeeDestacados;
     private javax.swing.JMenuItem menuiVerProdDestacados;
     private javax.swing.JPanel pnlComisionistas;
     private javax.swing.JPanel pnlNoticia;

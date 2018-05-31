@@ -12,6 +12,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -71,9 +72,9 @@ public class ProductoDA {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://quilla.lab.inf.pucp.edu.pe/inf282g8", "inf282g8", "4LDJZU");
-            CallableStatement cs = con.prepareCall("{CALL LISTAR_TIPOS_PRODUCTOS(?,?)}");
-            cs.setDate(1, (java.sql.Date) ini);
-            cs.setDate(2, (java.sql.Date) fin);
+            CallableStatement cs = con.prepareCall("{CALL RANKING_ORDENES(?,?)}");
+            cs.setDate(1, java.sql.Date.valueOf(LocalDate.from(Instant.ofEpochMilli(ini.getTime()).atZone(ZoneId.systemDefault()))));
+            cs.setDate(2, java.sql.Date.valueOf(LocalDate.from(Instant.ofEpochMilli(fin.getTime()).atZone(ZoneId.systemDefault()))));
             cs.execute();
             
             ResultSet rs = cs.getResultSet();

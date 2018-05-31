@@ -20,19 +20,19 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblFechaIni" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblFechaFin" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="lblFechaIni" max="32767" attributes="0"/>
+                          <Component id="lblFechaFin" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="dtchFin" min="-2" max="-2" attributes="0"/>
-                          <Component id="dtchIni" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="dtchIni" pref="129" max="32767" attributes="0"/>
+                          <Component id="dtchFin" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="btnObtenerGraf" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="352" max="32767" attributes="0"/>
+              <EmptySpace pref="314" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -40,14 +40,14 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="dtchIni" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblFechaIni" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="dtchIni" max="32767" attributes="0"/>
+                  <Component id="lblFechaIni" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="lblFechaFin" min="-2" max="-2" attributes="0"/>
-                  <Component id="dtchFin" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="dtchFin" max="32767" attributes="0"/>
+                  <Component id="lblFechaFin" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnObtenerGraf" min="-2" max="-2" attributes="0"/>

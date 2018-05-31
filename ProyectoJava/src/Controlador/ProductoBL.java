@@ -26,7 +26,8 @@ public class ProductoBL {
     }
     
     public boolean productosDestacados(ArrayList<String> noms, ArrayList<Double> mnts, Date fechaIni, Date fechaFin){
+        if(fechaIni == null || fechaFin == null || fechaIni.compareTo(fechaFin) >=0) return false;
         this.accesoDatos.ldProductosDestacados(noms, mnts, fechaIni, fechaFin);
-        return (mnts.isEmpty() && noms.isEmpty())? true : false;
+        return (mnts.isEmpty() && noms.isEmpty())? false : true;
     }
 }
