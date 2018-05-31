@@ -6,6 +6,7 @@
 
 package AccesoDatos;
 import java.sql.*;
+import java.time.*;
 
 /**
  * @author Emilio
@@ -16,11 +17,12 @@ public class CalculoDA {
         
     }
     
-    public boolean calculoDeComision(){
+    public boolean calculoDeComision(java.util.Date dt){
         try{//falta integrar fechas
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://quilla.lab.inf.pucp.edu.pe/inf282g8", "inf282g8", "4LDJZU");
-            CallableStatement cstt = con.prepareCall("{call CALCULAR_COMISIONES()}");
+            CallableStatement cstt = con.prepareCall("{call CALCULAR_COMISIONES(?)}");
+            cstt.setDate(1, java.sql.Date.valueOf(LocalDate.from(Instant.ofEpochMilli(dt.getTime()).atZone(ZoneId.systemDefault()))));
 
             cstt.execute();
             con.close();

@@ -96,7 +96,7 @@ public class PnlCalcComis extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "La fecha debe ser anterior a la actual","FECHA",JOptionPane.WARNING_MESSAGE);
             dateChooser.setDate(null);
         }else{
-            if(calcBL.calculoDeComision()){
+            if(calcBL.calculoDeComision(dt)){
                 JOptionPane.showMessageDialog(this, "El calculo se realizó con éxito","CALCULO",JOptionPane.INFORMATION_MESSAGE);
             }else{
                 JOptionPane.showMessageDialog(this, "Ocurrió un error en la ejecución de la base de datos", "ERROR", JOptionPane.ERROR_MESSAGE);
