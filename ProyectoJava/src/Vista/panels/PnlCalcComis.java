@@ -58,6 +58,11 @@ public class PnlCalcComis extends javax.swing.JPanel {
                 btnCalcularMouseClicked(evt);
             }
         });
+        btnCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalcularActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -103,6 +108,10 @@ public class PnlCalcComis extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_btnCalcularMouseClicked
+
+    private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCalcularActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
