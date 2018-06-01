@@ -28,7 +28,6 @@ public class PnlGrafTopProductos extends javax.swing.JPanel {
      */
     public PnlGrafTopProductos() {
         initComponents();
-        pnlLabels.setBorder(BorderFactory.createLineBorder(Color.black));
         prodBL = new ProductoBL();
         nombres = new ArrayList<>();
         montos = new ArrayList<>();
@@ -62,6 +61,7 @@ public class PnlGrafTopProductos extends javax.swing.JPanel {
         });
 
         pnlLabels.setBackground(new java.awt.Color(204, 204, 204));
+        pnlLabels.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         javax.swing.GroupLayout pnlLabelsLayout = new javax.swing.GroupLayout(pnlLabels);
         pnlLabels.setLayout(pnlLabelsLayout);
@@ -71,7 +71,7 @@ public class PnlGrafTopProductos extends javax.swing.JPanel {
         );
         pnlLabelsLayout.setVerticalGroup(
             pnlLabelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 128, Short.MAX_VALUE)
+            .addGap(0, 124, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
