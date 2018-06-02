@@ -48,6 +48,7 @@ public class PnlGrafTopProductos extends javax.swing.JPanel {
         dtchFin = new com.toedter.calendar.JDateChooser();
         btnObtenerGraf = new javax.swing.JButton();
         pnlLabels = new javax.swing.JPanel();
+        pnlGraf = new javax.swing.JPanel();
 
         lblFechaIni.setText("Fecha Inicio:");
 
@@ -71,7 +72,20 @@ public class PnlGrafTopProductos extends javax.swing.JPanel {
         );
         pnlLabelsLayout.setVerticalGroup(
             pnlLabelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 124, Short.MAX_VALUE)
+            .addGap(0, 182, Short.MAX_VALUE)
+        );
+
+        pnlGraf.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        javax.swing.GroupLayout pnlGrafLayout = new javax.swing.GroupLayout(pnlGraf);
+        pnlGraf.setLayout(pnlGrafLayout);
+        pnlGrafLayout.setHorizontalGroup(
+            pnlGrafLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 310, Short.MAX_VALUE)
+        );
+        pnlGrafLayout.setVerticalGroup(
+            pnlGrafLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -91,23 +105,28 @@ public class PnlGrafTopProductos extends javax.swing.JPanel {
                             .addComponent(dtchIni, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
                             .addComponent(dtchFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(pnlLabels, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(313, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pnlGraf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(7, 7, 7)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(dtchIni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblFechaIni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(dtchFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(btnObtenerGraf)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlLabels, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlGraf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(dtchIni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblFechaIni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(dtchFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnObtenerGraf)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pnlLabels, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -117,35 +136,36 @@ public class PnlGrafTopProductos extends javax.swing.JPanel {
         
         nombres.clear();
         montos.clear();
-        this.paint(this.getGraphics());
+        //this.paint(this.getGraphics());
         if(!prodBL.productosDestacados(nombres, montos, dtchIni.getDate(), dtchFin.getDate())){
             JOptionPane.showMessageDialog(this, "Error de fechas o base de datos.");
             graph=false;
-            this.repaint();
+            this.pnlGraf.repaint();
             this.pnlLabels.repaint();
         }else{
-            Graphics g = this.getGraphics();
+            Graphics ggrf = this.pnlGraf.getGraphics();
             Graphics gplbl = pnlLabels.getGraphics();
-            int mxSz = 210;
+            int mxSz = 300;
 
-//            g.drawString("1. "+nombres.get(0), 20, 160);
-            gplbl.drawString("1. "+nombres.get(0), 5, 30);
-            g.drawString("1", 270, 220);
-//            g.drawString("2. "+nombres.get(1), 20, 190);
-            gplbl.drawString("2. "+nombres.get(1), 5, 60);
-            g.drawString("2", 380, 220);
-//            g.drawString("3. "+nombres.get(2), 20, 220);
-            gplbl.drawString("3. "+nombres.get(2), 5, 90);
-            g.drawString("3", 490, 220);
+            gplbl.drawString("1. "+nombres.get(0), 5, 40);
+            gplbl.drawString("2. "+nombres.get(1), 5, 70);
+            gplbl.drawString("3. "+nombres.get(2), 5, 100);
+            ggrf.drawString("[1]",  65, 260);
+            ggrf.drawString("[2]", 165, 260);
+            ggrf.drawString("[3]", 265, 260);
 
             Double tot = montos.get(0) + montos.get(1) + montos.get(2);
             int v1 = (int) (mxSz*montos.get(0)/tot);
             int v2 = (int) (mxSz*montos.get(1)/tot);
             int v3 = (int) (mxSz*montos.get(2)/tot);
-            g.fillRect(280, 210-v1, 40, v1);
-            g.fillRect(380, 210-v2, 40, v2);
-            g.fillRect(480, 210-v3, 40, v3);
-            g.dispose();
+            ggrf.setColor(Color.red);
+            ggrf.fillRect( 50, 240-v1, 40, v1);
+            ggrf.setColor(Color.blue);
+            ggrf.fillRect(150, 240-v2, 40, v2);
+            ggrf.setColor(Color.green);
+            ggrf.fillRect(250, 240-v3, 40, v3);
+
+            ggrf.dispose();
             gplbl.dispose();
         }
     }//GEN-LAST:event_btnObtenerGrafMouseClicked
@@ -157,6 +177,7 @@ public class PnlGrafTopProductos extends javax.swing.JPanel {
     private com.toedter.calendar.JDateChooser dtchIni;
     private javax.swing.JLabel lblFechaFin;
     private javax.swing.JLabel lblFechaIni;
+    private javax.swing.JPanel pnlGraf;
     private javax.swing.JPanel pnlLabels;
     // End of variables declaration//GEN-END:variables
 }
