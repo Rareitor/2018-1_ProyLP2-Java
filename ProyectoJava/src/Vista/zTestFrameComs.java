@@ -11,14 +11,14 @@ import Vista.panels.*;
  *
  * @author Emilio
  */
-public class zTestFrame extends javax.swing.JFrame {
+public class zTestFrameComs extends javax.swing.JFrame {
 
     /**
      * Creates new form zTestFrame
      */
-    public zTestFrame() {
-        initComponents();
-        this.setContentPane(new PnlGrafTopProductos());
+    public zTestFrameComs(String id) {
+        initComponents(); id  = "JEF-013";
+        this.setContentPane(new PnlGrafTopComisionistas(id));
         this.pack();
     }
 
@@ -64,20 +64,21 @@ public class zTestFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(zTestFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(zTestFrameComs.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(zTestFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(zTestFrameComs.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(zTestFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(zTestFrameComs.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(zTestFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(zTestFrameComs.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new zTestFrame().setVisible(true);
+                new zTestFrameComs(null).setVisible(true);
             }
         });
     }

@@ -7,7 +7,6 @@ public abstract class Trabajador extends Persona{
     protected Date fechaIngreso;
     protected String email;
     protected String userName;
-    protected String password;
 //métodos
     //constructores
     public Trabajador(){
@@ -16,7 +15,6 @@ public abstract class Trabajador extends Persona{
         this.fechaIngreso = null;
         this.email = null;
         this.userName = null;
-        this.password = null;
     }
 
     //setters y getters
@@ -51,13 +49,5 @@ public abstract class Trabajador extends Persona{
 
     public void setUserName(String userName){
             this.userName = userName;
-    }
-
-    public String getPassword(){
-            return this.password;
-    }
-
-    public void setPassword(String password){
-            this.password = password;
     }
 }

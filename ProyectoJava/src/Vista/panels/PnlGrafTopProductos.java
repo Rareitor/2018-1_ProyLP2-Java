@@ -81,7 +81,7 @@ public class PnlGrafTopProductos extends javax.swing.JPanel {
         pnlGraf.setLayout(pnlGrafLayout);
         pnlGrafLayout.setHorizontalGroup(
             pnlGrafLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 310, Short.MAX_VALUE)
+            .addGap(0, 322, Short.MAX_VALUE)
         );
         pnlGrafLayout.setVerticalGroup(
             pnlGrafLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,7 +145,7 @@ public class PnlGrafTopProductos extends javax.swing.JPanel {
         }else{
             Graphics ggrf = this.pnlGraf.getGraphics();
             Graphics gplbl = pnlLabels.getGraphics();
-            int mxSz = 300;
+            int mxSz = 240;
 
             gplbl.drawString("1. "+nombres.get(0), 5, 40);
             gplbl.drawString("2. "+nombres.get(1), 5, 70);

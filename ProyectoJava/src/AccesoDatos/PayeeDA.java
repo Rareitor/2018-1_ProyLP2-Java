@@ -270,4 +270,27 @@ public class PayeeDA {
             System.out.println(ex.getMessage());
         }
     }
+    
+    public ArrayList<PayeeGraf> ldGrafPayees(String id){
+        ArrayList<PayeeGraf> temp = new ArrayList<>();
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://quilla.lab.inf.pucp.edu.pe/inf282g8", "inf282g8", "4LDJZU");
+            CallableStatement cstt = con.prepareCall("{call RANKING_COMISIONISTAS(?)}");
+            cstt.setString(1, id);
+            cstt.execute();
+            
+            ResultSet rs = cstt.getResultSet();
+            while(rs.next()){
+                PayeeGraf pg = new PayeeGraf(rs.getString(2), rs.getDouble(3));
+                temp.add(pg);
+            }
+
+            con.close();
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+            temp.clear();
+        }
+        return temp;
+    }
 }
