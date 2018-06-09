@@ -6,6 +6,11 @@ import java.awt.Dimension;
 import java.io.File;
 import javax.swing.*;
 
+/*  Admin:          20090380 pucp
+    Gerente:        20176288 roder628
+    Jefe:           20175863 rodri12
+    Comisionista:   20175581 victor558      */
+
 public class FrmLogin extends javax.swing.JFrame {
     private PayeeBL logicanegocio;
     

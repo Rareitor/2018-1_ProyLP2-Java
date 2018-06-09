@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b9fa8a5b-3c24-4fdb-9b91-d730b9692f87">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="Month" class="java.util.Date">
+		<defaultValueExpression><![CDATA[new Date()]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[CALL REPORTE_ORDENES_MES();]]>
+	</queryString>
+	<field name="ID" class="java.lang.Integer"/>
+	<field name="Payee" class="java.lang.String"/>
+	<field name="Monto" class="java.lang.Float"/>
+	<field name="Retribucion" class="java.lang.String"/>
+	<field name="Canal" class="java.lang.String"/>
+	<field name="Combo" class="java.lang.String"/>
+	<field name="Producto" class="java.lang.String"/>
+	<field name="Fecha" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="130" splitType="Stretch">
+			<image>
+				<reportElement x="414" y="0" width="198" height="60" uuid="6db8140a-439a-42c6-84af-597be046fbbc"/>
+				<imageExpression><![CDATA["C:\\Users\\sebas\\Desktop\\descarga.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="151" y="43" width="263" height="28" uuid="b7d22ea3-8c2f-488d-bbff-cae1d1210e66"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reporte de Comisiones del Mes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="219" y="71" width="162" height="21" uuid="7770c921-72e7-4fea-b3ab-a0c28fca4f40"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telefónica del Perú]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="452" y="110" width="100" height="20" uuid="1dfb7535-27b1-4fbc-84c7-242d0bec3bff"/>
+				<textFieldExpression><![CDATA[$P{Month}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="69" height="20" uuid="1139ca30-6ec2-4390-9fc8-692538ee243f"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="69" y="0" width="69" height="20" uuid="af9b952c-154a-44e1-999c-faea357129a6"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Payee]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="138" y="0" width="69" height="20" uuid="45e33f18-f35b-44f5-9d3a-4d4f3e37f786"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Monto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="207" y="0" width="69" height="20" uuid="cd2fe939-ad95-4523-a824-bafb618538a6"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Retribucion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="0" width="69" height="20" uuid="2bb846e1-063e-4a6b-ab18-63dd8506e8a3"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Canal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="345" y="0" width="69" height="20" uuid="26245707-1fb0-48a2-abda-6f27e42f0fa4"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Combo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="414" y="0" width="69" height="20" uuid="5f1004d6-744d-4f06-8ad1-b221ae85e5fc"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Producto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="483" y="0" width="69" height="20" uuid="bdde091f-cde2-4a95-a317-e40dd25e14bb"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField isStretchWithOverflow="true" pattern="">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="69" height="20" uuid="fa3117b5-e331-4c6c-8a8e-6ba2626b3e95"/>
+				<textFieldExpression><![CDATA[$F{ID}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="69" y="0" width="69" height="20" uuid="423303b1-0dcf-4cc1-94b1-2b241d83bcc1"/>
+				<textFieldExpression><![CDATA[$F{Payee}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="138" y="0" width="69" height="20" uuid="3b2b4d98-a0be-46c3-8932-3804695a175c"/>
+				<textFieldExpression><![CDATA[$F{Monto}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="207" y="0" width="69" height="20" uuid="ad55868d-2f2f-4c63-870b-6c09ae1d764b"/>
+				<textFieldExpression><![CDATA[$F{Retribucion}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="276" y="0" width="69" height="20" uuid="659c7dd5-989c-4b61-a4cd-24c371ea7477"/>
+				<textFieldExpression><![CDATA[$F{Canal}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="345" y="0" width="69" height="20" uuid="33172dbf-596a-4caa-b0e1-561c72948299"/>
+				<textFieldExpression><![CDATA[$F{Combo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="414" y="0" width="69" height="20" uuid="7bfae661-74e5-4954-9d1f-7be98f663ba1"/>
+				<textFieldExpression><![CDATA[$F{Producto}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="483" y="0" width="69" height="20" uuid="35cc3ea2-780a-4bba-93c2-ba1745b42cca"/>
+				<textFieldExpression><![CDATA[$F{Fecha}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="455" y="34" width="100" height="20" uuid="aac09b39-6be6-4082-9d7d-174eea3be324"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
