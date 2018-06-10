@@ -1,6 +1,8 @@
 # Proyecto LP2: Java
 
-iReport Pulgin: https://sourceforge.net/projects/ireport/files/iReport%20Plugin%20for%20NetBeans/iReport-5.6.0/ 
+iReport Plugin: https://sourceforge.net/projects/ireport/files/iReport%20Plugin%20for%20NetBeans/iReport-5.6.0/ 
+<br> Librerías necesarias: https://drive.google.com/file/d/1TlKFTdrPhcFn8E1hkUwxl3ZOFvin1hgP/view?usp=sharing
+<br> Todas las librerías: https://community.jaspersoft.com/project/ireport-designer
 
 Falta:
 	
