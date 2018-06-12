@@ -20,6 +20,7 @@ public class zTestFrameComs extends javax.swing.JFrame {
         initComponents(); id  = "JEF-013";
         this.setContentPane(new PnlGrafTopComisionistas(id));
         this.pack();
+        //test
     }
 
     /**

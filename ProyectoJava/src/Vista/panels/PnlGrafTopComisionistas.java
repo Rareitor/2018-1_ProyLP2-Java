@@ -7,6 +7,7 @@ package Vista.panels;
 
 import Controlador.PayeeBL;
 import Modelo.PayeeGraf;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
@@ -19,12 +20,14 @@ import javax.swing.JOptionPane;
 public class PnlGrafTopComisionistas extends javax.swing.JPanel {
     private final PayeeBL control;
     private ArrayList<PayeeGraf> lst;
+    private final int szGraph;
 
     /**
      * Creates new form PnlGrafTopComisionistas
      */
     public PnlGrafTopComisionistas(String id) {
         initComponents();
+        szGraph = 500;
         control = new PayeeBL();
         lst = control.getPayees(id);
         if(lst.isEmpty()){
@@ -43,8 +46,32 @@ public class PnlGrafTopComisionistas extends javax.swing.JPanel {
             i++;
             mdl.addElement("["+i+"]: "+elem.getNombre());
         }
+        
+        pntGraf();
     }
     
+    private void pntGraf(){
+        Graphics pnlG = pnlGrafico.getGraphics();
+        Double tot = 0.0;
+        //int[] lins = new int[lst.size()];
+        int lim = 0;
+        
+        for(PayeeGraf elem:lst){
+            tot+=elem.getTotSum();
+        }
+        
+        pnlG.setColor(Color.blue);
+        pnlG.fillRect(lim, 30, szGraph-lim+20, 240);
+        lim += (int) (szGraph*lst.get(0).getTotSum()/tot);
+        
+        pnlG.setColor(Color.yellow);
+        pnlG.fillRect(lim, 30, szGraph-lim+20, 240);
+        lim += (int) (szGraph*lst.get(1).getTotSum()/tot);
+        
+        pnlG.setColor(Color.red);
+        pnlG.fillRect(lim, 30, szGraph-lim+20, 240);
+        //lim += (int) (szGraph*lst.get(2).getTotSum()/tot);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -75,7 +102,7 @@ public class PnlGrafTopComisionistas extends javax.swing.JPanel {
         pnlNombresLayout.setVerticalGroup(
             pnlNombresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlNombresLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -85,7 +112,7 @@ public class PnlGrafTopComisionistas extends javax.swing.JPanel {
         pnlGrafico.setLayout(pnlGraficoLayout);
         pnlGraficoLayout.setHorizontalGroup(
             pnlGraficoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 295, Short.MAX_VALUE)
+            .addGap(0, 539, Short.MAX_VALUE)
         );
         pnlGraficoLayout.setVerticalGroup(
             pnlGraficoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,9 +134,9 @@ public class PnlGrafTopComisionistas extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(pnlGrafico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlNombres, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlNombres, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlGrafico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents

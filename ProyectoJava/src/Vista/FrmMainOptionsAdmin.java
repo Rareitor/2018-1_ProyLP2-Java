@@ -5,6 +5,21 @@ import Modelo.Payee;
 import java.awt.*;
 import javax.swing.*;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.util.HashMap;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
+
 public class FrmMainOptionsAdmin extends javax.swing.JDialog {
     private final Payee currentUser;
     private FrmAdministrarCuenta administrarCuenta;
@@ -178,6 +193,8 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         menuiNoticias = new javax.swing.JMenuItem();
         menuiVerProdDestacados = new javax.swing.JMenuItem();
         menuiVerPayeeDestacados = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         menuOtros = new javax.swing.JMenu();
         menuiRecomendaciones = new javax.swing.JMenuItem();
         menuiPapelera = new javax.swing.JMenuItem();
@@ -376,6 +393,18 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         menuVisualizacion.add(menuiVerPayeeDestacados);
 
         menubPrincipal.add(menuVisualizacion);
+
+        jMenu1.setText("Reportes");
+
+        jMenuItem1.setText("Órdenes");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        menubPrincipal.add(jMenu1);
 
         menuOtros.setText("Otros");
 
@@ -844,6 +873,10 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         payeesDestacados.setVisible(true);
     }//GEN-LAST:event_menuiVerPayeeDestacadosActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        GenerarReporte reporte = new GenerarReporte();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -891,6 +924,8 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane dskPnPrincipal;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblNoticias;
