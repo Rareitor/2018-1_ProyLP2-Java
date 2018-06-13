@@ -12,13 +12,14 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 public class PnlVerMapa extends javax.swing.JPanel {
-    public static final int MAX_DISTRITOS = 25;
+    public static final int MAX_DISTRITOS = 30;
     private BufferedImage[] imagenes;
     private BufferedImage background;
     private int numDistritos = 0;
     private List<String> lista;
     private DistritoBL logicaNegocio;
     JButton buttonPrevious,buttonNext;
+    private int currentDistrito;
     hiloCargarMapa hilo;
     
     public PnlVerMapa() {
@@ -27,6 +28,7 @@ public class PnlVerMapa extends javax.swing.JPanel {
         //Empieza concurrencia
         numDistritos = 4;
         initComponents(); 
+        currentDistrito = 0;
         //Termina concurrencia
         try{
             hilo.join();
@@ -35,28 +37,31 @@ public class PnlVerMapa extends javax.swing.JPanel {
         }
     }
     
-//    private void escribirLabel(){
-//        String cadDistritos = lista.get(0);
-//        if (numDistritos>lista.size())
-//            numDistritos = lista.size();
-//        for(int i=1;i<numDistritos;i++){
-//            if(i==lista.size()-1)
-//                cadDistritos += " y " + lista.get(i);
-//            else
-//                cadDistritos += ", " + lista.get(i);
-//        }
-//    }
+    private void escribirLabel(){
+        labelDistritoActual.setText(lista.get(currentDistrito));
+    }
+    
+    private void ocultarBotones(){
+        System.out.println(currentDistrito);
+        if(currentDistrito == 0)
+            botonPrevius.setVisible(false);
+        else if(currentDistrito == numDistritos-1)
+            botonNext.setVisible(false);
+        else {
+            botonPrevius.setVisible(true);
+            botonNext.setVisible(true);
+        }
+    }
     
     public void paint(Graphics g){
         super.paint(g);
-        g.drawImage(background, 90, 130, this);
-        if (imagenes[0] == null){
+        ocultarBotones();
+        g.drawImage(background, 90, 90, this);
+        escribirLabel();
+        if (imagenes[currentDistrito] == null){
             return;
         }
-        if (numDistritos>lista.size())
-            numDistritos = lista.size();
-        for(int i=0;i<numDistritos;i++)
-            g.drawImage(imagenes[i], 90, 130, this);
+        g.drawImage(imagenes[currentDistrito], 90, 90, this);
     }
     
     private class hiloCargarMapa extends Thread {
@@ -64,12 +69,8 @@ public class PnlVerMapa extends javax.swing.JPanel {
         public void run(){
             logicaNegocio = new DistritoBL();
             lista = logicaNegocio.listarDistritos();
-//            lista = new ArrayList<String>();
-//            lista.add("Pueblo Libre");
-//            lista.add("San Miguel");
-//            lista.add("Chorrillos");
-//            lista.add("Magdalena");
-
+            numDistritos = lista.size();
+            System.out.println(numDistritos);
             //Agregamos la imagen de fondo
             String cadena = "./src/Distritos/Mapa en blanco.png";
             try {
@@ -95,25 +96,30 @@ public class PnlVerMapa extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        txtNumDistritos = new javax.swing.JTextField();
-        btnver = new javax.swing.JButton();
+        labelDistritoActual = new javax.swing.JLabel();
+        botonPrevius = new javax.swing.JButton();
+        botonNext = new javax.swing.JButton();
 
         setToolTipText("Ver Mapa");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Actualmente, los distritos con mayor índice de comisiones son: ");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Número de distritos: ");
+        labelDistritoActual.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        labelDistritoActual.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelDistritoActual.setText("Distrito");
 
-        txtNumDistritos.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtNumDistritos.setText("4");
-
-        btnver.setText("Ver");
-        btnver.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonPrevius.setText("◄");
+        botonPrevius.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnverMouseClicked(evt);
+                botonPreviusMouseClicked(evt);
+            }
+        });
+
+        botonNext.setText("►");
+        botonNext.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonNextMouseClicked(evt);
             }
         });
 
@@ -124,53 +130,47 @@ public class PnlVerMapa extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(27, 27, 27)
-                        .addComponent(txtNumDistritos, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61)
-                        .addComponent(btnver)))
-                .addContainerGap(148, Short.MAX_VALUE))
+                        .addComponent(botonPrevius, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonNext))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(labelDistritoActual, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGap(0, 138, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtNumDistritos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnver))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(0, 459, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(labelDistritoActual)
+                .addGap(153, 153, 153)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonPrevius, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonNext))
+                .addContainerGap(267, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnverMouseClicked
-        if(imagenes[0] == null){
-                JOptionPane.showMessageDialog(this, "Aún no existen ordenes con distritos válidos para mostrar", "Error en listar distritos", JOptionPane.WARNING_MESSAGE);
-                return;
-            }
-        try {
-            int newnum = Integer.parseInt(txtNumDistritos.getText());
-            if (newnum <= 0 || newnum > MAX_DISTRITOS || newnum > lista.size()){
-                JOptionPane.showMessageDialog(null,"Por favor, inserte un número entre 1 y "+lista.size(), "Número de distritos fuera del rango",JOptionPane.WARNING_MESSAGE);
-                return;
-            }
-            numDistritos = newnum;
-            repaint();
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(null,"Por favor, inserte un número válido", "Número de distritos inválido",JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_btnverMouseClicked
+    private void botonPreviusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonPreviusMouseClicked
+        if (currentDistrito != 0) currentDistrito--;
+        repaint();
+    }//GEN-LAST:event_botonPreviusMouseClicked
+
+    private void botonNextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNextMouseClicked
+        if (currentDistrito != numDistritos-1) currentDistrito++;
+        repaint();
+    }//GEN-LAST:event_botonNextMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnver;
+    private javax.swing.JButton botonNext;
+    private javax.swing.JButton botonPrevius;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField txtNumDistritos;
+    private javax.swing.JLabel labelDistritoActual;
     // End of variables declaration//GEN-END:variables
 }

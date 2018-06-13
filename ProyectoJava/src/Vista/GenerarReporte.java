@@ -22,9 +22,9 @@ public class GenerarReporte {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://quilla.lab.inf.pucp.edu.pe/inf282g8", "inf282g8", "4LDJZU");
             
-            String jrxml_path = "C:\\Users\\Sebastián\\Documents\\GitHub\\2018-1_ProyLP2-Java\\ProyectoJava\\src\\Reportes\\reporteOrdenes.jrxml";
-            String jasper_path = "C:\\Users\\Sebastián\\Documents\\GitHub\\2018-1_ProyLP2-Java\\ProyectoJava\\src\\Reportes\\reporteOrdenes.jasper";
-            String pdf_path = "C:\\Users\\Sebastián\\Documents\\GitHub\\2018-1_ProyLP2-Java\\ProyectoJava\\src\\Reportes\\reporteOrdenes.pdf";
+            String jrxml_path = "./src/Reportes/reporteOrdenes.jrxml";
+            String jasper_path = "./src/Reportes/reporteOrdenes.jasper";
+            String pdf_path = "./src/Reportes/reporteOrdenes.pdf";
      
             JasperReport jr = (JasperReport) JRLoader.loadObjectFromFile (GenerarReporte.class.getResource(jasper_path).getFile());
             HashMap hm = new HashMap();
@@ -48,6 +48,7 @@ public class GenerarReporte {
 
 
             System.out.println("Reporte generado!");
+            con.close();
         }
         catch (Exception e){
             System.out.println("Excepcion :( ");
