@@ -1,5 +1,6 @@
 package AccesoDatos;
 
+import Modelo.Distrito;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,8 +14,8 @@ public class DistritoDA {
     public DistritoDA() {
     }
     
-    public List<String> listarDistritos(){
-        List<String> lista = new ArrayList<>();
+    public List<Distrito> listarDistritos(){
+        List<Distrito> lista = new ArrayList<>();
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection
@@ -23,9 +24,10 @@ public class DistritoDA {
             CallableStatement cs = con.prepareCall(sql);
             ResultSet rs = cs.executeQuery();
             while(rs.next()){
-                String distrito = rs.getString("distrito");
-                System.out.println(distrito);
-                lista.add(distrito);
+                Distrito d = new Distrito();
+                d.setNombre(rs.getString("Distrito"));
+                d.setCantidadOrdenes(rs.getInt("Cantidad"));
+                lista.add(d);
             }
             con.close();
         }

@@ -1,6 +1,7 @@
 package Controlador;
 
 import AccesoDatos.DistritoDA;
+import Modelo.Distrito;
 import java.util.List;
 
 public class DistritoBL {
@@ -10,7 +11,7 @@ public class DistritoBL {
         accedoDatos = new DistritoDA();
     }
     
-    public List<String> listarDistritos(){
+    public List<Distrito> listarDistritos(){
         return accedoDatos.listarDistritos();
     }
 }
