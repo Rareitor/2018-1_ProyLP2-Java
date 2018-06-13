@@ -873,7 +873,8 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
             payeesDestacados.dispose();
         }
         payeesDestacados = new JInternalFrame();
-        payeesDestacados.setContentPane(new PnlGrafTopComisionistas(idPayee));
+        PnlGrafTopComisionistas pnlg = new PnlGrafTopComisionistas(idPayee);
+        payeesDestacados.setContentPane(pnlg);
         payeesDestacados.setClosable(true);
         payeesDestacados.pack();
         dskPnPrincipal.add(payeesDestacados);
