@@ -64,22 +64,26 @@ public class PnlGrafTopComisionistas extends javax.swing.JPanel {
         lstClr.add(Color.yellow);
         lstClr.add(Color.red);
         
-//        for(int i = 0; i < lst.size(); i++){
-//            pnlG.setColor(lstClr.get(i));
+        for(int i = 0; i < lst.size(); i++){
+            pnlG.setColor(lstClr.get(i));
+            
 //            pnlG.fillRect(lim, 30, szGraph-lim+20, 240);
 //            lim += (int) (szGraph*lst.get(i).getTotSum()/tot);
-//        }
+            
+            pnlG.fillArc(40, 25, 250, 250, lim-20, 360-lim+20);
+            lim += (int) (360*lst.get(i).getTotSum()/tot);
+        }
         
-        pnlG.setColor(Color.blue);
-        pnlG.fillRect(lim, 30, szGraph-lim+20, 240);
-        lim += (int) (szGraph*lst.get(0).getTotSum()/tot);
-        
-        pnlG.setColor(Color.yellow);
-        pnlG.fillRect(lim, 30, szGraph-lim+20, 240);
-        lim += (int) (szGraph*lst.get(1).getTotSum()/tot);
-        
-        pnlG.setColor(Color.red);
-        pnlG.fillRect(lim, 30, szGraph-lim+20, 240);
+//        pnlG.setColor(Color.blue);
+//        pnlG.fillRect(lim, 30, szGraph-lim+20, 240);
+//        lim += (int) (szGraph*lst.get(0).getTotSum()/tot);
+//        
+//        pnlG.setColor(Color.yellow);
+//        pnlG.fillRect(lim, 30, szGraph-lim+20, 240);
+//        lim += (int) (szGraph*lst.get(1).getTotSum()/tot);
+//        
+//        pnlG.setColor(Color.red);
+//        pnlG.fillRect(lim, 30, szGraph-lim+20, 240);
 //        lim += (int) (szGraph*lst.get(2).getTotSum()/tot);
         pnlG.dispose();
     }
