@@ -40,13 +40,13 @@ public class PnlGrafTopComisionistas extends javax.swing.JPanel {
     }
     
     private void ldData(){
-        DefaultListModel<String> mdl = (DefaultListModel<String>) lstNombres.getModel();
+        DefaultListModel<String> mdl = new DefaultListModel<String>();
         int i=0;
         for(PayeeGraf elem:lst){
             i++;
             mdl.addElement("["+i+"]: "+elem.getNombre());
         }
-        
+        lstNombres.setModel(mdl);
         pntGraf();
     }
     
@@ -55,22 +55,29 @@ public class PnlGrafTopComisionistas extends javax.swing.JPanel {
         Double tot = 0.0;
         //int[] lins = new int[lst.size()];
         int lim = 0;
+        ArrayList<Color> lstClr = new ArrayList<>();
+        lstClr.add(Color.blue);
+        lstClr.add(Color.yellow);
+        lstClr.add(Color.red);
         
         for(PayeeGraf elem:lst){
             tot+=elem.getTotSum();
         }
         
-        pnlG.setColor(Color.blue);
-        pnlG.fillRect(lim, 30, szGraph-lim+20, 240);
-        lim += (int) (szGraph*lst.get(0).getTotSum()/tot);
+        for(int i = 0; i < lst.size(); i++){
+            pnlG.setColor(lstClr.get(i));
+            pnlG.fillRect(lim, 30, szGraph-lim+20, 240);
+            lim += (int) (szGraph*lst.get(0).getTotSum()/tot);
+        }
         
-        pnlG.setColor(Color.yellow);
-        pnlG.fillRect(lim, 30, szGraph-lim+20, 240);
-        lim += (int) (szGraph*lst.get(1).getTotSum()/tot);
         
-        pnlG.setColor(Color.red);
-        pnlG.fillRect(lim, 30, szGraph-lim+20, 240);
-        //lim += (int) (szGraph*lst.get(2).getTotSum()/tot);
+//        pnlG.setColor(Color.yellow);
+//        pnlG.fillRect(lim, 30, szGraph-lim+20, 240);
+//        lim += (int) (szGraph*lst.get(1).getTotSum()/tot);
+//        
+//        pnlG.setColor(Color.red);
+//        pnlG.fillRect(lim, 30, szGraph-lim+20, 240);
+//        lim += (int) (szGraph*lst.get(2).getTotSum()/tot);
     }
     /**
      * This method is called from within the constructor to initialize the form.
