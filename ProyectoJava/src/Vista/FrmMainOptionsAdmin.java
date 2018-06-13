@@ -93,6 +93,13 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
     }
     
     private void setVisibleOpts(){
+        menuiComisiones.setVisible(false);
+        menuiProductos.setVisible(false);
+        menuiCanalesVenta.setVisible(false);
+        menuPersonalCargo.setVisible(false);
+        menuiInfracciones.setVisible(false);
+        menuiNoticias.setVisible(false);
+        
         switch(currentUser.getCargo()){
             case "ADMINISTRADOR":
                 menuVisualizacion.setVisible(false);
