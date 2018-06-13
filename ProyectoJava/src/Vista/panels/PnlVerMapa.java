@@ -37,7 +37,9 @@ public class PnlVerMapa extends javax.swing.JPanel {
     }
     
     private void escribirLabel(){
-        String texto = lista.get(currentDistrito).getNombre() +
+        String texto = String.valueOf(currentDistrito+1) + 
+                "° : " +
+                lista.get(currentDistrito).getNombre() +
                 " con " + 
                 String.valueOf(lista.get(currentDistrito).getCantidadOrdenes()) + 
                 " órdenes";
