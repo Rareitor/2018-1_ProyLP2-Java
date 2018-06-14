@@ -152,13 +152,17 @@ public class FrmLogin extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Por favor, ingrese un usuario válido.",  "Ingresar usuario",JOptionPane.WARNING_MESSAGE);
                     return;
                 }
-                JDialog frmMainOpt = new FrmMainOptionsAdmin(this, true, user);
-                //user = null;
-                frmMainOpt.pack();
-                this.setVisible(false);
+//                JDialog frmMainOpt = new FrmMainOptionsAdmin(this, true, user);
+//                frmMainOpt.pack();
+//                this.setVisible(false);
+//                frmMainOpt.setVisible(true);
+//                limpiarCampos();
+//                this.setVisible(true);
+                
+                FrmMainOptionsAdmin frmMainOpt = new FrmMainOptionsAdmin(this, true, user);
+                this.hide();
                 frmMainOpt.setVisible(true);
                 limpiarCampos();
-                this.setVisible(true);
             }
         }catch(Exception ex){
             System.out.println(ex.getMessage());

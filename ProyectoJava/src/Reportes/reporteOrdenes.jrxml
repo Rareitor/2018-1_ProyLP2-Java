@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b9fa8a5b-3c24-4fdb-9b91-d730b9692f87">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="32"/>
 	<parameter name="Month" class="java.util.Date">
 		<defaultValueExpression><![CDATA[new Date()]]></defaultValueExpression>
 	</parameter>
@@ -40,10 +40,6 @@
 				<reportElement x="452" y="110" width="100" height="20" uuid="1dfb7535-27b1-4fbc-84c7-242d0bec3bff"/>
 				<textFieldExpression><![CDATA[$P{Month}]]></textFieldExpression>
 			</textField>
-			<image>
-				<reportElement x="402" y="-2" width="183" height="73" uuid="50328665-164d-4cde-95bd-a84569c452bd"/>
-				<imageExpression><![CDATA["C:\\Users\\Sebastián\\Documents\\GitHub\\2018-1_ProyLP2-Java\\ProyectoJava\\archivos\\logo_telefonica_azul.png"]]></imageExpression>
-			</image>
 		</band>
 	</title>
 	<pageHeader>
@@ -121,15 +117,11 @@
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="">
 				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="138" y="0" width="69" height="20" uuid="3b2b4d98-a0be-46c3-8932-3804695a175c"/>
-				<textFieldExpression><![CDATA[$F{Monto}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["S/. "+$F{Monto}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="">
 				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="207" y="0" width="69" height="20" uuid="ad55868d-2f2f-4c63-870b-6c09ae1d764b"/>
 				<textFieldExpression><![CDATA[$F{Retribucion}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" pattern="">
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="276" y="0" width="69" height="20" uuid="659c7dd5-989c-4b61-a4cd-24c371ea7477"/>
-				<textFieldExpression><![CDATA[$F{Canal}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="">
 				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="345" y="0" width="69" height="20" uuid="33172dbf-596a-4caa-b0e1-561c72948299"/>
@@ -143,6 +135,10 @@
 				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="483" y="0" width="69" height="20" uuid="35cc3ea2-780a-4bba-93c2-ba1745b42cca"/>
 				<textFieldExpression><![CDATA[$F{Fecha}]]></textFieldExpression>
 			</textField>
+			<textField isStretchWithOverflow="true" pattern="">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="276" y="0" width="69" height="20" uuid="659c7dd5-989c-4b61-a4cd-24c371ea7477"/>
+				<textFieldExpression><![CDATA[$F{Canal}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>
@@ -151,7 +147,7 @@
 	<pageFooter>
 		<band height="54" splitType="Stretch">
 			<textField>
-				<reportElement x="455" y="34" width="100" height="20" uuid="aac09b39-6be6-4082-9d7d-174eea3be324"/>
+				<reportElement x="534" y="34" width="43" height="20" uuid="aac09b39-6be6-4082-9d7d-174eea3be324"/>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>

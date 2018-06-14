@@ -1,4 +1,5 @@
 package Vista;
+import Reportes.GenerarReporte;
 import Vista.panels.*;
 import Controlador.PayeeBL;
 import Modelo.Payee;
@@ -20,7 +21,7 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
-public class FrmMainOptionsAdmin extends javax.swing.JDialog {
+public class FrmMainOptionsAdmin extends javax.swing.JFrame {
     private final Payee currentUser;
     private FrmAdministrarCuenta administrarCuenta;
     private FrmAnadirNoticia addNoticia;
@@ -48,7 +49,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
      * Creates new form NewJDialog
      */
     public FrmMainOptionsAdmin(java.awt.Frame parent, boolean modal, Payee user) {
-        super(parent, modal);
+        //super(parent, modal);
         initComponents();
         logicaNegocio = new PayeeBL();
         currentUser = user;
@@ -201,7 +202,8 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         menuiVerProdDestacados = new javax.swing.JMenuItem();
         menuiVerPayeeDestacados = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        menuReporteOrden = new javax.swing.JMenuItem();
+        menuReporteComisionistas = new javax.swing.JMenuItem();
         menuOtros = new javax.swing.JMenu();
         menuiRecomendaciones = new javax.swing.JMenuItem();
         menuiPapelera = new javax.swing.JMenuItem();
@@ -403,13 +405,21 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
 
         jMenu1.setText("Reportes");
 
-        jMenuItem1.setText("Órdenes");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        menuReporteOrden.setText("Órdenes");
+        menuReporteOrden.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                menuReporteOrdenActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(menuReporteOrden);
+
+        menuReporteComisionistas.setText("Pago Comisionistas");
+        menuReporteComisionistas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuReporteComisionistasActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuReporteComisionistas);
 
         menubPrincipal.add(jMenu1);
 
@@ -881,9 +891,15 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
         payeesDestacados.setVisible(true);
     }//GEN-LAST:event_menuiVerPayeeDestacadosActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void menuReporteOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReporteOrdenActionPerformed
         GenerarReporte reporte = new GenerarReporte();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+        reporte.reporteOrden();
+    }//GEN-LAST:event_menuReporteOrdenActionPerformed
+
+    private void menuReporteComisionistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReporteComisionistasActionPerformed
+        GenerarReporte reporte = new GenerarReporte();
+        reporte.reportePagoComisionistas();
+    }//GEN-LAST:event_menuReporteComisionistasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -933,7 +949,6 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane dskPnPrincipal;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblNoticias;
@@ -943,6 +958,8 @@ public class FrmMainOptionsAdmin extends javax.swing.JDialog {
     private javax.swing.JMenu menuCuenta;
     private javax.swing.JMenu menuOtros;
     private javax.swing.JMenu menuPersonalCargo;
+    private javax.swing.JMenuItem menuReporteComisionistas;
+    private javax.swing.JMenuItem menuReporteOrden;
     private javax.swing.JMenu menuVisualizacion;
     private javax.swing.JMenuBar menubPrincipal;
     private javax.swing.JMenuItem menuiAnadirNoticias;
