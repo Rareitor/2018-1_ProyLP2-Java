@@ -9,6 +9,7 @@ import Controlador.PayeeBL;
 import Modelo.Payee;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -28,9 +29,7 @@ public class PnlGrafTopComisionistas extends javax.swing.JPanel {
      */
     public PnlGrafTopComisionistas(String id) {
         initComponents();
-//        if(id == null)
-//            id  = "JEF-013";
-        szGraph = 500;
+        szGraph = 500;     
         control = new PayeeBL();
         lst = control.getPayees(id);
         if(lst.isEmpty()){
@@ -56,35 +55,31 @@ public class PnlGrafTopComisionistas extends javax.swing.JPanel {
     }
     
     private void pntGraf(){
+    
         Graphics pnlG = pnlGrafico.getGraphics();
-        //int[] lins = new int[lst.size()];
         int lim = 20;
+        int y = 120;
         ArrayList<Color> lstClr = new ArrayList<>();
         lstClr.add(Color.blue);
-        lstClr.add(Color.yellow);
+        lstClr.add(Color.green);
         lstClr.add(Color.red);
-        
+        DecimalFormat df = new DecimalFormat("#.##"); 
+        pnlG.drawRect(290, 50, 185, 190);
+        pnlG.drawString("Leyenda", 290, y-80);
+        pnlG.drawString("Nombre", 335, y-25 );
+        pnlG.drawString("Monto (S/.)", 415, y-25);
         for(int i = 0; i < lst.size(); i++){
+            
             pnlG.setColor(lstClr.get(i));
-            
-//            pnlG.fillRect(lim, 30, szGraph-lim+20, 240);
-//            lim += (int) (szGraph*lst.get(i).getTotSum()/tot);
-            
-            pnlG.fillArc(40, 25, 250, 250, lim-20, 360-lim+20);
+            pnlG.fillRect(295, y-10, 20, 20);
+                pnlG.fillArc(40, 25, 220, 250, lim-20, 360-lim+20);
             lim += (int) (360*lst.get(i).getMonto()/tot);
+            pnlG.setColor(Color.black);
+            pnlG.drawString(lst.get(i).getNombre() + " " + lst.get(i).getApellidoPaterno(), 320, y);
+            double monto = lst.get(i).getMonto();
+            pnlG.drawString(df.format(monto), 435, y);
+            y += 30;
         }
-        
-//        pnlG.setColor(Color.blue);
-//        pnlG.fillRect(lim, 30, szGraph-lim+20, 240);
-//        lim += (int) (szGraph*lst.get(0).getTotSum()/tot);
-//        
-//        pnlG.setColor(Color.yellow);
-//        pnlG.fillRect(lim, 30, szGraph-lim+20, 240);
-//        lim += (int) (szGraph*lst.get(1).getTotSum()/tot);
-//        
-//        pnlG.setColor(Color.red);
-//        pnlG.fillRect(lim, 30, szGraph-lim+20, 240);
-//        lim += (int) (szGraph*lst.get(2).getTotSum()/tot);
         pnlG.dispose();
     }
     /**
@@ -100,6 +95,7 @@ public class PnlGrafTopComisionistas extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         lstNombres = new javax.swing.JList<>();
         pnlGrafico = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         lblInstruct = new javax.swing.JLabel();
 
         pnlNombres.setBorder(javax.swing.BorderFactory.createTitledBorder("Nombres:"));
@@ -129,15 +125,32 @@ public class PnlGrafTopComisionistas extends javax.swing.JPanel {
             }
         });
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 183, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 214, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout pnlGraficoLayout = new javax.swing.GroupLayout(pnlGrafico);
         pnlGrafico.setLayout(pnlGraficoLayout);
         pnlGraficoLayout.setHorizontalGroup(
             pnlGraficoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 473, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlGraficoLayout.createSequentialGroup()
+                .addContainerGap(292, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         pnlGraficoLayout.setVerticalGroup(
             pnlGraficoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(pnlGraficoLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         lblInstruct.setText("Click en el panel de la derecha.");
@@ -151,7 +164,7 @@ public class PnlGrafTopComisionistas extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblInstruct)
                     .addComponent(pnlNombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(pnlGrafico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -177,6 +190,7 @@ public class PnlGrafTopComisionistas extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblInstruct;
     private javax.swing.JList<String> lstNombres;

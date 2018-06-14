@@ -1,22 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Vista.panels;
 
 import Controlador.ProductoBL;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
-import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
-import javax.swing.border.Border;
 
-/**
- *
- * @author Emilio
- */
 public class PnlGrafTopProductos extends javax.swing.JPanel {
     private final ProductoBL prodBL;
     private boolean graph = false;
@@ -145,7 +135,7 @@ public class PnlGrafTopProductos extends javax.swing.JPanel {
         }else{
             Graphics ggrf = this.pnlGraf.getGraphics();
             Graphics gplbl = pnlLabels.getGraphics();
-            int mxSz = 240;
+            int mxSz = 300;
 
             gplbl.drawString("1. "+nombres.get(0), 5, 40);
             gplbl.drawString("2. "+nombres.get(1), 5, 70);
@@ -153,17 +143,22 @@ public class PnlGrafTopProductos extends javax.swing.JPanel {
             ggrf.drawString("[1]",  65, 260);
             ggrf.drawString("[2]", 165, 260);
             ggrf.drawString("[3]", 265, 260);
+            ggrf.drawLine(30 , 240, 310, 240);
 
             Double tot = montos.get(0) + montos.get(1) + montos.get(2);
             int v1 = (int) (mxSz*montos.get(0)/tot);
             int v2 = (int) (mxSz*montos.get(1)/tot);
             int v3 = (int) (mxSz*montos.get(2)/tot);
+            DecimalFormat df = new DecimalFormat("#.##"); 
             ggrf.setColor(Color.red);
             ggrf.fillRect( 50, 240-v1, 40, v1);
+            ggrf.drawString(df.format(montos.get(0)), 50, 50);
             ggrf.setColor(Color.blue);
             ggrf.fillRect(150, 240-v2, 40, v2);
+            ggrf.drawString(df.format(montos.get(1)), 150, 50);
             ggrf.setColor(Color.green);
             ggrf.fillRect(250, 240-v3, 40, v3);
+            ggrf.drawString(df.format(montos.get(2)), 250, 50);
 
             ggrf.dispose();
             gplbl.dispose();
