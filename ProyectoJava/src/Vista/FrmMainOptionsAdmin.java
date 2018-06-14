@@ -50,7 +50,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JFrame {
      */
     public FrmMainOptionsAdmin(java.awt.Frame parent, boolean modal, Payee user) {
         //super(parent, modal);
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         initComponents();
         logicaNegocio = new PayeeBL();
         currentUser = user;
@@ -190,10 +190,6 @@ public class FrmMainOptionsAdmin extends javax.swing.JFrame {
     private void initComponents() {
 
         dskPnPrincipal = new javax.swing.JDesktopPane();
-        pnlNoticia = new javax.swing.JPanel();
-        lblNoticias = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         menubPrincipal = new javax.swing.JMenuBar();
         menuAdministracion = new javax.swing.JMenu();
         menuiGestUsuario = new javax.swing.JMenuItem();
@@ -232,52 +228,15 @@ public class FrmMainOptionsAdmin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        lblNoticias.setText("Noticias");
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        javax.swing.GroupLayout pnlNoticiaLayout = new javax.swing.GroupLayout(pnlNoticia);
-        pnlNoticia.setLayout(pnlNoticiaLayout);
-        pnlNoticiaLayout.setHorizontalGroup(
-            pnlNoticiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlNoticiaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlNoticiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-                    .addGroup(pnlNoticiaLayout.createSequentialGroup()
-                        .addComponent(lblNoticias)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        pnlNoticiaLayout.setVerticalGroup(
-            pnlNoticiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlNoticiaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblNoticias)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        dskPnPrincipal.setLayer(pnlNoticia, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout dskPnPrincipalLayout = new javax.swing.GroupLayout(dskPnPrincipal);
         dskPnPrincipal.setLayout(dskPnPrincipalLayout);
         dskPnPrincipalLayout.setHorizontalGroup(
             dskPnPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dskPnPrincipalLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlNoticia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(941, Short.MAX_VALUE))
+            .addGap(0, 1162, Short.MAX_VALUE)
         );
         dskPnPrincipalLayout.setVerticalGroup(
             dskPnPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dskPnPrincipalLayout.createSequentialGroup()
-                .addContainerGap(404, Short.MAX_VALUE)
-                .addComponent(pnlNoticia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGap(0, 626, Short.MAX_VALUE)
         );
 
         menuAdministracion.setText("Administración");
@@ -520,6 +479,11 @@ public class FrmMainOptionsAdmin extends javax.swing.JFrame {
         menuCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menuCerrarMouseClicked(evt);
+            }
+        });
+        menuCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCerrarActionPerformed(evt);
             }
         });
         menubPrincipal.add(menuCerrar);
@@ -914,6 +878,11 @@ public class FrmMainOptionsAdmin extends javax.swing.JFrame {
         reporte.reportePagoComisionistas();
     }//GEN-LAST:event_menuReporteComisionistasActionPerformed
 
+    private void menuCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCerrarActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_menuCerrarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -961,9 +930,6 @@ public class FrmMainOptionsAdmin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane dskPnPrincipal;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JLabel lblNoticias;
     private javax.swing.JMenu menuAdministracion;
     private javax.swing.JMenu menuCalculo;
     private javax.swing.JMenu menuCerrar;
@@ -999,6 +965,5 @@ public class FrmMainOptionsAdmin extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuiVerMapa;
     private javax.swing.JMenuItem menuiVerPayeeDestacados;
     private javax.swing.JMenuItem menuiVerProdDestacados;
-    private javax.swing.JPanel pnlNoticia;
     // End of variables declaration//GEN-END:variables
 }

@@ -2,7 +2,6 @@ package Controlador;
 
 import AccesoDatos.PayeeDA;
 import Modelo.Payee;
-import Modelo.PayeeGraf;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -70,7 +69,7 @@ public class PayeeBL {
         this.accesoDatos.obtenerComisionistasDestac(idP);
     }
     
-    public ArrayList<PayeeGraf> getPayees(String id){
+    public ArrayList<Payee> getPayees(String id){
         return accesoDatos.ldGrafPayees(id);
     }
 }

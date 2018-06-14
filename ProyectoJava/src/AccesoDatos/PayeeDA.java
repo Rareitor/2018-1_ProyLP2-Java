@@ -271,8 +271,8 @@ public class PayeeDA {
         }
     }
     
-    public ArrayList<PayeeGraf> ldGrafPayees(String id){
-        ArrayList<PayeeGraf> temp = new ArrayList<>();
+    public ArrayList<Payee> ldGrafPayees(String id){
+        ArrayList<Payee> temp = new ArrayList<>();
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://quilla.lab.inf.pucp.edu.pe/inf282g8", "inf282g8", "4LDJZU");
@@ -282,8 +282,11 @@ public class PayeeDA {
             
             ResultSet rs = cstt.getResultSet();
             while(rs.next()){
-                PayeeGraf pg = new PayeeGraf(rs.getString(2), rs.getDouble(3));
-                temp.add(pg);
+                Payee pay = new Payee();
+                pay.setNombre(rs.getString(2));
+                pay.setApellidoPaterno(rs.getString(3));
+                pay.setMonto(rs.getDouble(4));
+                temp.add(pay);
             }
 
             con.close();

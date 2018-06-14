@@ -7,6 +7,9 @@ public abstract class Trabajador extends Persona{
     protected Date fechaIngreso;
     protected String email;
     protected String userName;
+    protected Double monto;
+
+
 //métodos
     //constructores
     public Trabajador(){
@@ -49,5 +52,13 @@ public abstract class Trabajador extends Persona{
 
     public void setUserName(String userName){
             this.userName = userName;
+    }
+    
+    public Double getMonto() {
+        return monto;
+    }
+
+    public void setMonto(Double monto) {
+        this.monto = monto;
     }
 }
