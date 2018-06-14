@@ -45,11 +45,13 @@ public class FrmMainOptionsAdmin extends javax.swing.JFrame {
     private PnlVerMapa verMapa;
     private PayeeBL logicaNegocio;
     private String idPayee;
+    private java.awt.Frame parent;
     /**
      * Creates new form NewJDialog
      */
     public FrmMainOptionsAdmin(java.awt.Frame parent, boolean modal, Payee user) {
         //super(parent, modal);
+        this.parent = parent;
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         initComponents();
         logicaNegocio = new PayeeBL();
@@ -69,6 +71,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "NO USER DETECTED", "ERROR", JOptionPane.ERROR_MESSAGE);
             this.dispose();
         }
+        this.setLocationRelativeTo(null);
     }
     
     private void initForms(){
@@ -509,18 +512,13 @@ public class FrmMainOptionsAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuCerrarMouseClicked
-        // TODO add your handling code here:
-        this.setVisible(false);
         this.dispose();
+        System.exit(0);
     }//GEN-LAST:event_menuCerrarMouseClicked
 
     private void menuiCambContrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiCambContrActionPerformed
-        // TODO add your handling code here:
-        FrmCambiarContrasena frm = new FrmCambiarContrasena(null, true);
-        frm.setUsername(currentUser.getUserName());//temp until actual use of iddata between alll forms
-        frm.setVisible(true);
-        //.setVisible(false);
-        frm.dispose();
+        this.dispose();
+        System.exit(0);
     }//GEN-LAST:event_menuiCambContrActionPerformed
 
     private void menuiCambDatPerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiCambDatPerActionPerformed
@@ -879,8 +877,14 @@ public class FrmMainOptionsAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_menuReporteComisionistasActionPerformed
 
     private void menuCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCerrarActionPerformed
-        // TODO add your handling code here:
-
+//        FrmLogin frmLogin = new FrmLogin();
+//        frmLogin.setVisible(true);
+//        this.dispose();
+        System.out.println("xddd");
+        parent.setVisible(true);
+        System.out.println(parent.getTitle());
+        //this.dispose();
+           
     }//GEN-LAST:event_menuCerrarActionPerformed
 
     /**
