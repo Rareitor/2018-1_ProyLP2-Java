@@ -53,7 +53,7 @@ public class PayeeBL {
             if(this.accesoDatos.obtenerDatosUsuario(user)){
                 return user;
             }else{
-                JOptionPane.showMessageDialog(null, "ERROR DE CARGA DE DATOS, USUARIO PODRÍA ESTAR BLOQUEADO", "ERROR", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "ERROR DE CARGA DE DATOS", "ERROR", JOptionPane.WARNING_MESSAGE);
                 return null;
             }
         }else{
