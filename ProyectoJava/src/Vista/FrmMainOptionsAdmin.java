@@ -50,6 +50,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JFrame {
      */
     public FrmMainOptionsAdmin(java.awt.Frame parent, boolean modal, Payee user) {
         //super(parent, modal);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         initComponents();
         logicaNegocio = new PayeeBL();
         currentUser = user;
@@ -100,6 +101,13 @@ public class FrmMainOptionsAdmin extends javax.swing.JFrame {
         menuPersonalCargo.setVisible(false);
         menuiInfracciones.setVisible(false);
         menuiNoticias.setVisible(false);
+        menuiAnadirNoticias.setVisible(false);
+        menuAdministracion.setVisible(false);
+        menuiAnadirNoticias.setVisible(false);
+        menuiRecomendaciones.setVisible(false);
+        menuiReportInfraccion.setVisible(false);
+        menuiPapelera.setVisible(false);
+        menuiBackup.setVisible(false);
         
         switch(currentUser.getCargo()){
             case "ADMINISTRADOR":
@@ -107,6 +115,8 @@ public class FrmMainOptionsAdmin extends javax.swing.JFrame {
                 menuiCalcularComisiones.setVisible(false);
                 menuiReportInfraccion.setVisible(false);
                 menuiVerMapa.setVisible(false);
+                menuReportes.setVisible(false);
+                menuOtros.setVisible(false);
                 break;
             case "GERENTE":
                 menuiGestUsuario.setVisible(false);
@@ -129,10 +139,11 @@ public class FrmMainOptionsAdmin extends javax.swing.JFrame {
                 menuiPapelera.setVisible(false);
                 menuiBackup.setVisible(false);
                 menuiAnadirNoticias.setVisible(false);
-                menuiVerMapa.setVisible(false);
                 menuiVerProdDestacados.setVisible(false);
+                menuReportes.setVisible(false);
                 break;
             case "COMISIONISTA":
+                menuVisualizacion.setVisible(false);
                 menuiGestUsuario.setVisible(false);
                 menuiGestProducto.setVisible(false);
                 menuCalculo.setVisible(false);
@@ -144,6 +155,8 @@ public class FrmMainOptionsAdmin extends javax.swing.JFrame {
                 menuiAnadirNoticias.setVisible(false);
                 menuiVerGerentes.setVisible(false);
                 menuiVerProdDestacados.setVisible(false);
+                menuiVerPayeeDestacados.setVisible(false);
+                menuReportes.setVisible(false);
                 break;
             //case "sysadmin": break;
             default: 
@@ -201,7 +214,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JFrame {
         menuiNoticias = new javax.swing.JMenuItem();
         menuiVerProdDestacados = new javax.swing.JMenuItem();
         menuiVerPayeeDestacados = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
+        menuReportes = new javax.swing.JMenu();
         menuReporteOrden = new javax.swing.JMenuItem();
         menuReporteComisionistas = new javax.swing.JMenuItem();
         menuOtros = new javax.swing.JMenu();
@@ -403,7 +416,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JFrame {
 
         menubPrincipal.add(menuVisualizacion);
 
-        jMenu1.setText("Reportes");
+        menuReportes.setText("Reportes");
 
         menuReporteOrden.setText("Órdenes");
         menuReporteOrden.addActionListener(new java.awt.event.ActionListener() {
@@ -411,7 +424,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JFrame {
                 menuReporteOrdenActionPerformed(evt);
             }
         });
-        jMenu1.add(menuReporteOrden);
+        menuReportes.add(menuReporteOrden);
 
         menuReporteComisionistas.setText("Pago Comisionistas");
         menuReporteComisionistas.addActionListener(new java.awt.event.ActionListener() {
@@ -419,9 +432,9 @@ public class FrmMainOptionsAdmin extends javax.swing.JFrame {
                 menuReporteComisionistasActionPerformed(evt);
             }
         });
-        jMenu1.add(menuReporteComisionistas);
+        menuReportes.add(menuReporteComisionistas);
 
-        menubPrincipal.add(jMenu1);
+        menubPrincipal.add(menuReportes);
 
         menuOtros.setText("Otros");
 
@@ -948,7 +961,6 @@ public class FrmMainOptionsAdmin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane dskPnPrincipal;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblNoticias;
@@ -960,6 +972,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JFrame {
     private javax.swing.JMenu menuPersonalCargo;
     private javax.swing.JMenuItem menuReporteComisionistas;
     private javax.swing.JMenuItem menuReporteOrden;
+    private javax.swing.JMenu menuReportes;
     private javax.swing.JMenu menuVisualizacion;
     private javax.swing.JMenuBar menubPrincipal;
     private javax.swing.JMenuItem menuiAnadirNoticias;

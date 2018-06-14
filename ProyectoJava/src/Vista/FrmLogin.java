@@ -15,6 +15,7 @@ public class FrmLogin extends javax.swing.JFrame {
     private PayeeBL logicanegocio;
     
     public FrmLogin() {
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         initComponents();
         logicanegocio = new PayeeBL();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -158,8 +159,8 @@ public class FrmLogin extends javax.swing.JFrame {
 //                frmMainOpt.setVisible(true);
 //                limpiarCampos();
 //                this.setVisible(true);
-                
                 FrmMainOptionsAdmin frmMainOpt = new FrmMainOptionsAdmin(this, true, user);
+                frmMainOpt.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
                 this.hide();
                 frmMainOpt.setVisible(true);
                 limpiarCampos();
