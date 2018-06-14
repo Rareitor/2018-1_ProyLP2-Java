@@ -20,6 +20,7 @@ public class FrmLogin extends javax.swing.JFrame {
         logicanegocio = new PayeeBL();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         txtContrasena.setText("");
+        this.setLocationRelativeTo(null);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -143,7 +144,7 @@ public class FrmLogin extends javax.swing.JFrame {
 //                this.setVisible(true);
                 FrmMainOptionsAdmin frmMainOpt = new FrmMainOptionsAdmin(this, true, user);
                 frmMainOpt.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-                this.hide();
+                this.setVisible(false);
                 frmMainOpt.setVisible(true);
                 limpiarCampos();
             }
