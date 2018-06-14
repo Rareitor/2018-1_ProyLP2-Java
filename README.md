@@ -6,9 +6,6 @@ iReport Plugin: https://sourceforge.net/projects/ireport/files/iReport%20Plugin%
 <br> Todas las librerías: https://community.jaspersoft.com/project/ireport-designer
 
 Falta:
-	
-	-Manejo de periodo de comisión
-	-Gestión de datos cuenta (usuario en uso)
-	-Cálculo de comisión
-	-Manejo de Recomenciones
-	-Backup
+ - Cuadrar bien los gŕaficos
+ - Backup
+ - Cálculo de comisiones
