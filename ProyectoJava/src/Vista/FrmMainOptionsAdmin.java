@@ -25,6 +25,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JFrame {
     private final Payee currentUser;
     private FrmAdministrarCuenta administrarCuenta;
     private FrmAnadirNoticia addNoticia;
+    //private FrmCambiarContrasena cambContrasena;
     private FrmReportarInfraccion reportarInfraccion;
     private FrmRealizarBackup backup;
     private FrmPapeleraReciclaje papelera;
@@ -78,6 +79,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JFrame {
         administrarCuenta = null;
         addNoticia = null;
         reportarInfraccion = null;
+        //cambContrasena = null;
         backup = null;
         papelera = null;
         verRecom = null;
@@ -517,8 +519,9 @@ public class FrmMainOptionsAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_menuCerrarMouseClicked
 
     private void menuiCambContrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiCambContrActionPerformed
-        this.dispose();
-        System.exit(0);
+        FrmCambiarContrasena cambContr = new FrmCambiarContrasena(this, true);
+        cambContr.setUsername(currentUser.getUserName());
+        cambContr.setVisible(true);
     }//GEN-LAST:event_menuiCambContrActionPerformed
 
     private void menuiCambDatPerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiCambDatPerActionPerformed
