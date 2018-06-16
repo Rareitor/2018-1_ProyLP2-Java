@@ -3,23 +3,9 @@ import Reportes.GenerarReporte;
 import Vista.panels.*;
 import Controlador.PayeeBL;
 import Modelo.Payee;
-import java.awt.*;
 import javax.swing.*;
+import java.awt.*;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.util.HashMap;
-import net.sf.jasperreports.engine.JREmptyDataSource;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.view.JasperViewer;
 
 public class FrmMainOptionsAdmin extends javax.swing.JFrame {
     private final Payee currentUser;
@@ -29,7 +15,6 @@ public class FrmMainOptionsAdmin extends javax.swing.JFrame {
     private FrmRealizarBackup backup;
     private FrmPapeleraReciclaje papelera;
     private FrmVerRecomendaciones verRecom;
-    private FrmCambiarContrasena cambiar;
     private FrmNoticias verNoticia;
     private FrmVisualizarInfraccion visualizarInfracciones;
     private FrmVisualizarUsuario usuarios;
@@ -519,11 +504,9 @@ public class FrmMainOptionsAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_menuCerrarMouseClicked
 
     private void menuiCambContrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiCambContrActionPerformed
-        cambiar = new FrmCambiarContrasena(this, true);
+        FrmCambiarContrasena cambiar = new FrmCambiarContrasena(this, true);
         cambiar.setUsername(currentUser.getUserName());
         cambiar.setVisible(true);
-        //this.dispose();
-        //System.exit(0);
     }//GEN-LAST:event_menuiCambContrActionPerformed
 
     private void menuiCambDatPerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiCambDatPerActionPerformed
