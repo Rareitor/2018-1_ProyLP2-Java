@@ -135,8 +135,9 @@ public class PnlGrafTopProductos extends javax.swing.JPanel {
         }else{
             Graphics ggrf = this.pnlGraf.getGraphics();
             Graphics gplbl = pnlLabels.getGraphics();
-            int mxSz = 300;
+            int mxSz = 200;
 
+            ggrf.drawString("Montos comisionados", 35, 25);
             gplbl.drawString("1. "+nombres.get(0), 5, 40);
             gplbl.drawString("2. "+nombres.get(1), 5, 70);
             gplbl.drawString("3. "+nombres.get(2), 5, 100);

@@ -66,10 +66,11 @@ public class PnlGrafTopComisionistas extends javax.swing.JPanel {
         lstClr.add(Color.green);
         lstClr.add(Color.red);
         DecimalFormat df = new DecimalFormat("#.##"); 
-        pnlG.drawRect(290, 50, 190, 190);
+        pnlG.drawRect(290, 50, 260, 190);
         pnlG.drawString("Leyenda", 290, y-80);
         pnlG.drawString("Nombre", 335, y-25 );
-        pnlG.drawString("Monto (S/.)", 415, y-25);
+        pnlG.drawString("Monto", 480, y-35);
+        pnlG.drawString("Comisionado(S/.)", 445, y-25);
         for(int i = 0; i < lst.size(); i++){
             
             pnlG.setColor(lstClr.get(i));
@@ -79,7 +80,7 @@ public class PnlGrafTopComisionistas extends javax.swing.JPanel {
             pnlG.setColor(Color.black);
             pnlG.drawString(lst.get(i).getNombre() + " " + lst.get(i).getApellidoPaterno(), 320, y);
             double monto = lst.get(i).getMonto();
-            pnlG.drawString(df.format(monto), 435, y);
+            pnlG.drawString(df.format(monto), 465, y);
             y += 30;
         }
         pnlG.dispose();
@@ -143,7 +144,7 @@ public class PnlGrafTopComisionistas extends javax.swing.JPanel {
         pnlGraficoLayout.setHorizontalGroup(
             pnlGraficoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlGraficoLayout.createSequentialGroup()
-                .addContainerGap(292, Short.MAX_VALUE)
+                .addContainerGap(361, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -166,8 +167,8 @@ public class PnlGrafTopComisionistas extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblInstruct)
                     .addComponent(pnlNombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addComponent(pnlGrafico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(pnlGrafico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -180,7 +181,7 @@ public class PnlGrafTopComisionistas extends javax.swing.JPanel {
                         .addComponent(pnlNombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblInstruct)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 52, Short.MAX_VALUE)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
