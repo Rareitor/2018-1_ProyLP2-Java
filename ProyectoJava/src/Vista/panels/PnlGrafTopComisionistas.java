@@ -38,6 +38,8 @@ public class PnlGrafTopComisionistas extends javax.swing.JPanel {
             pnlGrafico.setEnabled(false);
         }else{
             ldData();
+            //.setTot(tot);
+            //.setLst(lst);
         }
     }
     
@@ -64,7 +66,7 @@ public class PnlGrafTopComisionistas extends javax.swing.JPanel {
         lstClr.add(Color.green);
         lstClr.add(Color.red);
         DecimalFormat df = new DecimalFormat("#.##"); 
-        pnlG.drawRect(290, 50, 185, 190);
+        pnlG.drawRect(290, 50, 190, 190);
         pnlG.drawString("Leyenda", 290, y-80);
         pnlG.drawString("Nombre", 335, y-25 );
         pnlG.drawString("Monto (S/.)", 415, y-25);
@@ -72,7 +74,7 @@ public class PnlGrafTopComisionistas extends javax.swing.JPanel {
             
             pnlG.setColor(lstClr.get(i));
             pnlG.fillRect(295, y-10, 20, 20);
-                pnlG.fillArc(40, 25, 220, 250, lim-20, 360-lim+20);
+            pnlG.fillArc(40, 25, 220, 250, lim-20, 360-lim+20);
             lim += (int) (360*lst.get(i).getMonto()/tot);
             pnlG.setColor(Color.black);
             pnlG.drawString(lst.get(i).getNombre() + " " + lst.get(i).getApellidoPaterno(), 320, y);
