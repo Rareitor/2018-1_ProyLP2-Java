@@ -12,7 +12,6 @@ public class PnlGrafTopProductos extends javax.swing.JPanel {
     private boolean graph = false;
     private final ArrayList<String> nombres;
     private final ArrayList<Double> montos;
-
     /**
      * Creates new form PnlGrafTopProductos
      */
@@ -21,6 +20,7 @@ public class PnlGrafTopProductos extends javax.swing.JPanel {
         prodBL = new ProductoBL();
         nombres = new ArrayList<>();
         montos = new ArrayList<>();
+        prodBL.productosDestacados(nombres, montos, dtchIni.getDate(), dtchFin.getDate());
     }
     
     
@@ -117,18 +117,19 @@ public class PnlGrafTopProductos extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void btnObtenerGrafMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnObtenerGrafMouseClicked
         nombres.clear();
         montos.clear();
-        //this.paint(this.getGraphics());
         if(!prodBL.productosDestacados(nombres, montos, dtchIni.getDate(), dtchFin.getDate())){
             JOptionPane.showMessageDialog(this, "Por favor, ingrese fechas válidas", "Error en la gráfica", JOptionPane.ERROR_MESSAGE);
             graph=false;
             this.pnlGraf.repaint();
             this.pnlLabels.repaint();
-        } else {
+        } else {            
             Graphics ggrf = this.pnlGraf.getGraphics();
-            Graphics gplbl = pnlLabels.getGraphics();
+            Graphics gplbl = this.pnlLabels.getGraphics();
+            
             int mxSz = 180;
             
             if (nombres.size() < 3 ){
@@ -137,7 +138,6 @@ public class PnlGrafTopProductos extends javax.swing.JPanel {
                     montos.add(0.0);
                 }
             }
-            
             
             ggrf.drawString("Montos comisionados", 35, 25);
             if (montos.get(0) != 0)   
