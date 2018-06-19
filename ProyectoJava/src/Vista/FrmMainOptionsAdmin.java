@@ -832,6 +832,10 @@ public class FrmMainOptionsAdmin extends javax.swing.JFrame {
         productosDestacados.setClosable(true);
         productosDestacados.pack();
         dskPnPrincipal.add(productosDestacados);
+        
+        Dimension desktopSize = dskPnPrincipal.getSize();
+        Dimension jInternalFrameSize = productosDestacados.getSize();
+        productosDestacados.setLocation((desktopSize.width - jInternalFrameSize.width)/2,(desktopSize.height- jInternalFrameSize.height)/2);
         productosDestacados.setVisible(true);
     }//GEN-LAST:event_menuiVerProdDestacadosActionPerformed
 
