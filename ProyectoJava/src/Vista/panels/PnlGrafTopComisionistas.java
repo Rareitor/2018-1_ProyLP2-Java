@@ -36,10 +36,44 @@ public class PnlGrafTopComisionistas extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Ocurrió un error en la carga de datos", "ERROR", HEIGHT);
             pnlNombres.setEnabled(false);
             pnlGrafico.setEnabled(false);
-        }else{
+        } else {
             ldData();
+            repaint();
             //.setTot(tot);
             //.setLst(lst);
+        }
+        
+        //pntGraf();
+    }
+    
+    @Override
+    public void paint(Graphics g){
+        super.paint(g);
+        int lim = 20;
+        int y = 120;
+        ArrayList<Color> lstClr = new ArrayList<>();
+        lstClr.add(Color.blue);
+        lstClr.add(Color.green);
+        lstClr.add(Color.red);
+        DecimalFormat df = new DecimalFormat("#.##"); 
+        g.drawRect(290, 50, 260, 190);
+        g.drawString("Leyenda", 290, y-80);
+        g.drawString("Nombre", 335, y-25 );
+        g.drawString("Monto", 480, y-35);
+        g.drawString("Comisionado(S/.)", 445, y-25);
+        
+        for(int i = 0; i < lst.size(); i++){
+            
+            g.setColor(lstClr.get(i));
+            g.fillRect(295, y-10, 20, 20);
+            //g.fillArc(40, 25, 220, 250, lim-20, 360-lim+20);
+            g.fillArc(650, 120, 220, 250, lim-20, 360-lim+20);
+            lim += (int) (360*lst.get(i).getMonto()/tot);
+            g.setColor(Color.black);
+            g.drawString(lst.get(i).getNombre() + " " + lst.get(i).getApellidoPaterno(), 320, y);
+            double monto = lst.get(i).getMonto();
+            g.drawString(df.format(monto), 465, y);
+            y += 30;
         }
     }
     
@@ -56,7 +90,7 @@ public class PnlGrafTopComisionistas extends javax.swing.JPanel {
 //        pntGraf();
     }
     
-    private void pntGraf(){
+    public void pntGraf(){
     
         Graphics pnlG = pnlGrafico.getGraphics();
         int lim = 20;
@@ -72,7 +106,6 @@ public class PnlGrafTopComisionistas extends javax.swing.JPanel {
         pnlG.drawString("Monto", 480, y-35);
         pnlG.drawString("Comisionado(S/.)", 445, y-25);
         for(int i = 0; i < lst.size(); i++){
-            
             pnlG.setColor(lstClr.get(i));
             pnlG.fillRect(295, y-10, 20, 20);
             pnlG.fillArc(40, 25, 220, 250, lim-20, 360-lim+20);
@@ -144,7 +177,7 @@ public class PnlGrafTopComisionistas extends javax.swing.JPanel {
         pnlGraficoLayout.setHorizontalGroup(
             pnlGraficoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlGraficoLayout.createSequentialGroup()
-                .addContainerGap(361, Short.MAX_VALUE)
+                .addContainerGap(507, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -157,6 +190,7 @@ public class PnlGrafTopComisionistas extends javax.swing.JPanel {
         );
 
         lblInstruct.setText("Click en el panel de la derecha.");
+        lblInstruct.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -181,14 +215,13 @@ public class PnlGrafTopComisionistas extends javax.swing.JPanel {
                         .addComponent(pnlNombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblInstruct)
-                        .addGap(0, 52, Short.MAX_VALUE)))
+                        .addGap(0, 167, Short.MAX_VALUE)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void pnlGraficoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlGraficoMouseClicked
-        // TODO add your handling code here:
-        pntGraf();
+        //pntGraf();
     }//GEN-LAST:event_pnlGraficoMouseClicked
 
 

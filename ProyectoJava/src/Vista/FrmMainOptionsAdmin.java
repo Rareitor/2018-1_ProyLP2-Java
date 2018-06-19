@@ -851,7 +851,14 @@ public class FrmMainOptionsAdmin extends javax.swing.JFrame {
         payeesDestacados.setClosable(true);
         payeesDestacados.pack();
         dskPnPrincipal.add(payeesDestacados);
+        
+        Dimension desktopSize = dskPnPrincipal.getSize();
+        Dimension jInternalFrameSize = payeesDestacados.getSize();
+        payeesDestacados.setLocation((desktopSize.width - jInternalFrameSize.width)/2,(desktopSize.height- jInternalFrameSize.height)/2);
+//        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+//        dskPnPrincipal.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         payeesDestacados.setVisible(true);
+        //pnlg.pntGraf();
     }//GEN-LAST:event_menuiVerPayeeDestacadosActionPerformed
 
     private void menuReporteOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReporteOrdenActionPerformed
