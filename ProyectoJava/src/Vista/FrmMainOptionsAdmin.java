@@ -805,6 +805,9 @@ public class FrmMainOptionsAdmin extends javax.swing.JFrame {
         marco.add(verMapa);
         marco.pack();
         marco.setSize(600,700);
+        
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        marco.setLocation(dim.width/2-marco.getSize().width/2, dim.height/2-marco.getSize().height/2);
         marco.setVisible(true);
     }//GEN-LAST:event_menuiVerMapaActionPerformed
 
