@@ -472,11 +472,6 @@ public class FrmMainOptionsAdmin extends javax.swing.JFrame {
                 menuCerrarMouseClicked(evt);
             }
         });
-        menuCerrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuCerrarActionPerformed(evt);
-            }
-        });
         menubPrincipal.add(menuCerrar);
 
         setJMenuBar(menubPrincipal);
@@ -500,8 +495,10 @@ public class FrmMainOptionsAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuCerrarMouseClicked
+        this.parent.setVisible(true);
+        System.out.println(parent.getTitle());
         this.dispose();
-        System.exit(0);
+//        System.exit(0);
     }//GEN-LAST:event_menuCerrarMouseClicked
 
     private void menuiCambContrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiCambContrActionPerformed
@@ -874,17 +871,6 @@ public class FrmMainOptionsAdmin extends javax.swing.JFrame {
         GenerarReporte reporte = new GenerarReporte();
         reporte.reportePagoComisionistas();
     }//GEN-LAST:event_menuReporteComisionistasActionPerformed
-
-    private void menuCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCerrarActionPerformed
-//        FrmLogin frmLogin = new FrmLogin();
-//        frmLogin.setVisible(true);
-//        this.dispose();
-        System.out.println("xddd");
-        parent.setVisible(true);
-        System.out.println(parent.getTitle());
-        //this.dispose();
-           
-    }//GEN-LAST:event_menuCerrarActionPerformed
 
     /**
      * @param args the command line arguments
