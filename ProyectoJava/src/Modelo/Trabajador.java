@@ -18,6 +18,16 @@ public abstract class Trabajador extends Persona{
         this.fechaIngreso = null;
         this.email = null;
         this.userName = null;
+        this.monto = 0.0;
+    }
+    
+    public Trabajador(Trabajador t){
+        super(t);
+        this.setIdTrabajador(t.getIdTrabajador());
+        this.setFechaIngreso(t.getFechaIngreso());
+        this.setEmail(t.getEmail());
+        this.setUserName(t.getUserName());
+        this.setMonto(t.getMonto());
     }
 
     //setters y getters

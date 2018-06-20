@@ -28,4 +28,11 @@ public class Payee extends Trabajador{
         this.cargo = null;
         this.distrito = null;
     }
+    
+    public Payee(Payee p)
+    {
+        super(p);
+        this.setCargo(p.getCargo());
+        this.setDistrito(p.getDistrito());
+    }
 }

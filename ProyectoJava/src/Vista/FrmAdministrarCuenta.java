@@ -185,9 +185,7 @@ public class FrmAdministrarCuenta extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Ingrese email válido");
         }else
         {
-//            Payee altUser = new Payee();
-//            altUser.setIdTrabajador(curu);
-//            altUser.setUserName(curUser.getUserName());
+//            Payee altUser = new Payee(curUser);
             String tmp = txtNombre.getText().trim();
             if(!curUser.getNombre().equals(tmp)) curUser.setNombre(tmp);
             

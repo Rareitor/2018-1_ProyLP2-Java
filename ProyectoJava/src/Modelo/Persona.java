@@ -14,6 +14,13 @@ public abstract class Persona{
         this.apellidoPaterno = null;
         this.apellidoMaterno = null;
     }
+    
+    public Persona(Persona p){
+        this.setDni(p.getDni());
+        this.setNombre(p.getNombre());
+        this.setApellidoPaterno(p.getApellidoPaterno());
+        this.setApellidoMaterno(p.getApellidoMaterno());
+    }
 
     //setters y getters
     public void setDni(String dni){
