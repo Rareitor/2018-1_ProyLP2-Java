@@ -5,10 +5,11 @@ import Modelo.Payee;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 public class FrmAdministrarCuenta extends javax.swing.JInternalFrame {
-
+    private Pattern emailpattern;
     private final Payee curUser;
     private final PayeeBL pyBL;
     private String[] datos;
@@ -19,6 +20,8 @@ public class FrmAdministrarCuenta extends javax.swing.JInternalFrame {
     public FrmAdministrarCuenta(Payee user) {
         initComponents();
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        emailpattern.compile("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$");
+ 
         pyBL = new PayeeBL();
         curUser = user;
         ldDatosUsuario();
@@ -198,8 +201,9 @@ public class FrmAdministrarCuenta extends javax.swing.JInternalFrame {
         if (txtNombre.getText().trim().equals("") || (txtApellidoPaterno.getText().trim().equals("")) || (txtApellidoMaterno.getText().trim().equals("")) || txtCorreo.getText().trim().equals(""))
         {
             JOptionPane.showMessageDialog(this, "Ingrese todos los datos");
-        }
-        else
+        }else if(emailpattern.matcher(txtCorreo.getText().trim()).matches()){
+            JOptionPane.showMessageDialog(this, "Ingrese email válido");
+        }else
         {
 //            Payee altUser = new Payee();
 //            altUser.setIdTrabajador(curu);
