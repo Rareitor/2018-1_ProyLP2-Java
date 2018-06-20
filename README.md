@@ -4,8 +4,3 @@ iReport Plugin: https://sourceforge.net/projects/ireport/files/iReport%20Plugin%
 <br> Librerías necesarias: https://drive.google.com/file/d/1HiM0jabbQ7SkB03SSMMWXtHDpmOCbuSy/view?usp=sharing
 <hr>
 <br> Todas las librerías: https://community.jaspersoft.com/project/ireport-designer
-
-Falta:
- - Cuadrar bien los gŕaficos
- - Backup
- - Cálculo de comisiones
