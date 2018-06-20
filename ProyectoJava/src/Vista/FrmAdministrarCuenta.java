@@ -56,18 +56,14 @@ public class FrmAdministrarCuenta extends javax.swing.JInternalFrame {
 
         lblNombre = new javax.swing.JLabel();
         lblApellidoPaterno = new javax.swing.JLabel();
-        lblTelefono = new javax.swing.JLabel();
         lblApellidoMaterno = new javax.swing.JLabel();
         lblDNI = new javax.swing.JLabel();
-        lblDireccion = new javax.swing.JLabel();
         lblCorreo = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         txtApellidoPaterno = new javax.swing.JTextField();
         txtCorreo = new javax.swing.JTextField();
-        txtTelefono = new javax.swing.JTextField();
         txtDNI = new javax.swing.JTextField();
         txtApellidoMaterno = new javax.swing.JTextField();
-        txtDireccion = new javax.swing.JTextField();
         btnAceptar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
@@ -77,26 +73,16 @@ public class FrmAdministrarCuenta extends javax.swing.JInternalFrame {
         lblApellidoPaterno.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         lblApellidoPaterno.setText("Apellido Paterno:");
 
-        lblTelefono.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        lblTelefono.setText("Telefono:");
-
         lblApellidoMaterno.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         lblApellidoMaterno.setText("Apellido Materno:");
 
         lblDNI.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         lblDNI.setText("DNI:");
 
-        lblDireccion.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        lblDireccion.setText("Dirección:");
-
         lblCorreo.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         lblCorreo.setText("Correo:");
 
-        txtTelefono.setEnabled(false);
-
         txtDNI.setEnabled(false);
-
-        txtDireccion.setEnabled(false);
 
         btnAceptar.setText("Aceptar");
         btnAceptar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -125,26 +111,25 @@ public class FrmAdministrarCuenta extends javax.swing.JInternalFrame {
                         .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblApellidoPaterno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblDNI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(lblCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                                .addComponent(txtApellidoPaterno)
-                                .addComponent(txtApellidoMaterno)
-                                .addComponent(txtDNI)
-                                .addComponent(txtTelefono)
-                                .addComponent(txtCorreo))
-                            .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(36, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
                         .addComponent(btnCancelar)
-                        .addGap(56, 56, 56))))
+                        .addGap(56, 56, 56))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCorreo)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                                        .addComponent(txtDNI))
+                                    .addComponent(txtApellidoPaterno, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                                    .addComponent(txtApellidoMaterno))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,22 +152,14 @@ public class FrmAdministrarCuenta extends javax.swing.JInternalFrame {
                             .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblTelefono)
-                            .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblCorreo)
-                            .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblDireccion)
-                            .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(txtApellidoMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAceptar)
                     .addComponent(btnCancelar))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
@@ -245,15 +222,11 @@ public class FrmAdministrarCuenta extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblApellidoPaterno;
     private javax.swing.JLabel lblCorreo;
     private javax.swing.JLabel lblDNI;
-    private javax.swing.JLabel lblDireccion;
     private javax.swing.JLabel lblNombre;
-    private javax.swing.JLabel lblTelefono;
     private javax.swing.JTextField txtApellidoMaterno;
     private javax.swing.JTextField txtApellidoPaterno;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDNI;
-    private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }
