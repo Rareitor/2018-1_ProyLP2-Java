@@ -129,6 +129,11 @@ public class PnlGrafTopProductos extends javax.swing.JPanel {
         g.setColor(Color.green);
         if (montos.get(2) != 0)    
             g.drawString(df.format(montos.get(2)), 280 + 250, 30 + 240-v3);
+        
+        //Lineas
+        g.setColor(Color.black);
+        if(!nombres.isEmpty())
+            g.drawLine(310, 290, 590, 290);
     }
     
     private void btnObtenerGrafMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnObtenerGrafMouseClicked
