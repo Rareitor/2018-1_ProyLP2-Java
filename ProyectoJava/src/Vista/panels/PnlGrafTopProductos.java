@@ -11,9 +11,11 @@ public class PnlGrafTopProductos extends javax.swing.JPanel {
     private final ProductoBL prodBL;
     private final ArrayList<String> nombres;
     private final ArrayList<Double> montos;
+    private boolean inicio;
     
     public PnlGrafTopProductos() {
         initComponents();
+        inicio = true;
         prodBL = new ProductoBL();
         nombres = new ArrayList<>();
         montos = new ArrayList<>();
@@ -131,15 +133,18 @@ public class PnlGrafTopProductos extends javax.swing.JPanel {
             g.drawString(df.format(montos.get(2)), 280 + 250, 30 + 240-v3);
         
         //Lineas
-        g.setColor(Color.black);
-        if(!nombres.isEmpty())
-            g.drawLine(310, 290, 590, 290);
+        if (!inicio){
+            g.setColor(Color.black);
+            if(!nombres.isEmpty())
+                g.drawLine(310, 290, 590, 290);
+        }
+        
     }
     
     private void btnObtenerGrafMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnObtenerGrafMouseClicked
         nombres.clear();
         montos.clear();
-        
+        inicio = false;
         if(!prodBL.productosDestacados(nombres, montos, dtchIni.getDate(), dtchFin.getDate()))
             JOptionPane.showMessageDialog(this, "Por favor, ingrese fechas válidas", "Error en la gráfica", JOptionPane.ERROR_MESSAGE);
         else 
