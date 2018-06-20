@@ -816,7 +816,6 @@ public class FrmMainOptionsAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_menuiPermisosActionPerformed
 
     private void menuiVerProdDestacadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuiVerProdDestacadosActionPerformed
-        // TODO add your handling code here:
         if(productosDestacados != null){
             try{
                 productosDestacados.setClosed(true);
