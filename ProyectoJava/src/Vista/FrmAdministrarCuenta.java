@@ -201,31 +201,22 @@ public class FrmAdministrarCuenta extends javax.swing.JInternalFrame {
         }
         else
         {
-            Payee altUser = new Payee();
-            altUser.setUserName(curUser.getUserName());
+//            Payee altUser = new Payee();
+//            altUser.setIdTrabajador(curu);
+//            altUser.setUserName(curUser.getUserName());
             String tmp = txtNombre.getText().trim();
-            if(!curUser.getNombre().equals(tmp)) altUser.setNombre(tmp);
+            if(!curUser.getNombre().equals(tmp)) curUser.setNombre(tmp);
             
             tmp = txtApellidoPaterno.getText().trim();
-            if(!curUser.getApellidoPaterno().equals(tmp)) altUser.setApellidoPaterno(tmp);
+            if(!curUser.getApellidoPaterno().equals(tmp)) curUser.setApellidoPaterno(tmp);
             
             tmp = txtApellidoMaterno.getText().trim();
-            if(!curUser.getApellidoMaterno().equals(tmp)) altUser.setApellidoMaterno(tmp);
+            if(!curUser.getApellidoMaterno().equals(tmp)) curUser.setApellidoMaterno(tmp);
             
             tmp = txtCorreo.getText().trim();
-            if(!curUser.getEmail().equals(tmp)) altUser.setEmail(tmp);
+            if(!curUser.getEmail().equals(tmp)) curUser.setEmail(tmp);
             
-            if(pyBL.modificarDatosPropios(altUser)){
-                if(!curUser.getNombre().equals(tmp)) altUser.setNombre(tmp);
-            
-            tmp = txtApellidoPaterno.getText().trim();
-            if(!curUser.getApellidoPaterno().equals(tmp)) altUser.setApellidoPaterno(tmp);
-            
-            tmp = txtApellidoMaterno.getText().trim();
-            if(!curUser.getApellidoMaterno().equals(tmp)) altUser.setApellidoMaterno(tmp);
-            
-            tmp = txtCorreo.getText().trim();
-            if(!curUser.getEmail().equals(tmp)) altUser.setEmail(tmp);
+            if(pyBL.modificarDatosPropios(curUser)){
                 JOptionPane.showMessageDialog(this, "Datos Actualizados");
             }else{
                 JOptionPane.showMessageDialog(this, "Error en la actualización");

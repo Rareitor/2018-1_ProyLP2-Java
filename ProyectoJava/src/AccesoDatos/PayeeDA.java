@@ -237,10 +237,9 @@ public class PayeeDA {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://quilla.lab.inf.pucp.edu.pe/inf282g8", "inf282g8", "4LDJZU");
-            CallableStatement cstt = con.prepareCall("{call MODIFICAR_PROPIO_USUARIO(?,?,?,?,?,?)}");
+            CallableStatement cstt = con.prepareCall("{call MODIFICAR_PROPIO_USUARIO(?,?,?,?,?)}");
             
-            cstt.setString(1, user.getUserName());
-            cstt.setString(2, user.getDni());
+            cstt.setString(1, user.getIdTrabajador());
             cstt.setString(3, user.getNombre());
             cstt.setString(4, user.getApellidoPaterno());
             cstt.setString(5, user.getApellidoMaterno());

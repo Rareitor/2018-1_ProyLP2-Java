@@ -51,6 +51,7 @@ public class FrmMainOptionsAdmin extends javax.swing.JFrame {
 
                 this.initForms();
                 this.idPayee = logicaNegocio.obtenerId(currentUser.getUserName());
+                currentUser.setIdTrabajador(idPayee);
             }            
         }catch(Exception ex){
             System.out.println("No user has been detected.");
