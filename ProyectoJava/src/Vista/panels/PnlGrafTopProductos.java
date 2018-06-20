@@ -90,15 +90,14 @@ public class PnlGrafTopProductos extends javax.swing.JPanel {
         }
         
         //Leyenda
-        g.drawString("Montos comisionados", 35, 180 + 25);
         if (montos.get(0) != 0)   
-            g.drawString("1. " + nombres.get(0), 5, 180 + 40);
+            g.drawString("1. " + nombres.get(0), 10, 180 + 40);
         if (montos.get(1) != 0)   
-            g.drawString("2. " + nombres.get(1), 5, 180 + 70);
+            g.drawString("2. " + nombres.get(1), 10, 180 + 70);
         if (montos.get(2) != 0)   
-            g.drawString("3. " + nombres.get(2), 5, 180 + 100);
+            g.drawString("3. " + nombres.get(2), 10, 180 + 100);
         
-        //Gráfico
+        //Encabezados
         if (montos.get(0) != 0)   
             g.drawString("[1]", 280 + 65, 50 + 260);
         if (montos.get(1) != 0)   
@@ -112,18 +111,24 @@ public class PnlGrafTopProductos extends javax.swing.JPanel {
         int v3 = (int) (mxSz*montos.get(2)/tot);
         DecimalFormat df = new DecimalFormat("#.##"); 
         
+        //Rectángulos
         g.setColor(Color.red);
         g.fillRect(280 + 50, 50 + 240-v1, 40, v1);
-        if (montos.get(0) != 0)
-            g.drawString(df.format(montos.get(0)), 50, 50);
         g.setColor(Color.blue);
         g.fillRect(280 + 150, 50 + 240-v2, 40, v2);
-        if (montos.get(1) != 0)
-            g.drawString(df.format(montos.get(1)), 150, 50);
         g.setColor(Color.green);
         g.fillRect(280 + 250, 50 + 240-v3, 40, v3);
+        
+        //Montos
+        g.setColor(Color.red);
+        if (montos.get(0) != 0)
+            g.drawString(df.format(montos.get(0)), 280 + 50, 30 + 240-v1);
+        g.setColor(Color.blue);
+        if (montos.get(1) != 0)
+            g.drawString(df.format(montos.get(1)), 280 + 150, 30 + 240-v2);
+        g.setColor(Color.green);
         if (montos.get(2) != 0)    
-            g.drawString(df.format(montos.get(2)), 250, 50);
+            g.drawString(df.format(montos.get(2)), 280 + 250, 30 + 240-v3);
     }
     
     private void btnObtenerGrafMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnObtenerGrafMouseClicked
