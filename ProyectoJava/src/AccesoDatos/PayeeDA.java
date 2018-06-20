@@ -240,10 +240,10 @@ public class PayeeDA {
             CallableStatement cstt = con.prepareCall("{call MODIFICAR_PROPIO_USUARIO(?,?,?,?,?)}");
             
             cstt.setString(1, user.getIdTrabajador());
-            cstt.setString(3, user.getNombre());
-            cstt.setString(4, user.getApellidoPaterno());
-            cstt.setString(5, user.getApellidoMaterno());
-            cstt.setString(6, user.getEmail());
+            cstt.setString(2, user.getNombre());
+            cstt.setString(3, user.getApellidoPaterno());
+            cstt.setString(4, user.getApellidoMaterno());
+            cstt.setString(5, user.getEmail());
             
             cstt.execute();
             con.close();
