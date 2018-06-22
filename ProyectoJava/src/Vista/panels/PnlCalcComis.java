@@ -43,14 +43,11 @@ public class PnlCalcComis extends javax.swing.JPanel {
 
         lblFechaTope = new javax.swing.JLabel();
         dateChooser = new com.toedter.calendar.JDateChooser();
-        jLabel1 = new javax.swing.JLabel();
         btnCalcular = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(204, 204, 204));
 
         lblFechaTope.setText("Fecha:");
-
-        jLabel1.setText("Nota: dejar en blanco para usar la fecha actual");
 
         btnCalcular.setText("Calcular Comisiones");
         btnCalcular.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -75,9 +72,8 @@ public class PnlCalcComis extends javax.swing.JPanel {
                         .addComponent(lblFechaTope)
                         .addGap(18, 18, 18)
                         .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1)
                     .addComponent(btnCalcular))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -86,9 +82,7 @@ public class PnlCalcComis extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblFechaTope))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(50, 50, 50)
                 .addComponent(btnCalcular)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -117,7 +111,6 @@ public class PnlCalcComis extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCalcular;
     private com.toedter.calendar.JDateChooser dateChooser;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblFechaTope;
     // End of variables declaration//GEN-END:variables
 }
