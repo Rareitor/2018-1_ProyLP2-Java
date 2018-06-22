@@ -1,5 +1,4 @@
 package Vista;
-import AccesoDatos.PayeeDA;
 import Controlador.PayeeBL;
 import Modelo.Payee;
 import java.awt.Dimension;
