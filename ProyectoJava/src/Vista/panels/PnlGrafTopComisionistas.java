@@ -225,3 +225,7 @@ public class PnlGrafTopComisionistas extends javax.swing.JPanel {
     private javax.swing.JPanel pnlNombres;
     // End of variables declaration//GEN-END:variables
 }
+
+
+
+
